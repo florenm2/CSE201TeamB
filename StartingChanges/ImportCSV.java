@@ -19,6 +19,7 @@ public class ImportCSV {
 	@SuppressWarnings("null")
 	public static void csvFileIN() throws IOException {
 
+		//Marks: C:\Users\Owner\Documents\github\CSE201TeamB\classes.csv
 		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_FinalProject_TeamB\\src\\classes.csv";
 		
 		// creatBufferedReader
