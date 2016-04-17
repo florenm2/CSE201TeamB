@@ -20,6 +20,12 @@ public class Controller {
 		}
 	}
 	
-	
+	public ArrayList<Course> displayCoursesOnce(){
+		ArrayList<Course> coursesOnce = new ArrayList<Course>();
+		
+		
+		
+		return coursesOnce;
+	}
 	
 }

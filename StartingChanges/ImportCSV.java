@@ -20,7 +20,7 @@ public class ImportCSV {
 	public static ArrayList<Course> csvFileIN() throws IOException {
 
 		//Marks: C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv
-		//Adams: C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv
+		//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
 		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
 		
 		// creatBufferedReader
