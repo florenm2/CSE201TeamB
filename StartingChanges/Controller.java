@@ -9,7 +9,8 @@ public class Controller {
 		
 		ArrayList<Course> allCourses = new ArrayList<Course>();
 		ArrayList<Course> coursesOnce = new ArrayList<Course>();
-		ArrayList<Course> coursesTaken = new ArrayList<Course>();
+		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
+		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 		
 		try {
 			allCourses = ImportCSV.csvFileIN();
@@ -17,12 +18,24 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*
+		
+		
+		//Step 1: Display all course names for student to select the courses that he/she has previously taken
+		coursesOnce = displayCoursesOnce(allCourses);
+		
+		//Step 2: Let student select courses and store in coursesPrevTaken
+		
+		//Step 3: Display all courses offered in a given semester
 		for(Course c : allCourses){
 			System.out.println(c.displayCourse());
 		}
-		*/
-		coursesOnce = displayCoursesOnce(allCourses);
+		
+		//Step 4: Let student select all courses he/she wants to schedule and store in coursesScheduled
+		
+		//Step 5: Check requirements
+		//5a: Check prereqs
+		//5b: Check 
+		
 		
 		
 		
@@ -52,6 +65,10 @@ public class Controller {
 	 * http://bulletin.miamioh.edu/engineering-computing/software-bs/
 	 */
 	
+	public static void checkPrereqs(Course c){
+		
+		
+	}
 	
 	
 }
