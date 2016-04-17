@@ -21,7 +21,8 @@ public class ImportCSV {
 
 		//Marks: C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv
 		//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
+		//Mary's: "/Users/maryfloren/CSE201TeamB/classes.csv"
+		String fileName = "/Users/maryfloren/CSE201TeamB/classes.csv";
 		
 		// creatBufferedReader
 		BufferedReader br = null;
