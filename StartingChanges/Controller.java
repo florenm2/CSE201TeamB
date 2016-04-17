@@ -9,6 +9,8 @@ public class Controller {
 		
 		ArrayList<Course> allCourses = new ArrayList<Course>();
 		ArrayList<Course> coursesOnce = new ArrayList<Course>();
+		ArrayList<Course> coursesTaken = new ArrayList<Course>();
+		
 		try {
 			allCourses = ImportCSV.csvFileIN();
 		} catch (IOException e) {
@@ -21,6 +23,8 @@ public class Controller {
 		}
 		*/
 		coursesOnce = displayCoursesOnce(allCourses);
+		
+		
 		
 	}
 	
@@ -39,5 +43,15 @@ public class Controller {
 		}		
 		return coursesOnce;
 	}
+	
+	/*
+	 * CS requirements
+	 * http://bulletin.miamioh.edu/engineering-computing/computer-science-bs/
+	 * 
+	 * SE requirements
+	 * http://bulletin.miamioh.edu/engineering-computing/software-bs/
+	 */
+	
+	
 	
 }
