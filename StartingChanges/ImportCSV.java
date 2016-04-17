@@ -19,8 +19,9 @@ public class ImportCSV {
 	@SuppressWarnings("null")
 	public static void csvFileIN() throws IOException {
 
-		//Marks: C:\Users\Owner\Documents\github\CSE201TeamB\classes.csv
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_FinalProject_TeamB\\src\\classes.csv";
+		//Marks: C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv
+		//Adams: C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_FinalProject_TeamB\\src\\classes.csv
+		String fileName = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv";
 		
 		// creatBufferedReader
 		BufferedReader br = null;
