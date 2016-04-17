@@ -17,11 +17,11 @@ public class ImportCSV {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("null")
-	public static void csvFileIN() throws IOException {
+	public static ArrayList<Course> csvFileIN() throws IOException {
 
 		//Marks: C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv
-		//Adams: C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_FinalProject_TeamB\\src\\classes.csv
-		String fileName = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv";
+		//Adams: C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
 		
 		// creatBufferedReader
 		BufferedReader br = null;
@@ -36,7 +36,7 @@ public class ImportCSV {
 		br = new BufferedReader(new FileReader(fileName));
 
 		//string of titles
-		String blah = br.readLine();
+		String courses = br.readLine();
 
 		// read line/create object
 		while ((cur = br.readLine()) != null) {
@@ -116,11 +116,18 @@ public class ImportCSV {
 			courseList.add(obj);
 
 			// display to console for testing
-			System.out.println(obj.displayCourse());
+			//System.out.println(obj.displayCourse());
 
 		}
-
+		
+		
 		// scan.close();
 		br.close();
+		
+		return courseList;
 	}
+	
+	
 }
+
+
