@@ -22,14 +22,49 @@ public class Controller {
 		}
 		
 		
+		//Step 0: Testing
+		Course c274 = new Course();
+		c274.setCourseNum("274");
+		c274.setSubject("CSE");
+		
+		Course c289 = new Course();
+		c289.setCourseNum("289");
+		c289.setSubject("CSE");
+		
+		Course c381 = new Course();
+		c381.setCourseNum("381");
+		c381.setSubject("CSE");
+		
+		Course c487 = new Course();
+		c487.setCourseNum("487");
+		c487.setSubject("CSE");
+		
+		Course c174 = new Course();
+		c174.setCourseNum("174");
+		c174.setSubject("CSE");
+		
+		coursesPrevTaken.add(c274);
+		coursesPrevTaken.add(c289);
+		
+		coursesScheduled.add(c381);
+		
+		try {
+			checkPrereqs(c381, coursesPrevTaken);
+			checkPrereqs(c487, coursesPrevTaken);
+			checkPrereqs(c174, coursesPrevTaken);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//Step 1: Display all course names for student to select the courses that he/she has previously taken
-		coursesOnce = displayCoursesOnce(allCourses);
+		//coursesOnce = displayCoursesOnce(allCourses);
 		
 		//Step 2: Let student select courses and store in coursesPrevTaken
 		
 		//Step 3: Display all courses offered in a given semester
 		for(Course c : allCourses){
-			System.out.println(c.displayCourse());
+			//System.out.println(c.displayCourse());
 		}
 		
 		//Step 4: Let student select all courses he/she wants to schedule and store in coursesScheduled
@@ -68,9 +103,11 @@ public class Controller {
 	 * http://bulletin.miamioh.edu/engineering-computing/software-bs/
 	 */
 	
-	//have not tested, diffcult till we actually get here
+	//working
 	public static void checkPrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
-		String fileName = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\prereqs.txt";
+		//Mark's location: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\prereqs.txt"
+		//Adam: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt"
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -89,10 +126,11 @@ public class Controller {
 					}
 					//if never set to one, requirement not satisfied
 					if(reqMet == 0)
-						System.out.println("Requirement: CSE "+prereqs[i]+" not satisfied");
+						System.out.println("Prequisite for CSE" + c.getCourseNum() + " not met. Requirement: CSE "+prereqs[i]+" not satisfied");
 				}
 			}
 		}
+		br.close();
 	}
 	
 	
