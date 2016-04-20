@@ -151,7 +151,7 @@ public class Controller {
 			 *      cccccccccc
 			 *   aaaaaaaaa   
 			 */
-			else if((c.getStartTime() > scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())){
+			else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())){
 				conflict = true;
 			}
 			//if selected course end time is between the start and end time of another course
@@ -160,6 +160,21 @@ public class Controller {
 			 *      aaaaaaaaaa  
 			 */
 			else if((c.getEndTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
+				conflict = true;
+			}
+			/*
+			 * cccccccccccc
+			 *    aaaaaa
+			 * 
+			 */
+			else if((c.getStartTime() <= scheduled.getStartTime()) && (c.getEndTime() >= scheduled.getEndTime())){
+				conflict = true;				
+			}
+			/*
+			 *    ccccc
+			 *  aaaaaaaaaa  
+			 */
+			else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
 				conflict = true;
 			}
 		}
