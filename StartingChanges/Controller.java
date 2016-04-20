@@ -34,10 +34,16 @@ public class Controller {
 		Course c381 = new Course();
 		c381.setCourseNum("381");
 		c381.setSubject("CSE");
+		c381.setDays("MW");
+		c381.setStartTime(10000);
+		c381.setEndTime(11000);
 		
 		Course c487 = new Course();
 		c487.setCourseNum("487");
 		c487.setSubject("CSE");
+		c487.setDays("WF");
+		c487.setStartTime(10050);
+		c487.setEndTime(12050);
 		
 		Course c174 = new Course();
 		c174.setCourseNum("174");
@@ -52,9 +58,18 @@ public class Controller {
 			checkPrereqs(c381, coursesPrevTaken);
 			checkPrereqs(c487, coursesPrevTaken);
 			checkPrereqs(c174, coursesPrevTaken);
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		if(checkCourseTime(c487,coursesScheduled)){
+			System.out.println("Time conflict");
+		}
+		else{
+			System.out.println("No time conflict");
 		}
 		
 		//Step 1: Display all course names for student to select the courses that he/she has previously taken
@@ -138,44 +153,65 @@ public class Controller {
 		return reqsMet; 
 	}
 	
-	//not tested yet
+	
 	public static boolean checkCourseTime(Course c, ArrayList<Course> coursesScheduled){
 		boolean conflict = false;
+		boolean sameDay = false;
 		for(Course scheduled: coursesScheduled){
-			//if selected course start time equals start time of other course
-			if(scheduled.getStartTime() == c.getStartTime()){
-				conflict = true;
+			//1. check days
+			for(int i = 0; i < c.getDays().length(); i++){
+				for(int j = 0; j < scheduled.getDays().length(); j++){
+					if(c.getDays().substring(i, i).equals(scheduled.getDays().substring(j, j))){
+						System.out.println("Same day = true");
+						sameDay = true;
+					}
+				}
 			}
-			//if selected course start time is between the start time and end time of another course
-			/*
-			 *      cccccccccc
-			 *   aaaaaaaaa   
-			 */
-			else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())){
-				conflict = true;
-			}
-			//if selected course end time is between the start and end time of another course
-			/*
-			 * cccccccccc
-			 *      aaaaaaaaaa  
-			 */
-			else if((c.getEndTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
-				conflict = true;
-			}
-			/*
-			 * cccccccccccc
-			 *    aaaaaa
-			 * 
-			 */
-			else if((c.getStartTime() <= scheduled.getStartTime()) && (c.getEndTime() >= scheduled.getEndTime())){
-				conflict = true;				
-			}
-			/*
-			 *    ccccc
-			 *  aaaaaaaaaa  
-			 */
-			else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
-				conflict = true;
+			
+			
+			//2. check times
+			if(sameDay){
+			
+				//if selected course start time equals start time of other course
+				if(scheduled.getStartTime() == c.getStartTime()){
+					conflict = true;
+				}
+				//if selected course end or start time is the same as the respective start or end time of other course
+				if((c.getStartTime() == scheduled.getEndTime()) || (c.getEndTime() == scheduled.getStartTime())){
+					conflict = true;
+				}
+				
+				//if selected course start time is between the start time and end time of another course
+				/*
+				 *      cccccccccc
+				 *   aaaaaaaaa   
+				 */
+				else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())){
+					conflict = true;
+				}
+				//if selected course end time is between the start and end time of another course
+				/*
+				 * cccccccccc
+				 *      aaaaaaaaaa  
+				 */
+				else if((c.getEndTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
+					conflict = true;
+				}
+				/*
+				 * cccccccccccc
+				 *    aaaaaa
+				 * 
+				 */
+				else if((c.getStartTime() <= scheduled.getStartTime()) && (c.getEndTime() >= scheduled.getEndTime())){
+					conflict = true;				
+				}
+				/*
+				 *    ccccc
+				 *  aaaaaaaaaa  
+				 */
+				else if((c.getStartTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
+					conflict = true;
+				}
 			}
 		}
 		return conflict;
