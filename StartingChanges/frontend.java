@@ -5,11 +5,6 @@
  */
 package frontend;
 
-import java.util.ArrayList;
-
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-
 public class frontend extends javax.swing.JFrame {
 
     /**
@@ -135,13 +130,16 @@ public class frontend extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
        
+        
+        }
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frontend().setVisible(true);
             }
         });
-    }
     }
 
     // Variables declaration - do not modify                     
