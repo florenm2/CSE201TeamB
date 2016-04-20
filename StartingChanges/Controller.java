@@ -138,5 +138,33 @@ public class Controller {
 		return reqsMet; 
 	}
 	
+	//not tested yet
+	public static boolean checkCourseTime(Course c, ArrayList<Course> coursesScheduled){
+		boolean conflict = false;
+		for(Course scheduled: coursesScheduled){
+			//if selected course start time equals start time of other course
+			if(scheduled.getStartTime() == c.getStartTime()){
+				conflict = true;
+			}
+			//if selected course start time is between the start time and end time of another course
+			/*
+			 *      cccccccccc
+			 *   aaaaaaaaa   
+			 */
+			else if((c.getStartTime() > scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())){
+				conflict = true;
+			}
+			//if selected course end time is between the start and end time of another course
+			/*
+			 * cccccccccc
+			 *      aaaaaaaaaa  
+			 */
+			else if((c.getEndTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())){
+				conflict = true;
+			}
+		}
+		return conflict;
+	}
+	
 	
 }
