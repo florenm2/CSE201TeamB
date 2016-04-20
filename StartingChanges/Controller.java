@@ -104,13 +104,14 @@ public class Controller {
 	 */
 	
 	//working
-	public static void checkPrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
+	public static boolean checkPrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
 		//Mark's location: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\prereqs.txt"
 		//Adam: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt"
 		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
+		boolean reqsMet = true;
 		
 		while ((cur = br.readLine()) != null){
 			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -125,12 +126,16 @@ public class Controller {
 							reqMet = 1;	
 					}
 					//if never set to one, requirement not satisfied
-					if(reqMet == 0)
+					if(reqMet == 0){
 						System.out.println("Prequisite for CSE" + c.getCourseNum() + " not met. Requirement: CSE "+prereqs[i]+" not satisfied");
+						reqsMet = false;
+					}
 				}
 			}
 		}
 		br.close();
+		
+		return reqsMet; 
 	}
 	
 	
