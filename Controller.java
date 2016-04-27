@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -66,6 +67,7 @@ public class Controller {
 		coursesPrevTaken.add(c289);
 		
 		coursesScheduled.add(c381);
+		coursesScheduled.add(c464);
 		
 		try {
 			checkPrereqs(c381, coursesPrevTaken);
@@ -75,6 +77,8 @@ public class Controller {
 			//coreSE(c464);
 			//coreCS(c174);
 			//coreCS(c464);
+			
+			isSameCourse(c464,coursesScheduled);
 			
 			//electiveCS(c211);
 			//electiveCS(c386);
@@ -96,6 +100,8 @@ public class Controller {
 			
 			//areaOfSpecializationSE(c386);
 			//areaOfSpecializationSE(c464);
+			
+			saveToCSV(coursesScheduled);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -191,6 +197,19 @@ public class Controller {
 		br.close();
 		
 		return reqsMet; 
+	}
+	
+	public static boolean isSameCourse(Course c, ArrayList<Course> coursesScheduled){
+		boolean conflict = false;
+		
+		for(Course scheduled : coursesScheduled){
+			if(c.getCourseNum().equals(scheduled.getCourseNum())){
+				conflict = true;
+				System.out.println("Same class!");
+			}
+		}
+		
+		return conflict;
 	}
 	
 	
@@ -306,7 +325,7 @@ public class Controller {
 	
 	public static boolean electiveCS(Course c) throws IOException{
 		boolean isElectiveCS = false;
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt"
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt"
 		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt";
 		BufferedReader br = null;
 		String cur = "";
@@ -337,7 +356,7 @@ public class Controller {
 	public static boolean areaOfSpecializationSE(Course c) throws IOException{
 		boolean meetsRequirement = false;
 		
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt"
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt"
 				String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt";
 				BufferedReader br = null;
 				String cur = "";
@@ -392,6 +411,17 @@ public class Controller {
 			System.out.println(c.getCourseNum() + " meets no SE requirements");
 			
 		return meetsRequirements;
+	}
+	
+	public static void saveToCSV(ArrayList<Course> courses) throws IOException{
+		FileWriter scheduleWriter = new FileWriter("C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\createdSchedule.csv");
+		
+		for(Course scheduled: courses){
+			scheduleWriter.append(scheduled.getSubject() + ',' + scheduled.getCourseNum() + ',' + scheduled.getTitle());
+			scheduleWriter.append('\n');
+		}
+		
+		scheduleWriter.close();
 	}
 	
 }
