@@ -71,14 +71,14 @@ public class Controller {
 			checkPrereqs(c381, coursesPrevTaken);
 			checkPrereqs(c464, coursesPrevTaken);
 			checkPrereqs(c174, coursesPrevTaken);
-			coreSE(c174);
-			coreSE(c464);
+			//coreSE(c174);
+			//coreSE(c464);
 			//coreCS(c174);
 			//coreCS(c464);
 			
 			//electiveCS(c211);
 			//electiveCS(c386);
-			
+			System.out.println("\nCS Checks");
 			checkCSRequirements(c600);
 			checkCSRequirements(c211);
 			checkCSRequirements(c386);
@@ -86,7 +86,16 @@ public class Controller {
 			checkCSRequirements(c386);
 			checkCSRequirements(c464);
 			
+			System.out.println("\nSE Checks");
+			checkSERequirements(c600);
+			checkSERequirements(c211);
+			checkSERequirements(c386);
+			checkSERequirements(c174);
+			checkSERequirements(c386);
+			checkSERequirements(c464);
 			
+			//areaOfSpecializationSE(c386);
+			//areaOfSpecializationSE(c464);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -325,6 +334,31 @@ public class Controller {
 		return isElectiveCS;
 		}
 	
+	public static boolean areaOfSpecializationSE(Course c) throws IOException{
+		boolean meetsRequirement = false;
+		
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt"
+				String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt";
+				BufferedReader br = null;
+				String cur = "";
+				br = new BufferedReader(new FileReader(fileName));
+				boolean reqsMet = true;
+				
+				while ((cur = br.readLine()) != null){
+					String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+					for(int i = 0; i<prereqs.length;i++){
+						if(c.getCourseNum().equals(prereqs[i])){
+							System.out.println(c.getCourseNum() + " meets Area of Specialization requirement for: " + prereqs[0]);
+							meetsRequirement = true;
+						}
+					}
+					
+				}
+				br.close();
+		
+		return meetsRequirement;
+	}
+	
 	/*
 	 * Calls all other methods that check CS requirements.
 	 */
@@ -340,6 +374,22 @@ public class Controller {
 		
 		if(!meetsRequirements)
 			System.out.println(c.getCourseNum() + " meets no CS requirements");
+			
+		return meetsRequirements;
+	}
+	
+	public static boolean checkSERequirements(Course c) throws IOException{
+		boolean meetsRequirements = false;
+		
+		if(coreSE(c)){
+			meetsRequirements = true;
+		}
+		else if(areaOfSpecializationSE(c)){
+			meetsRequirements = true;
+		}
+		
+		if(!meetsRequirements)
+			System.out.println(c.getCourseNum() + " meets no SE requirements");
 			
 		return meetsRequirements;
 	}
