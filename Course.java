@@ -8,6 +8,10 @@ public class Course {
 	public int endTime;
 	public String days;
 	public String instructorName;
+	
+	public String title;
+
+	
 
 	/**
 	 *  Will store value to print course information to the GUI
@@ -32,7 +36,7 @@ public class Course {
 	 * @param days
 	 * @param instructorName
 	 */
-	public Course(int crn, String subject, String courseNum, String section, int startTime, int endTime, String days,
+	public Course(int crn, String subject, String courseNum, String title, String section, int startTime, int endTime, String days,
 			String instructorName) {
 		super();
 		this.crn = crn;
@@ -43,6 +47,8 @@ public class Course {
 		this.endTime = endTime;
 		this.days = days;
 		this.instructorName = instructorName;
+		
+		this.title = title;
 	}
 
 	/**
@@ -50,7 +56,7 @@ public class Course {
 	 * @return
 	 */
 	public String displayCourse() {
-		course = getSubject() + getCourseNum() + " (" + getSection() + ") " + getInstructorName();
+		course = getSubject() + getCourseNum() + " " + getTitle() + "(" + getSection() + ") " + getInstructorName() + " Start Time: " + getStartTime() + " End Time: " + getEndTime();
 		return course;
 	}
 
@@ -62,6 +68,14 @@ public class Course {
 
 	}
 
+	/**
+	 * Things I added
+	 */
+	
+	
+	
+	
+	
 	/**
 	 * retrieves the crn
 	 * @return
@@ -188,6 +202,14 @@ public class Course {
 	 */
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
