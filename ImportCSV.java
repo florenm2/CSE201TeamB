@@ -24,14 +24,14 @@ public class ImportCSV {
 		//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
 		//Mary's: "/Users/maryfloren/CSE201TeamB/classes.csv"
 //		String fileName = "/Users/maryfloren/CSE201TeamB/classes.csv";
-//		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
 		
 		// creatBufferedReader
 		BufferedReader br = null;
 
 		// current line
 		String cur = "";
-		String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
+		//String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 		// this stores all of the parts seperated by commas in the current line
 		ArrayList<Course> courseList = new ArrayList<Course>();
