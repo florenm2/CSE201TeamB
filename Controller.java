@@ -58,6 +58,10 @@ public class Controller {
 		c386.setCourseNum("386");
 		c386.setSubject("CSE");
 		
+		Course c600 = new Course();
+		c600.setCourseNum("600");
+		c600.setSubject("CSE");
+		
 		coursesPrevTaken.add(c274);
 		coursesPrevTaken.add(c289);
 		
@@ -69,11 +73,19 @@ public class Controller {
 			checkPrereqs(c174, coursesPrevTaken);
 			coreSE(c174);
 			coreSE(c464);
-			coreCS(c174);
-			coreCS(c464);
+			//coreCS(c174);
+			//coreCS(c464);
 			
-			electiveCS(c211);
-			electiveCS(c386);
+			//electiveCS(c211);
+			//electiveCS(c386);
+			
+			checkCSRequirements(c600);
+			checkCSRequirements(c211);
+			checkCSRequirements(c386);
+			checkCSRequirements(c174);
+			checkCSRequirements(c386);
+			checkCSRequirements(c464);
+			
 			
 			
 		} catch (IOException e) {
@@ -312,5 +324,24 @@ public class Controller {
 		
 		return isElectiveCS;
 		}
+	
+	/*
+	 * Calls all other methods that check CS requirements.
+	 */
+	public static boolean checkCSRequirements(Course c) throws IOException{
+		boolean meetsRequirements = false;
+		
+		if(coreCS(c)){
+			meetsRequirements = true;
+		}
+		else if(electiveCS(c)){
+			meetsRequirements = true;
+		}
+		
+		if(!meetsRequirements)
+			System.out.println(c.getCourseNum() + " meets no CS requirements");
+			
+		return meetsRequirements;
+	}
 	
 }
