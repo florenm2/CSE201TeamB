@@ -18,8 +18,14 @@ public class ImportCSV {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("null")
-	public static void csvFileIN(File fileName) throws IOException {
+	public static ArrayList<Course> csvFileIN() throws IOException {
 
+		//Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv"
+		//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
+		//Mary's: "/Users/maryfloren/CSE201TeamB/classes.csv"
+//		String fileName = "/Users/maryfloren/CSE201TeamB/classes.csv";
+//		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
+		
 		// creatBufferedReader
 		BufferedReader br = null;
 
@@ -33,7 +39,7 @@ public class ImportCSV {
 		br = new BufferedReader(new FileReader(fileName));
 
 		//string of titles
-		String blah = br.readLine();
+		String courses = br.readLine();
 
 		// read line/create object
 		while ((cur = br.readLine()) != null) {
@@ -68,7 +74,12 @@ public class ImportCSV {
 				obj.setSection(null);
 			}
 
-			// skip title 4
+			// included title
+			if (course[4] != null) {
+				obj.setTitle(course[4]);
+			} else {
+				obj.setTitle(null);
+			}
 			// skip hours 5
 			// skip En 6
 			// skip max_enroll 7
@@ -111,11 +122,13 @@ public class ImportCSV {
 			//System.out.println(obj.displayCourse());
 
 		}
-
-		// send object to sort method to be sorted into arraylist
-		ArrayListsForClasses.sortArrays(courseList);
-
+		
+		
 		// scan.close();
 		br.close();
+		
+		return courseList;
 	}
+	
+	
 }
