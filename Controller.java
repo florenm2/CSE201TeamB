@@ -417,7 +417,7 @@ public class Controller {
 		FileWriter scheduleWriter = new FileWriter("C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\createdSchedule.csv");
 		
 		for(Course scheduled: courses){
-			scheduleWriter.append(scheduled.getSubject() + ',' + scheduled.getCourseNum() + ',' + scheduled.getTitle());
+			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
 		

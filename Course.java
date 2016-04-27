@@ -60,22 +60,11 @@ public class Course {
 		return course;
 	}
 
-	/**
-	 * main
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
+	public String displayCourseCSVFormat(){
+		course = getCrn() + "," + getSubject() + "," + getCourseNum() + "," + getTitle() + "," + getSection() + "," + getInstructorName() + "," + getStartTime() + "," + getEndTime();
+		return course;
 	}
 
-	/**
-	 * Things I added
-	 */
-	
-	
-	
-	
-	
 	/**
 	 * retrieves the crn
 	 * @return
