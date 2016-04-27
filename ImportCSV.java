@@ -31,6 +31,7 @@ public class ImportCSV {
 
 		// current line
 		String cur = "";
+		String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 		// this stores all of the parts seperated by commas in the current line
 		ArrayList<Course> courseList = new ArrayList<Course>();
