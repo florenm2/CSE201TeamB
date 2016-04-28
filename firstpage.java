@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-public class frontend extends javax.swing.JFrame {
+public class firstpage extends javax.swing.JFrame {
     
     /**
      * Creates new form frontend.
      * fddf
      */
-    public frontend() {
+    public firstpage() {
         initComponents();
     }
     
@@ -122,13 +122,13 @@ public class frontend extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(firstpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(firstpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(firstpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frontend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(firstpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             
             
         }
@@ -137,7 +137,7 @@ public class frontend extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frontend().setVisible(true);
+                new firstpage().setVisible(true);
             }
         });
     }
