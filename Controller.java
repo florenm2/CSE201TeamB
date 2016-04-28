@@ -23,7 +23,6 @@ public class Controller {
 		ArrayList<Course> coursesOnce = new ArrayList<Course>();//notice unused, never returned
 		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
-		ArrayList<Course> prereqsNeeded = new ArrayList<Course>();
 		
 		try {
 			allCourses = ImportCSV.csvFileIN();
@@ -106,6 +105,17 @@ public class Controller {
 			checkSERequirements(c174);
 			checkSERequirements(c386);
 			checkSERequirements(c464);
+			
+			
+			System.out.println("ONE");
+			ArrayList<String> prereqsNeeded = new ArrayList<String>();
+			prereqsNeeded = listIncompletePrereqs(c381, coursesPrevTaken);
+			for (String s : prereqsNeeded)
+				System.out.println(s);
+			System.out.println("TWO");
+			
+			
+			
 			
 			
 			//areaOfSpecializationSE(c386);
@@ -209,13 +219,10 @@ public class Controller {
 		return reqsMet; 
 	}
 	
-	
 	/*
-	 * IN PROGRESSS
-	 * 
-	public static ArrayList<Course> listIncompletePrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
+	public static ArrayList<String> listIncompletePrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
 		
-		ArrayList<Course> prereqArrayList = new ArrayList<Course>();
+		ArrayList<String> prereqsUnfinished = new ArrayList<String>();
 		String fileName = path + "prereqs.txt";
 		BufferedReader br = null;
 		String cur = "";
@@ -225,7 +232,19 @@ public class Controller {
 			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 			//if current line, first course listed is the course
 			if(prereqs[0].equals(c.getCourseNum())){
+				prereqsUnfinished = prereqs;
 				//loop through checking all requirements
+				for(int i = 1; i<prereqs.length;i++){
+					boolean notFoundYet = true;
+					//check courses taken to see if it matches requirement
+					for(int j = 0; j<coursesPrevTaken.size();j++){
+						if((prereqs[i]).equals(coursesPrevTaken.get(j).getCourseNum()))
+							prereqsToTake.remove(prereqs[i])
+							
+							
+							prereqsUnfinished.add("CSE " + prereqs[i]);	
+					}
+				}
 				for(int i = 1; i<prereqs.length;i++){
 					int reqMet = 0;
 					//check courses taken to see if it matches requirement
@@ -235,18 +254,19 @@ public class Controller {
 					}
 					//if never set to one, requirement not satisfied
 					if(reqMet == 0){
-						//prereqArrayList.add()
 						System.out.println("Prequisite for CSE" + c.getCourseNum() + " not met. Requirement: CSE "+prereqs[i]+" not satisfied");
-						
+						reqsMet = false;
 					}
 				}
+				
+				
+				
 			}
 		}
 		br.close();
 		
-		return prereqArrayList; 
+		return prereqsUnfinished; 
 	}
-	
 	*/
 	
 	public static boolean isSameCourse(Course c, ArrayList<Course> coursesScheduled){
