@@ -238,10 +238,6 @@ public class Controller {
 			//2. check times
 			if(sameDay){
 			
-				//if selected course start time equals start time of other course
-				if(scheduled.getStartTime() == c.getStartTime()){
-					conflict = true;
-				}
 				//if selected course end or start time is the same as the respective start or end time of other course
 				if((c.getStartTime() == scheduled.getEndTime()) || (c.getEndTime() == scheduled.getStartTime())){
 					conflict = true;
