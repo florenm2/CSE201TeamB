@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class jTable {
+public class chooseClasses {
     
     private static ArrayList<String> string = new ArrayList();
     private static ArrayList<String> titel = new ArrayList();
@@ -40,7 +40,7 @@ public class jTable {
         
         JFrame frame = new JFrame("Demo");
         frame.getContentPane().add(new JScrollPane(EndTable));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
