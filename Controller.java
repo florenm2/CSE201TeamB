@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -38,39 +40,83 @@ public class Controller {
 		c381.setStartTime(10000);
 		c381.setEndTime(11000);
 		
-		Course c487 = new Course();
-		c487.setCourseNum("487");
-		c487.setSubject("CSE");
-		c487.setDays("WF");
-		c487.setStartTime(10050);
-		c487.setEndTime(12050);
+		Course c464 = new Course();
+		c464.setCourseNum("464");
+		c464.setSubject("CSE");
+		c464.setDays("WF");
+		c464.setStartTime(10050);
+		c464.setEndTime(12050);
 		
 		Course c174 = new Course();
 		c174.setCourseNum("174");
 		c174.setSubject("CSE");
 		
+		Course c211 = new Course();
+		c211.setCourseNum("211");
+		c211.setSubject("CSE");
+		
+		Course c386 = new Course();
+		c386.setCourseNum("386");
+		c386.setSubject("CSE");
+		
+		Course c600 = new Course();
+		c600.setCourseNum("600");
+		c600.setSubject("CSE");
+		
 		coursesPrevTaken.add(c274);
 		coursesPrevTaken.add(c289);
 		
 		coursesScheduled.add(c381);
+		coursesScheduled.add(c464);
 		
 		try {
 			checkPrereqs(c381, coursesPrevTaken);
-			checkPrereqs(c487, coursesPrevTaken);
+			checkPrereqs(c464, coursesPrevTaken);
 			checkPrereqs(c174, coursesPrevTaken);
+			//coreSE(c174);
+			//coreSE(c464);
+			//coreCS(c174);
+			//coreCS(c464);
 			
+			isSameCourse(c464,coursesScheduled);
+			
+			//electiveCS(c211);
+			//electiveCS(c386);
+			System.out.println("\nCS Checks");
+			checkCSRequirements(c600);
+			checkCSRequirements(c211);
+			checkCSRequirements(c386);
+			checkCSRequirements(c174);
+			checkCSRequirements(c386);
+			checkCSRequirements(c464);
+			
+			System.out.println("\nSE Checks");
+			checkSERequirements(c600);
+			checkSERequirements(c211);
+			checkSERequirements(c386);
+			checkSERequirements(c174);
+			checkSERequirements(c386);
+			checkSERequirements(c464);
+			
+			//areaOfSpecializationSE(c386);
+			//areaOfSpecializationSE(c464);
+			
+			saveToCSV(coursesScheduled);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(checkCourseTime(c487,coursesScheduled)){
+		if(checkCourseTime(c464,coursesScheduled)){
 			System.out.println("Time conflict");
 		}
 		else{
 			System.out.println("No time conflict");
 		}
+		
+		
+		
 		
 		//Step 1: Display all course names for student to select the courses that he/she has previously taken
 		//coursesOnce = displayCoursesOnce(allCourses);
@@ -153,6 +199,19 @@ public class Controller {
 		return reqsMet; 
 	}
 	
+	public static boolean isSameCourse(Course c, ArrayList<Course> coursesScheduled){
+		boolean conflict = false;
+		
+		for(Course scheduled : coursesScheduled){
+			if(c.getCourseNum().equals(scheduled.getCourseNum())){
+				conflict = true;
+				System.out.println("Same class!");
+			}
+		}
+		
+		return conflict;
+	}
+	
 	
 	public static boolean checkCourseTime(Course c, ArrayList<Course> coursesScheduled){
 		boolean conflict = false;
@@ -162,7 +221,7 @@ public class Controller {
 			for(int i = 0; i < c.getDays().length(); i++){
 				for(int j = 0; j < scheduled.getDays().length(); j++){
 					if(c.getDays().substring(i, i).equals(scheduled.getDays().substring(j, j))){
-						System.out.println("Same day = true");
+						//System.out.println("Same day = true");
 						sameDay = true;
 					}
 				}
@@ -217,5 +276,152 @@ public class Controller {
 		return conflict;
 	}
 	
+	//works
+	public static boolean coreSE(Course c) throws IOException{
+		boolean isCoreSE = false;
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreSE.txt"
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreSE.txt";
+		BufferedReader br = null;
+		String cur = "";
+		br = new BufferedReader(new FileReader(fileName));
+		boolean reqsMet = true;
+		
+		while ((cur = br.readLine()) != null){
+			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			for(int i = 0; i<prereqs.length;i++){
+				if(c.getCourseNum().equals(prereqs[i])){
+					isCoreSE = true;
+					System.out.println(c.getCourseNum() + " is a core SE requirement");
+				}
+			}
+		}
+		br.close();
+		
+		return isCoreSE;
+		}
+	//works
+	public static boolean coreCS(Course c) throws IOException{
+		boolean isCoreCS = false;
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt"
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt";
+		BufferedReader br = null;
+		String cur = "";
+		br = new BufferedReader(new FileReader(fileName));
+		boolean reqsMet = true;
+		
+		while ((cur = br.readLine()) != null){
+			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			for(int i = 0; i<prereqs.length;i++){
+				if(c.getCourseNum().equals(prereqs[i])){
+					isCoreCS = true;
+					System.out.println(c.getCourseNum() + " is a core CS requirement");
+				}
+			}
+		}
+		br.close();
+		
+		return isCoreCS;
+		}
+	
+	public static boolean electiveCS(Course c) throws IOException{
+		boolean isElectiveCS = false;
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt"
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt";
+		BufferedReader br = null;
+		String cur = "";
+		br = new BufferedReader(new FileReader(fileName));
+		boolean reqsMet = true;
+		
+		int electiveIndex = 0;
+		while ((cur = br.readLine()) != null){
+			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			for(int i = 0; i<prereqs.length;i++){
+				if(c.getCourseNum().equals(prereqs[i])){
+					isElectiveCS = true;
+					if(electiveIndex==0){
+						System.out.println(c.getCourseNum() + " is a CS elective. You need a total of 9 credit hours from the following courses: ...");
+					}
+					else if(electiveIndex==1){
+						System.out.println(c.getCourseNum() + " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...");
+					}
+				}
+			}
+			electiveIndex++;
+		}
+		br.close();
+		
+		return isElectiveCS;
+		}
+	
+	public static boolean areaOfSpecializationSE(Course c) throws IOException{
+		boolean meetsRequirement = false;
+		
+		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt"
+				String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt";
+				BufferedReader br = null;
+				String cur = "";
+				br = new BufferedReader(new FileReader(fileName));
+				boolean reqsMet = true;
+				
+				while ((cur = br.readLine()) != null){
+					String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+					for(int i = 0; i<prereqs.length;i++){
+						if(c.getCourseNum().equals(prereqs[i])){
+							System.out.println(c.getCourseNum() + " meets Area of Specialization requirement for: " + prereqs[0]);
+							meetsRequirement = true;
+						}
+					}
+					
+				}
+				br.close();
+		
+		return meetsRequirement;
+	}
+	
+	/*
+	 * Calls all other methods that check CS requirements.
+	 */
+	public static boolean checkCSRequirements(Course c) throws IOException{
+		boolean meetsRequirements = false;
+		
+		if(coreCS(c)){
+			meetsRequirements = true;
+		}
+		else if(electiveCS(c)){
+			meetsRequirements = true;
+		}
+		
+		if(!meetsRequirements)
+			System.out.println(c.getCourseNum() + " meets no CS requirements");
+			
+		return meetsRequirements;
+	}
+	
+	public static boolean checkSERequirements(Course c) throws IOException{
+		boolean meetsRequirements = false;
+		
+		if(coreSE(c)){
+			meetsRequirements = true;
+		}
+		else if(areaOfSpecializationSE(c)){
+			meetsRequirements = true;
+		}
+		
+		if(!meetsRequirements)
+			System.out.println(c.getCourseNum() + " meets no SE requirements");
+			
+		return meetsRequirements;
+	}
+	
+	public static void saveToCSV(ArrayList<Course> courses) throws IOException{
+		FileWriter scheduleWriter = new FileWriter("C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\createdSchedule.csv");
+		
+		for(Course scheduled: courses){
+			scheduleWriter.append(scheduled.displayCourseCSVFormat());
+			scheduleWriter.append('\n');
+		}
+		
+		scheduleWriter.close();
+	}
 	
 }
