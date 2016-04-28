@@ -7,10 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Controller {
 
+public class Controller {
+	//Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\"
+	//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
+	//Mary's: "/Users/maryfloren/CSE201TeamB/"
+	//String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
+	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
+	
 	public static void main(String[] args) {
 		
+		
+				
 		ArrayList<Course> allCourses = new ArrayList<Course>();
 		ArrayList<Course> coursesOnce = new ArrayList<Course>();//notice unused, never returned
 		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
@@ -166,9 +174,8 @@ public class Controller {
 	
 	//working
 	public static boolean checkPrereqs(Course c, ArrayList<Course> coursesPrevTaken ) throws IOException{
-		//Mark's location: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\prereqs.txt"
-		//Adam: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt"
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\prereqs.txt";
+		
+		String fileName = path + "prereqs.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -279,8 +286,8 @@ public class Controller {
 	//works
 	public static boolean coreSE(Course c) throws IOException{
 		boolean isCoreSE = false;
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreSE.txt"
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreSE.txt";
+		
+		String fileName = path + "coreSE.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -302,8 +309,7 @@ public class Controller {
 	//works
 	public static boolean coreCS(Course c) throws IOException{
 		boolean isCoreCS = false;
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt"
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\coreCS.txt";
+		String fileName = path + "coreCS.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -325,8 +331,7 @@ public class Controller {
 	
 	public static boolean electiveCS(Course c) throws IOException{
 		boolean isElectiveCS = false;
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt"
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\electiveCS.txt";
+		String fileName = path + "electiveCS.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -356,8 +361,8 @@ public class Controller {
 	public static boolean areaOfSpecializationSE(Course c) throws IOException{
 		boolean meetsRequirement = false;
 		
-		//"C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt"
-				String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\areaOfSpecialization.txt";
+		
+				String fileName = path + "areaOfSpecialization.txt";
 				BufferedReader br = null;
 				String cur = "";
 				br = new BufferedReader(new FileReader(fileName));
@@ -414,7 +419,7 @@ public class Controller {
 	}
 	
 	public static void saveToCSV(ArrayList<Course> courses) throws IOException{
-		FileWriter scheduleWriter = new FileWriter("C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\createdSchedule.csv");
+		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
 		
 		for(Course scheduled: courses){
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
