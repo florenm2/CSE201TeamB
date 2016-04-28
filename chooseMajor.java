@@ -15,7 +15,6 @@ public class chooseMajor extends javax.swing.JFrame {
 	 */
 	public chooseMajor() {
 		initComponents();
-		setVisible(true);
 		major = getMajor();
 	}
 

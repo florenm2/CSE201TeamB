@@ -18,7 +18,6 @@ public class choosePrereqs extends javax.swing.JFrame {
 	public choosePrereqs() {
 		initComponents();
 		prereqsComplete = getPrereqsComplete();
-		setVisible(true);
 	}
 
 	public ArrayList<String> getPrereqsComplete() {
