@@ -414,10 +414,10 @@ public class Controller {
 		return meetsRequirements;
 	}
 	
-	public static void saveToCSV(ArrayList<Course> courses) throws IOException{
+	public static void saveToCSV(ArrayList<Course> scheduledCourses) throws IOException{
 		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
 		
-		for(Course scheduled: courses){
+		for(Course scheduled: scheduledCourses){
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
