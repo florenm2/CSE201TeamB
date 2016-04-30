@@ -8,13 +8,11 @@ public class Course {
 	public int endTime;
 	public String days;
 	public String instructorName;
-	
+
 	public String title;
 
-	
-
 	/**
-	 *  Will store value to print course information to the GUI
+	 * Will store value to print course information to the GUI
 	 */
 	public String course;
 
@@ -27,6 +25,7 @@ public class Course {
 
 	/**
 	 * course constructor
+	 * 
 	 * @param crn
 	 * @param subject
 	 * @param courseNum
@@ -36,7 +35,8 @@ public class Course {
 	 * @param days
 	 * @param instructorName
 	 */
-	public Course(int crn, String subject, String courseNum, String title, String section, int startTime, int endTime, String days,
+	public Course(int crn, String subject, String courseNum, String title,
+			String section, int startTime, int endTime, String days,
 			String instructorName) {
 		super();
 		this.crn = crn;
@@ -47,26 +47,32 @@ public class Course {
 		this.endTime = endTime;
 		this.days = days;
 		this.instructorName = instructorName;
-		
+
 		this.title = title;
 	}
 
 	/**
 	 * Set course value to display to GUI
+	 * 
 	 * @return
 	 */
 	public String displayCourse() {
-		course = getSubject() + getCourseNum() + " " + getTitle() + "(" + getSection() + ") " + getInstructorName() + " Start Time: " + getStartTime() + " End Time: " + getEndTime();
+		course = getSubject() + getCourseNum() + " " + getTitle() + "("
+				+ getSection() + ") " + getInstructorName() + " Start Time: "
+				+ getStartTime() + " End Time: " + getEndTime();
 		return course;
 	}
 
-	public String displayCourseCSVFormat(){
-		course = getCrn() + "," + getSubject() + "," + getCourseNum() + "," + getTitle() + "," + getSection() + "," + getInstructorName() + "," + getStartTime() + "," + getEndTime();
+	public String displayCourseCSVFormat() {
+		course = getCrn() + "," + getSubject() + "," + getCourseNum() + ","
+				+ getTitle() + "," + getSection() + "," + getInstructorName()
+				+ "," + getStartTime() + "," + getEndTime();
 		return course;
 	}
 
 	/**
 	 * retrieves the crn
+	 * 
 	 * @return
 	 */
 	public int getCrn() {
@@ -75,6 +81,7 @@ public class Course {
 
 	/**
 	 * sets the crn
+	 * 
 	 * @param crn
 	 */
 	public void setCrn(int crn) {
@@ -83,6 +90,7 @@ public class Course {
 
 	/**
 	 * gets the subject
+	 * 
 	 * @return
 	 */
 	public String getSubject() {
@@ -91,6 +99,7 @@ public class Course {
 
 	/**
 	 * sets the subject
+	 * 
 	 * @param subject
 	 */
 	public void setSubject(String subject) {
@@ -99,6 +108,7 @@ public class Course {
 
 	/**
 	 * gets the course number
+	 * 
 	 * @return
 	 */
 	public String getCourseNum() {
@@ -107,6 +117,7 @@ public class Course {
 
 	/**
 	 * sets the course number
+	 * 
 	 * @param course2
 	 */
 	public void setCourseNum(String course2) {
@@ -115,6 +126,7 @@ public class Course {
 
 	/**
 	 * gets the section
+	 * 
 	 * @return
 	 */
 	public String getSection() {
@@ -123,6 +135,7 @@ public class Course {
 
 	/**
 	 * set the section
+	 * 
 	 * @param section
 	 */
 	public void setSection(String section) {
@@ -131,6 +144,7 @@ public class Course {
 
 	/**
 	 * get the start time
+	 * 
 	 * @return
 	 */
 	public int getStartTime() {
@@ -139,6 +153,7 @@ public class Course {
 
 	/**
 	 * set the start time
+	 * 
 	 * @param startTime
 	 */
 	public void setStartTime(int startTime) {
@@ -147,6 +162,7 @@ public class Course {
 
 	/**
 	 * get the end time
+	 * 
 	 * @return
 	 */
 	public int getEndTime() {
@@ -155,6 +171,7 @@ public class Course {
 
 	/**
 	 * set the end time
+	 * 
 	 * @param endTime
 	 */
 	public void setEndTime(int endTime) {
@@ -163,6 +180,7 @@ public class Course {
 
 	/**
 	 * get days
+	 * 
 	 * @return
 	 */
 	public String getDays() {
@@ -171,6 +189,7 @@ public class Course {
 
 	/**
 	 * set days
+	 * 
 	 * @param days
 	 */
 	public void setDays(String days) {
@@ -179,6 +198,7 @@ public class Course {
 
 	/**
 	 * get instructor name
+	 * 
 	 * @return
 	 */
 	public String getInstructorName() {
@@ -187,12 +207,13 @@ public class Course {
 
 	/**
 	 * set instructor name
+	 * 
 	 * @param instructorName
 	 */
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}

@@ -65,63 +65,91 @@ public class chooseMajor extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
 						layout.createSequentialGroup()
 								.addGap(69, 69, 69)
-								.addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480,
+								.addComponent(jLabel1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										480,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE))
 				.addGroup(
 						javax.swing.GroupLayout.Alignment.TRAILING,
 						layout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
 								.addGroup(
-										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING,
+												false)
 												.addGroup(
 														javax.swing.GroupLayout.Alignment.TRAILING,
-														layout.createSequentialGroup().addComponent(jToggleButton1)
+														layout.createSequentialGroup()
+																.addComponent(
+																		jToggleButton1)
 																.addContainerGap())
 												.addGroup(
 														javax.swing.GroupLayout.Alignment.TRAILING,
 														layout.createSequentialGroup()
-																.addComponent(jToggleButton2,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 191,
+																.addComponent(
+																		jToggleButton2,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		191,
 																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addGap(156, 156, 156))
+																.addGap(156,
+																		156,
+																		156))
 												.addGroup(
 														layout.createSequentialGroup()
-																.addComponent(jToggleButton3,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 189,
+																.addComponent(
+																		jToggleButton3,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		189,
 																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+																.addContainerGap(
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
 																		Short.MAX_VALUE)))));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup()
-						.addGap(28, 28, 28)
-						.addComponent(jLabel1)
-						.addGap(27, 27, 27)
-						.addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76,
-								javax.swing.GroupLayout.PREFERRED_SIZE).addGap(38, 38, 38).addComponent(jToggleButton1)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup()
+								.addGap(28, 28, 28)
+								.addComponent(jLabel1)
+								.addGap(27, 27, 27)
+								.addComponent(jToggleButton2,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										75,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(jToggleButton3,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										76,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(38, 38, 38)
+								.addComponent(jToggleButton1)
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>
 
-	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt, boolean CSSE) {
+	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
+			boolean CSSE) {
 		if (CSSE)
 			major = "Computer Science";
 		else
 			major = "Software Engineering";
-
-		this.dispose();
 
 	}
 
@@ -148,24 +176,25 @@ public class chooseMajor extends javax.swing.JFrame {
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+					.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 
 		}
 		// </editor-fold>

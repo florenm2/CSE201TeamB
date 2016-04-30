@@ -1,29 +1,37 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * 
  * @author miamistudent
  */
 public class chooseClasses extends javax.swing.JFrame {
 
-	public ArrayList<String> classesChosen = new ArrayList();
-	//ArrayList<Course> courseList = Controller.coursesonce;
-
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> classesChosen = new ArrayList<String>();
+	public ArrayList<Course> courseList = new ArrayList<Course>();
+	
 	/**
 	 * Creates new form prereqs
 	 */
 	public chooseClasses() {
 		initComponents();
+		courseList = getCourseList();
 		classesChosen = getclassesChosen();
 	}
 
 	public ArrayList<String> getclassesChosen() {
 		return classesChosen;
 	}
-
+	
+	public ArrayList<Course> getCourseList() {
+		return courseList;
+	}
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +40,7 @@ public class chooseClasses extends javax.swing.JFrame {
 	@SuppressWarnings({ "unchecked", "serial", "deprecation" })
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
-
+		
 		javax.swing.JTextArea jTextArea1 = new javax.swing.JTextArea();
 		jTable2 = new javax.swing.JTable();
 		JToggleButton nextButton = new javax.swing.JToggleButton();
@@ -44,17 +52,41 @@ public class chooseClasses extends javax.swing.JFrame {
 		jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 		jTextArea1.setLineWrap(true);
 		jTextArea1.setRows(5);
-		jTextArea1.setText("Please select which of the following courses you have completed:");
+		jTextArea1
+				.setText("Please select which of the following courses you have completed:");
 		jTextArea1.setToolTipText("");
 		jTextArea1.setWrapStyleWord(true);
 
-		jTable2.setModel(new javax.swing.table.DefaultTableModel(new Object[][] { { new Boolean(false), "CSE 174" },
-				{ new Boolean(false), "CSE 201" }, { new Boolean(false), "CSE 271" },
-				{ new Boolean(false), "CSE 274" }, { new Boolean(false), "CSE 278" },
-				{ new Boolean(false), "CSE 283" }, { new Boolean(false), "CSE 289" },
-				{ new Boolean(false), "CSE 383" }, { new Boolean(false), "CSE 385" },
-				{ new Boolean(false), "CSE 386" }, { new Boolean(false), "CSE 448" } }, new String[] { "", "Course" }) {
-			Class[] types = new Class[] { java.lang.Boolean.class, java.lang.String.class };
+		
+		String cols[] = {"", "Courses"};
+		
+		DefaultTableModel tableModel = new DefaultTableModel(cols, 0);
+		
+		JTable table = new JTable(tableModel);
+		
+		
+		Course[] course = new Course[courseList.size()];
+		course = courseList.toArray(course);
+
+		tableModel.addRow(course);
+		
+		table.setVisible(true);
+		
+		jTable2.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] { { new Boolean(false), "CSE 174" },
+						{ new Boolean(false), "CSE 201" },
+						{ new Boolean(false), "CSE 271" },
+						{ new Boolean(false), "CSE 274" },
+						{ new Boolean(false), "CSE 278" },
+						{ new Boolean(false), "CSE 283" },
+						{ new Boolean(false), "CSE 289" },
+						{ new Boolean(false), "CSE 383" },
+						{ new Boolean(false), "CSE 385" },
+						{ new Boolean(false), "CSE 386" },
+						{ new Boolean(false), "CSE 448" } }, new String[] { "",
+						"Course" }) {
+			Class[] types = new Class[] { java.lang.Boolean.class,
+					java.lang.String.class };
 			boolean[] canEdit = new boolean[] { true, false };
 
 			public Class getColumnClass(int columnIndex) {
@@ -77,6 +109,12 @@ public class chooseClasses extends javax.swing.JFrame {
 			}
 		});
 
+		try {
+			courseList = Controller.displayCoursesOnce(ImportCSV.csvFileIN());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		nextButton.setLabel("Next");
 		nextButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,41 +122,62 @@ public class chooseClasses extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup()
-						.addContainerGap(71, Short.MAX_VALUE)
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-										.addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 396,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGroup(
-												layout.createSequentialGroup()
-														.addComponent(jTable2, javax.swing.GroupLayout.PREFERRED_SIZE,
-																342, javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(
-																javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-														.addComponent(nextButton))).addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addGap(20, 20, 20)
-						.addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 108,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(jTable2, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(nextButton))
-						.addContainerGap()));
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup()
+								.addContainerGap(71, Short.MAX_VALUE)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(
+														jTextArea1,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														396,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		jTable2,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		342,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																.addComponent(
+																		nextButton)))
+								.addContainerGap()));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addGap(20, 20, 20)
+								.addComponent(jTextArea1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										108,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.TRAILING)
+												.addComponent(
+														jTable2,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(nextButton))
+								.addContainerGap()));
 
 		pack();
 	}// </editor-fold>
 
 	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-		
+
 	}
 
 	private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {
@@ -134,38 +193,11 @@ public class chooseClasses extends javax.swing.JFrame {
 	 *            the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(chooseClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(chooseClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(chooseClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(chooseClasses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
 
-		/* Create and display the form */
 
 		chooseClasses p = new chooseClasses();
 
-		ArrayList<String> completed = p.classesChosen;
+	//	ArrayList<String> completed = p.classesChosen;
 
 	}
 

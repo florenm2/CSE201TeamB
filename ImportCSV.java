@@ -5,35 +5,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This class is where all of the data from the CSV file are read in and course objects are created.
+ * This class is where all of the data from the CSV file are read in and course
+ * objects are created.
+ * 
  * @author lauren
- *
+ * 
  */
 
 public class ImportCSV {
 
 	/**
 	 * parses the csv file and creates the course objects
+	 * 
 	 * @param fileName
 	 * @throws IOException
 	 */
 	@SuppressWarnings("null")
 	public static ArrayList<Course> csvFileIN() throws IOException {
 
-		//Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv"
-		//Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
-		//Mary's: "/Users/miamistudent/Documents/workspace/CSE201TeamB/classes.csv"
-		//String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
+		// Marks:
+		// "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv"
+		// Adams:
+		// "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
+		// Mary's:
+		// "/Users/maryfloren/Documents/workspace/CSE201TeamB/classes.csv"
+		// String fileName =
+		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
-		String fileName = "/Users/miamistudent/Documents/workspace/CSE201TeamB/classes.csv";
+		String fileName = "/Users/maryfloren/Documents/workspace/CSE201TeamB/classes.csv";
 
-		
 		// creatBufferedReader
 		BufferedReader br = null;
 
 		// current line
 		String cur = "";
-		//String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
+		// String fileName =
+		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 		// this stores all of the parts seperated by commas in the current line
 		ArrayList<Course> courseList = new ArrayList<Course>();
@@ -41,7 +48,7 @@ public class ImportCSV {
 		// read the file imported by the filereader
 		br = new BufferedReader(new FileReader(fileName));
 
-		//string of titles
+		// string of titles
 		String courses = br.readLine();
 
 		// read line/create object
@@ -122,16 +129,14 @@ public class ImportCSV {
 			courseList.add(obj);
 
 			// display to console for testing
-			//System.out.println(obj.displayCourse());
+			// System.out.println(obj.displayCourse());
 
 		}
-		
-		
+
 		// scan.close();
 		br.close();
-		
+
 		return courseList;
 	}
-	
-	
+
 }

@@ -10,26 +10,46 @@ public class Controller {
 
 	// Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\"
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
-	// Mary's: "/Users/miamistudent/Documents/workspace/CSE201TeamB"
+	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "/Users/miamistudent/Documents/workspace/CSE201TeamB/";
-	
+	static String path = "/Users/maryfloren/Documents/workspace/CSE201TeamB/";
+
 	/*
 	 * Filters through all courses offered in the .csv file and displays each
 	 * course only once (removes multiple sections)
 	 */
-	public static ArrayList<Course> displayCoursesOnce(ArrayList<Course> allClasses) {
+	public static ArrayList<Course> displayCoursesOnce(
+			ArrayList<Course> allClasses) {
 		ArrayList<Course> coursesOnce = new ArrayList<Course>();
 		String prev = "";
 		for (Course all : allClasses) {
 			if (!all.getCourseNum().equals(prev)) {
 				coursesOnce.add(all);
-				System.out.println("CSE" + all.getCourseNum() + " " + all.getTitle());
+				//System.out.println("CSE" + all.getCourseNum() + " "
+					//	+ all.getTitle());
 				prev = all.getCourseNum();
 			}
 		}
 		return coursesOnce;
 	}
+	/*
+	public static Course[] courseNameOnce(
+		ArrayList<Course> allClasses) {
+		Course[] c = new Course[41];
+		String prev = "";
+		int i = 0;
+		for (Course all : allClasses) {
+			if (!all.getCourseNum().equals(prev)) {
+				coursesOnce.add(all);
+				//System.out.println("CSE" + all.getCourseNum() + " "
+					//	+ all.getTitle());
+				prev = all.getCourseNum();
+			}
+		}
+		return coursesOnce;
+	}
+	*/
+	
 
 	/*
 	 * CS requirements
@@ -40,7 +60,8 @@ public class Controller {
 	 */
 
 	// working
-	public static boolean checkPrereqs(Course c, ArrayList<Course> coursesPrevTaken) throws IOException {
+	public static boolean checkPrereqs(Course c,
+			ArrayList<Course> coursesPrevTaken) throws IOException {
 
 		String fileName = path + "prereqs.txt";
 		BufferedReader br = null;
@@ -62,8 +83,10 @@ public class Controller {
 					}
 					// if never set to one, requirement not satisfied
 					if (reqMet == 0) {
-						System.out.println("Prequisite for CSE" + c.getCourseNum() + " not met. Requirement: CSE "
-								+ prereqs[i] + " not satisfied");
+						System.out.println("Prequisite for CSE"
+								+ c.getCourseNum()
+								+ " not met. Requirement: CSE " + prereqs[i]
+								+ " not satisfied");
 						reqsMet = false;
 					}
 				}
@@ -109,7 +132,8 @@ public class Controller {
 	 * return prereqsUnfinished; }
 	 */
 
-	public static boolean isSameCourse(Course c, ArrayList<Course> coursesScheduled) {
+	public static boolean isSameCourse(Course c,
+			ArrayList<Course> coursesScheduled) {
 		boolean conflict = false;
 
 		for (Course scheduled : coursesScheduled) {
@@ -122,14 +146,16 @@ public class Controller {
 		return conflict;
 	}
 
-	public static boolean checkCourseTime(Course c, ArrayList<Course> coursesScheduled) {
+	public static boolean checkCourseTime(Course c,
+			ArrayList<Course> coursesScheduled) {
 		boolean conflict = false;
 		boolean sameDay = false;
 		for (Course scheduled : coursesScheduled) {
 			// 1. check days
 			for (int i = 0; i < c.getDays().length(); i++) {
 				for (int j = 0; j < scheduled.getDays().length(); j++) {
-					if (c.getDays().substring(i, i).equals(scheduled.getDays().substring(j, j))) {
+					if (c.getDays().substring(i, i)
+							.equals(scheduled.getDays().substring(j, j))) {
 						// System.out.println("Same day = true");
 						sameDay = true;
 					}
@@ -141,7 +167,8 @@ public class Controller {
 
 				// if selected course end or start time is the same as the
 				// respective start or end time of other course
-				if ((c.getStartTime() == scheduled.getEndTime()) || (c.getEndTime() == scheduled.getStartTime())) {
+				if ((c.getStartTime() == scheduled.getEndTime())
+						|| (c.getEndTime() == scheduled.getStartTime())) {
 					conflict = true;
 				}
 
@@ -150,7 +177,8 @@ public class Controller {
 				/*
 				 * cccccccccc aaaaaaaaa
 				 */
-				else if ((c.getStartTime() >= scheduled.getStartTime()) && (c.getStartTime() <= scheduled.getEndTime())) {
+				else if ((c.getStartTime() >= scheduled.getStartTime())
+						&& (c.getStartTime() <= scheduled.getEndTime())) {
 					conflict = true;
 				}
 				// if selected course end time is between the start and end time
@@ -158,19 +186,22 @@ public class Controller {
 				/*
 				 * cccccccccc aaaaaaaaaa
 				 */
-				else if ((c.getEndTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())) {
+				else if ((c.getEndTime() >= scheduled.getStartTime())
+						&& (c.getEndTime() <= scheduled.getEndTime())) {
 					conflict = true;
 				}
 				/*
 				 * cccccccccccc aaaaaa
 				 */
-				else if ((c.getStartTime() <= scheduled.getStartTime()) && (c.getEndTime() >= scheduled.getEndTime())) {
+				else if ((c.getStartTime() <= scheduled.getStartTime())
+						&& (c.getEndTime() >= scheduled.getEndTime())) {
 					conflict = true;
 				}
 				/*
 				 * ccccc aaaaaaaaaa
 				 */
-				else if ((c.getStartTime() >= scheduled.getStartTime()) && (c.getEndTime() <= scheduled.getEndTime())) {
+				else if ((c.getStartTime() >= scheduled.getStartTime())
+						&& (c.getEndTime() <= scheduled.getEndTime())) {
 					conflict = true;
 				}
 			}
@@ -193,7 +224,8 @@ public class Controller {
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isCoreSE = true;
-					System.out.println(c.getCourseNum() + " is a core SE requirement");
+					System.out.println(c.getCourseNum()
+							+ " is a core SE requirement");
 				}
 			}
 		}
@@ -216,7 +248,8 @@ public class Controller {
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isCoreCS = true;
-					System.out.println(c.getCourseNum() + " is a core CS requirement");
+					System.out.println(c.getCourseNum()
+							+ " is a core CS requirement");
 				}
 			}
 		}
@@ -270,7 +303,8 @@ public class Controller {
 			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
-					System.out.println(c.getCourseNum() + " meets Area of Specialization requirement for: "
+					System.out.println(c.getCourseNum()
+							+ " meets Area of Specialization requirement for: "
 							+ prereqs[0]);
 					meetsRequirement = true;
 				}
@@ -315,15 +349,22 @@ public class Controller {
 		return meetsRequirements;
 	}
 
-	public static void saveToCSV(ArrayList<Course> scheduledCourses) throws IOException {
+	public static void saveToCSV(ArrayList<Course> scheduledCourses, ArrayList<Course> cOnce)
+			throws IOException {
 		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
+		FileWriter scheduleOnceWriter = new FileWriter(path + "coursesOnceSchedule.csv");
 
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
+		for (Course c : cOnce) {
+			scheduleOnceWriter.append(c.displayCourseCSVFormat());
+			scheduleOnceWriter.append('\n');
+		}
 
 		scheduleWriter.close();
+		scheduleOnceWriter.close();
 	}
 
 	public static void main(String[] args) {
@@ -335,12 +376,17 @@ public class Controller {
 		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 
+		
+				
+				
 		try {
 			allCourses = ImportCSV.csvFileIN();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		coursesOnce = displayCoursesOnce(allCourses);
+		
 		// Step 0: Testing
 		Course c274 = new Course();
 		c274.setCourseNum("274");
@@ -425,7 +471,7 @@ public class Controller {
 			// areaOfSpecializationSE(c386);
 			// areaOfSpecializationSE(c464);
 
-			saveToCSV(coursesScheduled);
+			saveToCSV(coursesScheduled, coursesOnce);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

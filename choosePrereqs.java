@@ -4,7 +4,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 
 /**
- *
+ * 
  * @author miamistudent
  */
 public class choosePrereqs extends javax.swing.JFrame {
@@ -44,17 +44,26 @@ public class choosePrereqs extends javax.swing.JFrame {
 		jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
 		jTextArea1.setLineWrap(true);
 		jTextArea1.setRows(5);
-		jTextArea1.setText("Please select which of the following courses you have completed:");
+		jTextArea1
+				.setText("Please select which of the following courses you have completed:");
 		jTextArea1.setToolTipText("");
 		jTextArea1.setWrapStyleWord(true);
 
-		jTable2.setModel(new javax.swing.table.DefaultTableModel(new Object[][] { { new Boolean(false), "CSE 174" },
-				{ new Boolean(false), "CSE 201" }, { new Boolean(false), "CSE 271" },
-				{ new Boolean(false), "CSE 274" }, { new Boolean(false), "CSE 278" },
-				{ new Boolean(false), "CSE 283" }, { new Boolean(false), "CSE 289" },
-				{ new Boolean(false), "CSE 383" }, { new Boolean(false), "CSE 385" },
-				{ new Boolean(false), "CSE 386" }, { new Boolean(false), "CSE 448" } }, new String[] { "", "Course" }) {
-			Class[] types = new Class[] { java.lang.Boolean.class, java.lang.String.class };
+		jTable2.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] { { new Boolean(false), "CSE 174" },
+						{ new Boolean(false), "CSE 201" },
+						{ new Boolean(false), "CSE 271" },
+						{ new Boolean(false), "CSE 274" },
+						{ new Boolean(false), "CSE 278" },
+						{ new Boolean(false), "CSE 283" },
+						{ new Boolean(false), "CSE 289" },
+						{ new Boolean(false), "CSE 383" },
+						{ new Boolean(false), "CSE 385" },
+						{ new Boolean(false), "CSE 386" },
+						{ new Boolean(false), "CSE 448" } }, new String[] { "",
+						"Course" }) {
+			Class[] types = new Class[] { java.lang.Boolean.class,
+					java.lang.String.class };
 			boolean[] canEdit = new boolean[] { true, false };
 
 			public Class getColumnClass(int columnIndex) {
@@ -88,40 +97,62 @@ public class choosePrereqs extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				javax.swing.GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup()
-						.addContainerGap(71, Short.MAX_VALUE)
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-										.addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 396,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGroup(
-												layout.createSequentialGroup()
-														.addComponent(jTable2, javax.swing.GroupLayout.PREFERRED_SIZE,
-																342, javax.swing.GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(
-																javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-														.addComponent(nextButton))).addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addGap(20, 20, 20)
-						.addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 108,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(jTable2, javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(nextButton))
-						.addContainerGap()));
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup()
+								.addContainerGap(71, Short.MAX_VALUE)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(
+														jTextArea1,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														396,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		jTable2,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		342,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																.addComponent(
+																		nextButton)))
+								.addContainerGap()));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addGap(20, 20, 20)
+								.addComponent(jTextArea1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										108,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.TRAILING)
+												.addComponent(
+														jTable2,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(nextButton))
+								.addContainerGap()));
 
 		pack();
 	}// </editor-fold>
 
-	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt, ArrayList<String> PC) {
+	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
+			ArrayList<String> PC) {
 		this.prereqsComplete = PC;
 	}
 
@@ -148,20 +179,25 @@ public class choosePrereqs extends javax.swing.JFrame {
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+					.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
