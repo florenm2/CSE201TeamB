@@ -34,10 +34,7 @@ import javax.swing.ListModel;
 public class chooseClasses2 extends JPanel {
 
   private static final Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
-  private static final String ADD_BUTTON_LABEL = "Add >>";
-  private static final String REMOVE_BUTTON_LABEL = "<< Remove";
-  private static final String DEFAULT_SOURCE_CHOICE_LABEL = "Available Choices";
-  private static final String DEFAULT_DEST_CHOICE_LABEL = "Your Choices";
+  
   private JLabel sourceLabel;
   private JList sourceList;
   private SortedListModel sourceListModel;
@@ -45,8 +42,10 @@ public class chooseClasses2 extends JPanel {
   private SortedListModel destListModel;
   private JLabel destLabel;
   private JButton addButton;
+  private JButton nextButton;
   private JButton removeButton;
   ArrayList<Course> allCourses = new ArrayList<Course>();
+  ArrayList<Course> selectedCourses = new ArrayList<Course>();
 
   public chooseClasses2() {
     initScreen();
@@ -210,7 +209,7 @@ public class chooseClasses2 extends JPanel {
   private void initScreen() {
     setBorder(BorderFactory.createEtchedBorder());
     setLayout(new GridBagLayout());
-    sourceLabel = new JLabel(DEFAULT_SOURCE_CHOICE_LABEL);
+    sourceLabel = new JLabel("Available Classes");
     sourceListModel = new SortedListModel();
     sourceList = new JList(sourceListModel);
     add(sourceLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0,
@@ -220,18 +219,23 @@ public class chooseClasses2 extends JPanel {
         1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         EMPTY_INSETS, 0, 0));
 
-    addButton = new JButton(ADD_BUTTON_LABEL);
+    addButton = new JButton("Add >>");
     add(addButton, new GridBagConstraints(1, 2, 1, 2, 0, .25,
         GridBagConstraints.CENTER, GridBagConstraints.NONE,
         EMPTY_INSETS, 0, 0));
     addButton.addActionListener(new AddListener());
-    removeButton = new JButton(REMOVE_BUTTON_LABEL);
+    removeButton = new JButton("<< Remove");
     add(removeButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
         GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
             0, 5, 0, 5), 0, 0));
     removeButton.addActionListener(new RemoveListener());
-
-    destLabel = new JLabel(DEFAULT_DEST_CHOICE_LABEL);
+    nextButton = new JButton("Done");
+    add(nextButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
+        GridBagConstraints.PAGE_END, GridBagConstraints.NONE,
+        new Insets(0, 5, 0, 5), 0, 0));
+    nextButton.addActionListener(new NextListener());
+    
+    destLabel = new JLabel("Your Classes");
     destListModel = new SortedListModel();
     destList = new JList(destListModel);
     add(destLabel, new GridBagConstraints(2, 0, 1, 1, 0, 0,
@@ -245,8 +249,6 @@ public class chooseClasses2 extends JPanel {
   public static void main(String args[]) {
     
     chooseClasses2 dual = new chooseClasses2();
-    
-    
     
 
   }
@@ -265,6 +267,14 @@ public class chooseClasses2 extends JPanel {
       addSourceElements(selected);
       clearDestinationSelected();
     }
+  }
+  
+  private class NextListener implements ActionListener {
+	  public void actionPerformed(ActionEvent e) {
+	      Object selected[] = destList.getSelectedValues();
+	      
+	      
+	    }
   }
 }
 

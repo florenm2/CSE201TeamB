@@ -12,7 +12,7 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\";
+	static String path = "/Users/maryfloren/Documents/workspace/CSE201TeamB/";
 
 	/*
 	 * Filters through all courses offered in the .csv file and displays each
@@ -25,30 +25,69 @@ public class Controller {
 		for (Course all : allClasses) {
 			if (!all.getCourseNum().equals(prev)) {
 				coursesOnce.add(all);
-				//System.out.println("CSE" + all.getCourseNum() + " "
-					//	+ all.getTitle());
+				// System.out.println("CSE" + all.getCourseNum() + " "
+				// + all.getTitle());
 				prev = all.getCourseNum();
 			}
 		}
 		return coursesOnce;
 	}
-	/*
-	public static Course[] courseNameOnce(ArrayList<Course> allClasses) {
-		Course[] c = new Course[41];
-		String prev = "";
-		int i = 0;
-		for (Course all : allClasses) {
-			if (!all.getCourseNum().equals(prev)) {
-				coursesOnce.add(all);
-				//System.out.println("CSE" + all.getCourseNum() + " "
-					//	+ all.getTitle());
-				prev = all.getCourseNum();
+
+	public static ArrayList<Course> displayPrereqOptions(
+			ArrayList<Course> courses) throws IOException {
+
+		String fileName = path + "prereqsOnce.txt";
+		BufferedReader br = null;
+		String cur = "";
+		br = new BufferedReader(new FileReader(fileName));
+
+		ArrayList<Course> prereqList = new ArrayList<Course>();
+
+		while ((cur = br.readLine()) != null) {
+			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			for (Course c : courses) {
+				for (int i = 0; i < 11; i++)
+					if (prereqs[i].equals(c.getCourseNum())) {
+						prereqList.add(c);
+					}
 			}
+
 		}
-		return coursesOnce;
+		br.close();
+
+		ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
+
+		return prereqOnceList;
 	}
-	*/
-	
+
+	public static ArrayList<Course> stringToCourseObject(ArrayList<String> courseString) throws IOException {
+
+		String fileName = path + "classes.csv";
+		BufferedReader br = null;
+		String cur = "";
+		br = new BufferedReader(new FileReader(fileName));
+		
+		ArrayList<Course> courseObjects = new ArrayList<Course>();
+
+		while ((cur = br.readLine()) != null) {
+			String[] courses = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			// if current line, first course listed is the course
+			for(String s: courseString){
+			if (courses.equals(s)) {
+				
+				
+				}
+			
+			
+			
+		
+		}
+		br.close();
+		
+		ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
+		
+		return prereqOnceList;
+	}
 
 	/*
 	 * CS requirements
@@ -348,10 +387,11 @@ public class Controller {
 		return meetsRequirements;
 	}
 
-	public static void saveToCSV(ArrayList<Course> scheduledCourses, ArrayList<Course> cOnce)
-			throws IOException {
+	public static void saveToCSV(ArrayList<Course> scheduledCourses,
+			ArrayList<Course> cOnce) throws IOException {
 		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
-		FileWriter scheduleOnceWriter = new FileWriter(path + "coursesOnceSchedule.csv");
+		FileWriter scheduleOnceWriter = new FileWriter(path
+				+ "coursesOnceSchedule.csv");
 
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
@@ -375,9 +415,6 @@ public class Controller {
 		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 
-		
-				
-				
 		try {
 			allCourses = ImportCSV.csvFileIN();
 		} catch (IOException e) {
@@ -385,7 +422,7 @@ public class Controller {
 		}
 
 		coursesOnce = displayCoursesOnce(allCourses);
-		
+
 		// Step 0: Testing
 		Course c274 = new Course();
 		c274.setCourseNum("274");
