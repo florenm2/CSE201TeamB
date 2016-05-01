@@ -11,6 +11,7 @@ public class choosePrereqs extends javax.swing.JFrame {
 
 	public ArrayList<String> prereqsComplete = new ArrayList();
 	static ArrayList<String> listChecked = new ArrayList<String>();
+	public int stage;
 
 	/**
 	 * Creates new form prereqs
@@ -18,12 +19,16 @@ public class choosePrereqs extends javax.swing.JFrame {
 	public choosePrereqs() {
 		initComponents();
 		prereqsComplete = getPrereqsComplete();
+		stage = getStage();
 	}
 
 	public ArrayList<String> getPrereqsComplete() {
 		return prereqsComplete;
 	}
 
+	public int getStage(){
+		return stage;
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,16 +80,7 @@ public class choosePrereqs extends javax.swing.JFrame {
 			}
 
 		});
-		jTable2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-			public void propertyChange(java.beans.PropertyChangeEvent evt) {
-				jTable2PropertyChange(evt);
-			}
-		});
-		jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				jTable2KeyPressed(evt);
-			}
-		});
+
 
 		nextButton.setLabel("Next");
 		nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -154,54 +150,11 @@ public class choosePrereqs extends javax.swing.JFrame {
 	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
 			ArrayList<String> PC) {
 		this.prereqsComplete = PC;
+		stage = 3;
 	}
 
-	private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {
-		// TODO add your handling code here:
-	}
 
-	private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(choosePrereqs.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
-
-		/* Create and display the form */
 
 		choosePrereqs p = new choosePrereqs();
 

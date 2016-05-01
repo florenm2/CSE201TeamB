@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Account {
 
-	public int stage;
+	public static int stage;
 	public String major;
 	public ArrayList<String> classesChosen;
 	public ArrayList<String> coursesPrevTaken;
@@ -37,12 +37,12 @@ public class Account {
 	private ArrayList<String> getCoursesPrevTaken() {
 		return coursesPrevTaken;
 	}
-	
-	public void setStage(int newStage){
+
+	public void setStage(int newStage) {
 		stage = newStage;
 	}
-	
-	public int getStage(){
+
+	public int getStage() {
 		return stage;
 	}
 
@@ -52,39 +52,48 @@ public class Account {
 		System.out.println("checkpoint");
 
 		chooseMajor m = new chooseMajor();
-		chooseClasses2 cc = new chooseClasses2();
+		chooseClasses cc = new chooseClasses();
 		choosePrereqs cp = new choosePrereqs();
-
+		
 		user.setMajor(m.major);
-		// user.setClassesChosen(cc.classesChosen);
+		user.setClassesChosen(cc.classesChosen);
 		user.setCoursesPrevTaken(cp.prereqsComplete);
 
-		switch (user.getStage()) {
-		case 0:
-			m.setVisible(true);
-			// cc.setVisible(false);
-			cp.setVisible(false);
-			break;
-		case 1:
-			m.setVisible(false);
-			// cc.setVisible(true);
-			cp.setVisible(false);
-			break;
-		case 2:
-			m.setVisible(false);
-			// cc.setVisible(false);
-			cp.setVisible(true);
-			break;
-		case 3:
-			m.setVisible(false);
-			// cc.setVisible(false);
-			cp.setVisible(false);
-			break;
-		default:
-			m.setVisible(true);
-			// cc.setVisible(false);
-			cp.setVisible(false);
-			break;
+		boolean cycleContinues = true;
+
+		while (cycleContinues) {
+			switch (user.stage) {
+			case 0:
+				m.setVisible(true);
+				cc.setVisible(false);
+				cp.setVisible(false);
+				user.setStage(m.getStage());
+				break;
+			case 1:
+				m.setVisible(false);
+				cc.setVisible(true);
+				cp.setVisible(false);
+				user.setStage(cc.getStage());
+				break;
+			case 2:
+				m.setVisible(false);
+				cc.setVisible(false);
+				cp.setVisible(true);
+				user.setStage(cp.getStage());
+				break;
+			case 3:
+				m.setVisible(false);
+				cc.setVisible(false);
+				cp.setVisible(false);
+				cycleContinues = false;
+				break;
+			default:
+				m.setVisible(true);
+				cc.setVisible(false);
+				cp.setVisible(false);
+				break;
+			}
+
 		}
 
 		// System.out.println(Controller.coursesonce.size());

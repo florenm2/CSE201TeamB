@@ -9,6 +9,7 @@ public class chooseMajor extends javax.swing.JFrame {
 	String major = "";
 	// if false CS, if true SE
 	boolean CSSE = false;
+	public int stage;
 
 	/**
 	 * Creates new form frontend.
@@ -16,10 +17,15 @@ public class chooseMajor extends javax.swing.JFrame {
 	public chooseMajor() {
 		initComponents();
 		major = getMajor();
+		stage = getStage();
 	}
 
 	public String getMajor() {
 		return major;
+	}
+	
+	public int getStage() {
+		return stage;
 	}
 
 	/**
@@ -150,6 +156,7 @@ public class chooseMajor extends javax.swing.JFrame {
 			major = "Computer Science";
 		else
 			major = "Software Engineering";
+		stage = 1;
 
 	}
 
@@ -166,38 +173,9 @@ public class chooseMajor extends javax.swing.JFrame {
 	 *            the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(chooseMajor.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
 
-		}
-		// </editor-fold>
+		
+		
 	}
 
 	// Variables declaration - do not modify

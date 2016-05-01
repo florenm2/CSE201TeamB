@@ -33,8 +33,7 @@ public class Controller {
 		return coursesOnce;
 	}
 	/*
-	public static Course[] courseNameOnce(
-		ArrayList<Course> allClasses) {
+	public static Course[] courseNameOnce(ArrayList<Course> allClasses) {
 		Course[] c = new Course[41];
 		String prev = "";
 		int i = 0;

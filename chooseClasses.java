@@ -14,16 +14,24 @@ public class chooseClasses extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> classesChosen = new ArrayList<String>();
 	public ArrayList<Course> courseList = new ArrayList<Course>();
+	static ArrayList<String> listChecked = new ArrayList<String>();
+	public int stage;
 	
 	/**
 	 * Creates new form prereqs
 	 */
 	public chooseClasses() {
 		initComponents();
+		this.setVisible(true);
 		courseList = getCourseList();
+		stage = getStage();
 		classesChosen = getclassesChosen();
 	}
 
+	public int getStage(){
+		return stage;
+	}
+	
 	public ArrayList<String> getclassesChosen() {
 		return classesChosen;
 	}
@@ -58,32 +66,48 @@ public class chooseClasses extends javax.swing.JFrame {
 		jTextArea1.setWrapStyleWord(true);
 
 		
-		String cols[] = {"", "Courses"};
-		
-		DefaultTableModel tableModel = new DefaultTableModel(cols, 0);
-		
-		JTable table = new JTable(tableModel);
-		
-		
-		Course[] course = new Course[courseList.size()];
-		course = courseList.toArray(course);
-
-		tableModel.addRow(course);
-		
-		table.setVisible(true);
-		
 		jTable2.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { new Boolean(false), "CSE 174" },
-						{ new Boolean(false), "CSE 201" },
-						{ new Boolean(false), "CSE 271" },
-						{ new Boolean(false), "CSE 274" },
-						{ new Boolean(false), "CSE 278" },
-						{ new Boolean(false), "CSE 283" },
-						{ new Boolean(false), "CSE 289" },
-						{ new Boolean(false), "CSE 383" },
-						{ new Boolean(false), "CSE 385" },
-						{ new Boolean(false), "CSE 386" },
-						{ new Boolean(false), "CSE 448" } }, new String[] { "",
+				new Object[][] { { new Boolean(false), "CSE 148: Business Computing" },
+						{ new Boolean(false), "CSE 151: Computers, Comp Sci & Society" },
+						{ new Boolean(false), "CSE 163: Intro-Computer Concepts & Prog" },
+						{ new Boolean(false), "CSE 174: Fundmntls-Progrming&Prob Solvg" },
+						{ new Boolean(false), "CSE 174H: Fundmntls-Progrming&Prob Solvg" },
+						{ new Boolean(false), "CSE 201: Intro to Software Engineering" },
+						{ new Boolean(false), "CSE 212: Software Engineering for HCI" },
+						{ new Boolean(false), "CSE 220: Professional Practice" },
+						{ new Boolean(false), "CSE 243: Problem Analysis and Computers" },
+						{ new Boolean(false), "CSE 251: Intro to Game Programming" },
+						{ new Boolean(false), "CSE 262: Tech,Ethics & Global Society" },
+						{ new Boolean(false), "CSE 271: Object-Oriented Programming" },
+						{ new Boolean(false), "CSE 274: Data Abstractions & Structures" },
+						{ new Boolean(false), "CSE 278: Computer Architecture" },
+						{ new Boolean(false), "CSE 283: Data Communications & Network" },
+						{ new Boolean(false), "CSE 287: Foundations of Graphics" },
+						{ new Boolean(false), "CSE 320: Professional Practice" },
+						{ new Boolean(false), "CSE 322: Software Requirements" },
+						{ new Boolean(false), "CSE 372: Stochastic Modeling" },
+						{ new Boolean(false), "CSE 381: Operating Systems" },
+						{ new Boolean(false), "CSE 383: Client/Server Programming" },
+						{ new Boolean(false), "CSE 385: Database Systems" },
+						{ new Boolean(false), "CSE 386: Intro To Computer Graphics" },
+						{ new Boolean(false), "CSE 441: Technical Computing Tools" },
+						{ new Boolean(false), "CSE 448: Senior Design Project" },
+						{ new Boolean(false), "CSE 449: Senior Design Project" },
+						{ new Boolean(false), "CSE 464: Algorithms" },
+						{ new Boolean(false), "CSE 466: Bioinformatics Computing Skill" },
+						{ new Boolean(false), "CSE 473: Automata Forml Lang&Computblty" },
+						{ new Boolean(false), "CSE 486: Intro Artificial Intelligence" },
+						{ new Boolean(false), "CSE 541: Technical Computing Tools" },
+						{ new Boolean(false), "CSE 564: Algorithms" },
+						{ new Boolean(false), "CSE 566: Bioinformatics Computing Skill" },
+						{ new Boolean(false), "CSE 573: Automata Forml Lang&Computblty" },
+						{ new Boolean(false), "CSE 586: Intro Artificial Intelligence" },
+						{ new Boolean(false), "CSE 609: Scientific Programming" },
+						{ new Boolean(false), "CSE 610J: Grad Research in Comp. Science" },
+						{ new Boolean(false), "CSE 615: Mathematical Modeling" },
+						{ new Boolean(false), "CSE 620: Special Topics" },
+						{ new Boolean(false), "CSE 620A: Knowledge Representation" },
+						{ new Boolean(false), "CSE 700: Master's Research" } }, new String[] { "",
 						"Course" }) {
 			Class[] types = new Class[] { java.lang.Boolean.class,
 					java.lang.String.class };
@@ -98,16 +122,6 @@ public class chooseClasses extends javax.swing.JFrame {
 			}
 
 		});
-		jTable2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-			public void propertyChange(java.beans.PropertyChangeEvent evt) {
-				jTable2PropertyChange(evt);
-			}
-		});
-		jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				jTable2KeyPressed(evt);
-			}
-		});
 
 		try {
 			courseList = Controller.displayCoursesOnce(ImportCSV.csvFileIN());
@@ -116,10 +130,15 @@ public class chooseClasses extends javax.swing.JFrame {
 		}
 		
 		nextButton.setLabel("Next");
-		nextButton.addActionListener(new java.awt.event.ActionListener() {
+		nextButton.addActionListener(new java.awt.event.ActionListener() {			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jToggleButton1ActionPerformed(evt);
+				for (int i = 1; i < 11; i++)
+					if ((Boolean) jTable2.getValueAt(i, 0)) {
+						listChecked.add((String) jTable2.getValueAt(i, 1));
+					}
+				jToggleButton1ActionPerformed(evt, listChecked);
 			}
+			
 		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
@@ -176,22 +195,12 @@ public class chooseClasses extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 
-	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt, ArrayList<String> CC) {
+		this.classesChosen = CC;
+		stage = 2;
 
 	}
 
-	private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
 	public static void main(String args[]) {
 
 

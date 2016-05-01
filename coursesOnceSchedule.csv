@@ -1,41 +1,1 @@
-59380,CSE,148,Business Computing,  A,"Henebry, Brian",830,950
-59490,CSE,151,"Computers, Comp Sci & Society",M A,"Donohue, Catherine",1900,2150
-59406,CSE,163,Intro-Computer Concepts & Prog,  A,"Magimai Sagaya, Premila",1800,1950
-59407,CSE,174,Fundmntls-Progrming&Prob Solvg,  A,"Kiper, James",800,950
-63270,CSE,174H,Fundmntls-Progrming&Prob Solvg,  A,"Krumpe, Norman",1000,1150
-59414,CSE,201,Intro to Software Engineering,  A,"Sobel, Ann",1130,1250
-67885,CSE,212,Software Engineering for HCI,  A,"Gannod, Gerald",830,950
-59532,CSE,220,Professional Practice,H A,"Cassady, Shelley",0,0
-65789,CSE,243,Problem Analysis and Computers,  B,"Foster, Drew",1000,1120
-68388,CSE,251,Intro to Game Programming,  A,"Bernard, Christopher",1800,2040
-59416,CSE,262,"Tech,Ethics & Global Society",  A,"Cross, Valerie",1300,1420
-59418,CSE,271,Object-Oriented Programming,  A,"Stahr, Michael",1400,1550
-59421,CSE,274,Data Abstractions & Structures,  B,"Alomari, Hakam",1300,1420
-59422,CSE,278,Computer Architecture,  A,"Yue, Jianhui",1600,1750
-59425,CSE,283,Data Communications & Network,  B,"Yue, Jianhui",1800,1950
-68495,CSE,287,Foundations of Graphics,  A,"Bachmann, Eric",1000,1120
-65108,CSE,320,Professional Practice,  A,"Krumpe, Norman",0,0
-67956,CSE,322,Software Requirements,  A,"Gannod, Gerald",1300,1420
-59427,CSE,372,Stochastic Modeling,  A,"Patton, Jon",1230,1350
-59428,CSE,381,Operating Systems,  A,"Alomari, Hakam",800,950
-59672,CSE,383,Client/Server Programming,  A,"Campbell, Scott",830,950
-59430,CSE,385,Database Systems,  A,"Inclezan, Daniela",1430,1550
-59431,CSE,386,Intro To Computer Graphics,  A,"Bachmann, Eric",1200,1350
-66035,CSE,441,Technical Computing Tools, TA,"Mueller, Jens",830,925
-59544,CSE,448,Senior Design Project,  A,"Kiper, James",1900,2000
-59545,CSE,449,Senior Design Project,  A,"Kiper, James",0,0
-59433,CSE,464,Algorithms,  A,"Gelfond, Gregory",1430,1550
-60303,CSE,466,Bioinformatics Computing Skill,  A,"Liang, Chun",1130,1250
-63362,CSE,473,Automata Forml Lang&Computblty,  A,"Zmuda, Michael",1000,1120
-59435,CSE,486,Intro Artificial Intelligence,  A,"Zmuda, Michael",830,950
-59542,CSE,541,Technical Computing Tools, TA,"Mueller, Jens",830,925
-60652,CSE,564,Algorithms,  A,"Gelfond, Gregory",1430,1550
-60304,CSE,566,Bioinformatics Computing Skill,  A,"Liang, Chun",1130,1250
-63363,CSE,573,Automata Forml Lang&Computblty,  A,"Zmuda, Michael",1000,1120
-59438,CSE,586,Intro Artificial Intelligence,  A,"Zmuda, Michael",830,950
-64263,CSE,609,Scientific Programming,  A,"Sobel, Ann",1300,1420
-67183,CSE,610J,Grad Research in Comp. Science,  A,"Bachmann, Eric",0,0
-67730,CSE,615,Mathematical Modeling,  A,"Karro, John",1300,1420
-67731,CSE,620,Special Topics,  A,"Kiper, James",0,0
-68372,CSE,620A,Knowledge Representation,  A,"Inclezan, Daniela",830,950
-60416,CSE,700,Master's Research,  A,"Troy, Douglas",0,0
+59380,CSE,148,Business Computing,  A,"Henebry, Brian",830,95059490,CSE,151,"Computers, Comp Sci & Society",M A,"Donohue, Catherine",1900,215059406,CSE,163,Intro-Computer Concepts & Prog,  A,"Magimai Sagaya, Premila",1800,195059407,CSE,174,Fundmntls-Progrming&Prob Solvg,  A,"Kiper, James",800,95063270,CSE,174H,Fundmntls-Progrming&Prob Solvg,  A,"Krumpe, Norman",1000,115059414,CSE,201,Intro to Software Engineering,  A,"Sobel, Ann",1130,125067885,CSE,212,Software Engineering for HCI,  A,"Gannod, Gerald",830,95059532,CSE,220,Professional Practice,H A,"Cassady, Shelley",0,065789,CSE,243,Problem Analysis and Computers,  B,"Foster, Drew",1000,112068388,CSE,251,Intro to Game Programming,  A,"Bernard, Christopher",1800,204059416,CSE,262,"Tech,Ethics & Global Society",  A,"Cross, Valerie",1300,142059418,CSE,271,Object-Oriented Programming,  A,"Stahr, Michael",1400,155059421,CSE,274,Data Abstractions & Structures,  B,"Alomari, Hakam",1300,142059422,CSE,278,Computer Architecture,  A,"Yue, Jianhui",1600,175059425,CSE,283,Data Communications & Network,  B,"Yue, Jianhui",1800,195068495,CSE,287,Foundations of Graphics,  A,"Bachmann, Eric",1000,112065108,CSE,320,Professional Practice,  A,"Krumpe, Norman",0,067956,CSE,322,Software Requirements,  A,"Gannod, Gerald",1300,142059427,CSE,372,Stochastic Modeling,  A,"Patton, Jon",1230,135059428,CSE,381,Operating Systems,  A,"Alomari, Hakam",800,95059672,CSE,383,Client/Server Programming,  A,"Campbell, Scott",830,95059430,CSE,385,Database Systems,  A,"Inclezan, Daniela",1430,155059431,CSE,386,Intro To Computer Graphics,  A,"Bachmann, Eric",1200,135066035,CSE,441,Technical Computing Tools, TA,"Mueller, Jens",830,92559544,CSE,448,Senior Design Project,  A,"Kiper, James",1900,200059545,CSE,449,Senior Design Project,  A,"Kiper, James",0,059433,CSE,464,Algorithms,  A,"Gelfond, Gregory",1430,155060303,CSE,466,Bioinformatics Computing Skill,  A,"Liang, Chun",1130,125063362,CSE,473,Automata Forml Lang&Computblty,  A,"Zmuda, Michael",1000,112059435,CSE,486,Intro Artificial Intelligence,  A,"Zmuda, Michael",830,95059542,CSE,541,Technical Computing Tools, TA,"Mueller, Jens",830,92560652,CSE,564,Algorithms,  A,"Gelfond, Gregory",1430,155060304,CSE,566,Bioinformatics Computing Skill,  A,"Liang, Chun",1130,125063363,CSE,573,Automata Forml Lang&Computblty,  A,"Zmuda, Michael",1000,112059438,CSE,586,Intro Artificial Intelligence,  A,"Zmuda, Michael",830,95064263,CSE,609,Scientific Programming,  A,"Sobel, Ann",1300,142067183,CSE,610J,Grad Research in Comp. Science,  A,"Bachmann, Eric",0,067730,CSE,615,Mathematical Modeling,  A,"Karro, John",1300,142067731,CSE,620,Special Topics,  A,"Kiper, James",0,068372,CSE,620A,Knowledge Representation,  A,"Inclezan, Daniela",830,95060416,CSE,700,Master's Research,  A,"Troy, Douglas",0,0
