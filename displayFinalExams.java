@@ -413,7 +413,8 @@ public class displayFinalExams extends JFrame {
 
 		for (Course scheduled : coursesScheduled) {
 			System.out.println(scheduled.getCourseNum());
-			// If course starts at 10am and is on either MW, WF, or MWF: exam is at 10:15am
+			// If course starts at 10am and is on either MW, WF, or MWF: exam is
+			// at 10:15am
 			if (scheduled.getStartTime() == 1000
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
@@ -437,7 +438,8 @@ public class displayFinalExams extends JFrame {
 				time2.setOpaque(true);
 
 			}
-			// If course starts at 11:30am and is on either MW, WF, MWF: exam is at 12:45pm
+			// If course starts at 11:30am and is on either MW, WF, MWF: exam is
+			// at 12:45pm
 			if (scheduled.getStartTime() == 1130
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
@@ -531,6 +533,128 @@ public class displayFinalExams extends JFrame {
 		heading.setFont(heading.getFont().deriveFont(Font.BOLD, 14f));
 		thur.add(heading);
 
+		// 8-10
+		JLabel time1 = new JLabel("");
+		JLabel time11 = new JLabel("");
+		// 10:15-12:15
+		JLabel time2 = new JLabel("");
+		JLabel time22 = new JLabel("");
+		// 12:45-2:45
+		JLabel time3 = new JLabel("");
+		JLabel time33 = new JLabel("");
+		// 3-5
+		JLabel time4 = new JLabel("");
+		JLabel time44 = new JLabel("");
+		// 5:30-7:30
+		JLabel time5 = new JLabel("");
+		JLabel time55 = new JLabel("");
+		// 7:45-9:45
+		JLabel time6 = new JLabel("");
+		JLabel time66 = new JLabel("");
+
+		boolean conflict1 = false;
+		boolean conflict2 = false;
+		boolean conflict3 = false;
+		boolean conflict4 = false;
+
+		for (Course scheduled : coursesScheduled) {
+			System.out.println(scheduled.getCourseNum());
+			// If course starts at 8 or 8:30am and is on either T, R, or TR:
+			// exam is at 8:00am
+			if ((scheduled.getStartTime() == 800 || scheduled.getStartTime() == 830)
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && !conflict1) {
+				System.out.println("R800Success: " + scheduled.getCourseNum());
+				time1.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+				conflict1 = true;
+			} else if ((scheduled.getStartTime() == 800 || scheduled
+					.getStartTime() == 830)
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && conflict1) {
+				System.out.println("R800Conflict: " + scheduled.getCourseNum());
+				time11.setText(scheduled.getSubject()
+						+ scheduled.getCourseNum() + ": "
+						+ scheduled.getTitle());
+				time11.setBackground(Color.RED);
+				time11.setOpaque(true);
+				time1.setBackground(Color.RED);
+				time1.setOpaque(true);
+
+			}
+			// If course starts at 11:30am and is on either T, R, TR: exam is at
+			// 12:45pm
+			if (scheduled.getStartTime() == 1130
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && !conflict2) {
+				System.out.println("R1300Success: " + scheduled.getCourseNum());
+				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+				conflict2 = true;
+			} else if (scheduled.getStartTime() == 1300
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && conflict2) {
+				System.out
+						.println("R1300Conflict: " + scheduled.getCourseNum());
+				time33.setText(scheduled.getSubject()
+						+ scheduled.getCourseNum() + ": "
+						+ scheduled.getTitle());
+				time33.setBackground(Color.RED);
+				time33.setOpaque(true);
+				time3.setBackground(Color.RED);
+				time3.setOpaque(true);
+
+			}
+			// If course starts at 2:30pm and is on either T, R, or TR: exam is
+			// at 3pm
+			if (scheduled.getStartTime() == 1430
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && !conflict3) {
+				System.out.println("T1600Success: " + scheduled.getCourseNum());
+				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+				conflict3 = true;
+			} else if (scheduled.getStartTime() == 1430
+					&& (scheduled.getDays().equals("T")
+							|| scheduled.getDays().equals("R") || scheduled
+							.getDays().equals("TR")) && conflict3) {
+				System.out
+						.println("T1600Conflict: " + scheduled.getCourseNum());
+				time44.setText(scheduled.getSubject()
+						+ scheduled.getCourseNum() + ": "
+						+ scheduled.getTitle());
+				time44.setBackground(Color.RED);
+				time44.setOpaque(true);
+				time4.setBackground(Color.RED);
+				time4.setOpaque(true);
+
+			}
+			// if a course starts at 5:30pm or later and is on R
+			if (scheduled.getStartTime() >= 1730
+					&& scheduled.getDays().equals("R")) {
+				time6.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+			}
+		}
+
+		thur.add(time1);
+		thur.add(time11);
+		thur.add(time2);
+		thur.add(time22);
+		thur.add(time3);
+		thur.add(time33);
+		thur.add(time4);
+		thur.add(time44);
+		thur.add(time5);
+		thur.add(time55);
+		thur.add(time6);
+		thur.add(time66);
+
 		return thur;
 	}
 
@@ -549,6 +673,78 @@ public class displayFinalExams extends JFrame {
 		heading.setFont(font.deriveFont(attributes));
 		heading.setFont(heading.getFont().deriveFont(Font.BOLD, 14f));
 		fri.add(heading);
+
+		// 8-10
+		JLabel time1 = new JLabel("");
+		JLabel time11 = new JLabel("");
+		// 10:15-12:15
+		JLabel time2 = new JLabel("");
+		JLabel time22 = new JLabel("");
+		// 12:45-2:45
+		JLabel time3 = new JLabel("");
+		JLabel time33 = new JLabel("");
+		// 3-5
+		JLabel time4 = new JLabel("");
+		JLabel time44 = new JLabel("");
+		// 5:30-7:30
+		JLabel time5 = new JLabel("");
+		JLabel time55 = new JLabel("");
+		// 7:45-9:45
+		JLabel time6 = new JLabel("");
+		JLabel time66 = new JLabel("");
+
+		boolean conflict1 = false;
+		boolean conflict2 = false;
+		boolean conflict3 = false;
+		boolean conflict4 = false;
+
+		for (Course scheduled : coursesScheduled) {
+			System.out.println(scheduled.getCourseNum());
+			// If course starts at 8 or 8:30am and is on either MW, WF, or MWF:
+			// exam is at 8:00am
+			if ((scheduled.getStartTime() == 800 || scheduled.getStartTime() == 830)
+					&& (scheduled.getDays().equals("MW")
+							|| scheduled.getDays().equals("WF") || scheduled
+							.getDays().equals("MWF")) && !conflict1) {
+				System.out.println("F800Success: " + scheduled.getCourseNum());
+				time1.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+				conflict1 = true;
+			} else if ((scheduled.getStartTime() == 800 || scheduled
+					.getStartTime() == 830)
+					&& (scheduled.getDays().equals("MW")
+							|| scheduled.getDays().equals("WF") || scheduled
+							.getDays().equals("MWF")) && conflict1) {
+				System.out.println("F800Conflict: " + scheduled.getCourseNum());
+				time11.setText(scheduled.getSubject()
+						+ scheduled.getCourseNum() + ": "
+						+ scheduled.getTitle());
+				time11.setBackground(Color.RED);
+				time11.setOpaque(true);
+				time1.setBackground(Color.RED);
+				time1.setOpaque(true);
+
+			}
+
+			// if it is CSE 174
+			if (scheduled.getCourseNum().equals("174")) {
+				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
+						+ ": " + scheduled.getTitle());
+			}
+		}
+
+		fri.add(time1);
+		fri.add(time11);
+		fri.add(time2);
+		fri.add(time22);
+		fri.add(time3);
+		fri.add(time33);
+		fri.add(time4);
+		fri.add(time44);
+		fri.add(time5);
+		fri.add(time55);
+		fri.add(time6);
+		fri.add(time66);
 
 		return fri;
 	}
@@ -577,11 +773,20 @@ public class displayFinalExams extends JFrame {
 		c271.setDays("WF");
 		c271.setStartTime(1430);
 		c271.setEndTime(1500);
+		
+		Course c174 = new Course();
+		c174.setTitle("Into");
+		c174.setCourseNum("174");
+		c174.setSubject("CSE");
+		c174.setDays("WF");
+		c174.setStartTime(1430);
+		c174.setEndTime(1500);
 
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 		coursesScheduled.add(c381);
 		coursesScheduled.add(c464);
 		coursesScheduled.add(c271);
+		coursesScheduled.add(c174);
 
 		new displayFinalExams(coursesScheduled);
 	}
