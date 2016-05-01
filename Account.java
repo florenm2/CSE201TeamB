@@ -79,7 +79,7 @@ public class Account {
 				m.setVisible(false);
 				cc.setVisible(false);
 				cp.setVisible(true);
-				user.setStage(cp.getStage());
+				//user.setStage(cp.getStage());
 				break;
 			case 3:
 				m.setVisible(false);

@@ -64,7 +64,7 @@ public class chooseClasses extends javax.swing.JFrame {
 				.setText("Please select which of the following courses you have completed:");
 		jTextArea1.setToolTipText("");
 		jTextArea1.setWrapStyleWord(true);
-
+		
 		
 		jTable2.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] { { new Boolean(false), "CSE 148: Business Computing" },
