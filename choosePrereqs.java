@@ -89,11 +89,13 @@ public class choosePrereqs implements ActionListener {
 		nextButton = new JButton("Next");
 		nextButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				/*test cc = new test();
 				try {
 					cc.createAndShowGUI();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}*/
 			}
 		});
 		navButtons.add(nextButton);
