@@ -63,9 +63,9 @@ public class Course {
 	}
 	
 	public String displayCourse() {
-		course = getSubject() + getCourseNum() + " " + getTitle() + "("
-				+ getSection() + ") " + getInstructorName() + " Start Time: "
-				+ getStartTime() + " End Time: " + getEndTime();
+		course = getSubject() + getCourseNum() + ": " + getTitle() + "("
+				+ getSection() + ") " + getInstructorName() +  getDays() +  " "
+				+ getStartTime() + "-" + getEndTime();
 		return course;
 	}
 
