@@ -809,19 +809,19 @@ public class displayFinalExams extends JFrame {
 		c271.setStartTime(1430);
 		c271.setEndTime(1500);
 		
-		Course c174 = new Course();
-		c174.setTitle("Into");
-		c174.setCourseNum("174");
-		c174.setSubject("CSE");
-		c174.setDays("WF");
-		c174.setStartTime(1430);
-		c174.setEndTime(1500);
+		Course c274 = new Course();
+		c274.setTitle("Data Structures");
+		c274.setCourseNum("274");
+		c274.setSubject("CSE");
+		c274.setDays("WF");
+		c274.setStartTime(1430);
+		c274.setEndTime(1500);
 
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 		coursesScheduled.add(c381);
 		coursesScheduled.add(c464);
 		coursesScheduled.add(c271);
-		coursesScheduled.add(c174);
+		coursesScheduled.add(c274);
 
 		new displayFinalExams(coursesScheduled);
 	}

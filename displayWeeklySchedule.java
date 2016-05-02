@@ -478,6 +478,7 @@ public class displayWeeklySchedule extends JFrame {
 		c381.setDays("MW");
 		c381.setStartTime(1300);
 		c381.setEndTime(1400);
+		c381.setSection("B");
 
 		Course c464 = new Course();
 		c464.setTitle("Algorithms");
@@ -486,6 +487,7 @@ public class displayWeeklySchedule extends JFrame {
 		c464.setDays("TR");
 		c464.setStartTime(1300);
 		c464.setEndTime(1350);
+		c464.setSection("A");
 
 		Course c271 = new Course();
 		c271.setTitle("Object Oriented");
@@ -494,6 +496,7 @@ public class displayWeeklySchedule extends JFrame {
 		c271.setDays("WF");
 		c271.setStartTime(1430);
 		c271.setEndTime(1500);
+		c271.setSection("B");
 
 		Course c174 = new Course();
 		c174.setTitle("Into");
@@ -502,6 +505,7 @@ public class displayWeeklySchedule extends JFrame {
 		c174.setDays("MWF");
 		c174.setStartTime(830);
 		c174.setEndTime(950);
+		c174.setSection("A");
 
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 		coursesScheduled.add(c381);
