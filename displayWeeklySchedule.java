@@ -23,13 +23,12 @@ import javax.swing.border.Border;
 public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 	private int numDays = 5;
-	JButton back;
-	JButton save;
-	public ArrayList<Course> coursesScheduled;
+	JButton buttonback, buttonsave;
+	public ArrayList<Course> coursesScheduled1;
 
 	public displayWeeklySchedule(ArrayList<Course> coursesScheduled) {
 		frameSetup(coursesScheduled);
-		coursesScheduled = this.coursesScheduled;
+		coursesScheduled1 = coursesScheduled;
 		setVisible(true);
 	}
 
@@ -65,13 +64,15 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 	private void buttonPanelSetup() {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-		back = new JButton("<<Select Courses");
-		save = new JButton("View Final Exam Schedule>>");
+		buttonback = new JButton("<<Select Courses");
+		buttonsave = new JButton("View Final Exam Schedule>>");
 
-		buttonPanel.add(back);
-		back.addActionListener(this);
-		buttonPanel.add(save);
-		save.addActionListener(this);
+		buttonback.addActionListener(this);
+		buttonPanel.add(buttonback);
+		
+		buttonsave.addActionListener(this);
+		buttonPanel.add(buttonsave);
+		
 
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
@@ -480,15 +481,18 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == save) {
-			try {
-				displayFinalExams dFinal = new displayFinalExams(coursesScheduled);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+		if (e.getSource() == buttonsave) {
+			ArrayList<Course> coursesScheduled2 = coursesScheduled1;
+				try {
+					displayFinalExams dFinal = new displayFinalExams(coursesScheduled2);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			
 		}
 		
-		else if (e.getSource() == back) {
+		else if (e.getSource() == buttonback) {
+			
 			
 		}
 		

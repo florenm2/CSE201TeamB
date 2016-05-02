@@ -205,6 +205,7 @@ public class test implements ActionListener {
 				coursesChosen.remove(toindex[i]);
 			}
 		} else if (e.getSource() == buttonnext) {
+			
 			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled);
 
 		} else if (e.getSource() == buttonback) {

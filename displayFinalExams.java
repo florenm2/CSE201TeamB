@@ -19,18 +19,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class displayFinalExams extends JFrame {
+public class displayFinalExams extends JFrame implements ActionListener {
 
 	private int numDays = 6;
 	private ArrayList<Course> scheduledCourses;
-
-	
-	
+	private JButton buttonsave, buttonback;
+	ArrayList<Course> coursesScheduled1;
 	
 	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
 		scheduledCourses = coursesScheduled;
 		frameSetup(coursesScheduled);
 		
+		coursesScheduled1 = coursesScheduled;
 		setVisible(true);
 	}
 
@@ -68,13 +68,14 @@ public class displayFinalExams extends JFrame {
 
 	private void buttonPanelSetup(ArrayList<Course>scheduledCourses) throws IOException {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-		JButton back = new JButton("<<View Weekly Schedule");
-		JButton save = new JButton("Save Schedule to .csv");
+		buttonback = new JButton("<<View Weekly Schedule");
+		buttonsave = new JButton("Save Schedule to .csv");
 
-		save.addActionListener(new CSVListener(scheduledCourses));
+		buttonsave.addActionListener(new CSVListener(scheduledCourses));
 		
-		buttonPanel.add(back);
-		buttonPanel.add(save);
+		buttonPanel.add(buttonback);
+		buttonback.addActionListener(this);
+		buttonPanel.add(buttonsave);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
@@ -89,7 +90,6 @@ public class displayFinalExams extends JFrame {
 			try {
 				Controller.saveToCSV(scheduledCourses );
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -827,6 +827,15 @@ public class displayFinalExams extends JFrame {
 
 		new displayFinalExams(coursesScheduled);
 		*/
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == buttonback) {
+			ArrayList<Course> coursesScheduled2 = coursesScheduled1;
+			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled2);
+			
+		}
+		
 	}
 
 }
