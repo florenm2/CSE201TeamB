@@ -11,6 +11,7 @@ public class test implements ActionListener {
 
 	JList courseList, courses;
 	JButton buttonin, buttonout, buttonnext, buttonback;
+	JLabel dispMessage;
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allCourses = new ArrayList<Course>();
 
@@ -74,9 +75,10 @@ public class test implements ActionListener {
 
 		JPanel buttonPanel1 = new JPanel();
 		JPanel buttonPanel2 = new JPanel();
+		JPanel textPanel1 = new JPanel();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int verticalSpacing = screenSize.height - 500;
-		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
+		int verticalSpacing = screenSize.height/3;
+		JPanel buttons = new JPanel(new GridLayout(3, 2, 0, verticalSpacing));
 
 		buttonin = new JButton("Add >>");
 		buttonin.addActionListener(this);
@@ -85,6 +87,11 @@ public class test implements ActionListener {
 		buttonout = new JButton("<< Remove");
 		buttonout.addActionListener(this);
 		buttonPanel1.add(buttonout);
+		
+		dispMessage = new JLabel("Error");
+		dispMessage.setForeground(Color.red);
+		dispMessage.setVisible(false);
+		textPanel1.add(dispMessage);
 
 		buttonback = new JButton("Back");
 		buttonback.addActionListener(this);
@@ -95,6 +102,7 @@ public class test implements ActionListener {
 		buttonPanel2.add(buttonnext);
 
 		buttons.add(buttonPanel1);
+		buttons.add(textPanel1);
 		buttons.add(buttonPanel2);
 
 		// put everything together
@@ -128,7 +136,7 @@ public class test implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		int i = 0;
-
+		dispMessage.setVisible(false);
 		// When the 'in' button is pressed,
 		// we take the indices and values of the selected coursesChosen
 		// and output them to an array.
@@ -144,6 +152,7 @@ public class test implements ActionListener {
 						System.out.println("true");
 
 						if ((!Controller.isSameCourse(c, coursesScheduled)
+								&& !Controller.checkCourseTime(c, coursesScheduled)
 						/*
 						 * && Controller.checkPrereqs(c,
 						 * Controller.getPrereqs())
@@ -169,6 +178,12 @@ public class test implements ActionListener {
 							for (i = (fromindex.length - 1); i >= 0; i--) {
 								coursesDisplayed.remove(fromindex[i]);
 							}
+						}else if(Controller.isSameCourse(c, coursesScheduled)){
+							dispMessage.setText("Same course selected!");
+							dispMessage.setVisible(true);
+						}else if(Controller.checkCourseTime(c, coursesScheduled)){
+							dispMessage.setText("Time Overlap!");
+							dispMessage.setVisible(true);
 						}
 
 					}
