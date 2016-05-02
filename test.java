@@ -57,7 +57,7 @@ public class test implements ActionListener {
 
 		// create list
 		courseList = new JList(coursesDisplayed);
-		courseList.setVisibleRowCount(45);
+		courseList.setVisibleRowCount(30);
 		courseList
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -74,7 +74,7 @@ public class test implements ActionListener {
 		JPanel buttonPanel1 = new JPanel();
 		JPanel buttonPanel2 = new JPanel();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int verticalSpacing = screenSize.height - 300;
+		int verticalSpacing = screenSize.height - 500;
 		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
 		buttonin = new JButton("Add >>");
