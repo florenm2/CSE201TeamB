@@ -127,6 +127,16 @@ public class test implements  ActionListener{
 	            	if(c.displayCourse().equals(from[j].toString())){
 	            		System.out.println("true");
 	            		allCoursesLogic.add(c);
+	            		
+	            		try {
+							if(Controller.checkCSRequirements(c)){
+								
+							}
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+	            		
 	            	}
             	}
             }
