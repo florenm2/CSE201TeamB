@@ -8,25 +8,27 @@ import java.util.ArrayList;
 
 public class chooseClasses2 implements ActionListener {
 
-	JList CourseList, selectedList;
+	JList itemList, courses;
 	JButton buttonin, buttonout, buttonnext, buttonback;
 
 	// The ListModels we will be using in the example.
-	DefaultListModel courseList, courseOptions;
+	DefaultListModel shopping, items;
 
 	public chooseClasses2() {
-
-		JFrame frame = new JFrame("Please choose your classes:");
+		JFrame frame = new JFrame("Choose your classes:");
 		try {
 			frame.setContentPane(this.createContentPane());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height - 100);
+		//
+
+		// frame.pack();
 		frame.setVisible(true);
 
 	}
@@ -36,91 +38,91 @@ public class chooseClasses2 implements ActionListener {
 		// Create the final Panel.
 		JPanel totalGUI = new JPanel();
 
-		totalGUI.setBorder(BorderFactory.createEtchedBorder());
-		totalGUI.setLayout(new GridBagLayout());
-
 		// Instantiate the List Models.
-		courseList = new DefaultListModel();
-		courseOptions = new DefaultListModel();
+		shopping = new DefaultListModel();
+		items = new DefaultListModel();
 
+		// Things to be in the list.
 		ArrayList<Course> allCourses = ImportCSV.csvFileIN();
 
+		// Using a for loop, we add every item in the String array
+		// into the ListModel.
+
 		for (Course c : allCourses) {
-			courseList.addElement(c.displayCourse());
+			shopping.addElement(c.displayCourse());
 		}
 
 		// Creation of the list.
 		// We set the cells in the list to be 20px x 140px.
 
-		CourseList = new JList(courseList);
-		CourseList.setVisibleRowCount(45);
-		// CourseList.setFixedCellHeight(20);
-		// CourseList.setFixedCellWidth(140);
-		CourseList
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		itemList = new JList(shopping);
+		itemList.setVisibleRowCount(45);
+		// itemList.setFixedCellHeight(20);
+		// itemList.setFixedCellWidth(140);
+		itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		// We then add them to a JScrollPane.
-		// This means when we remove courseOptions from the JList
+		// This means when we remove items from the JList
 		// it will not shrink in size.
-		JScrollPane list1 = new JScrollPane(CourseList);
+		JScrollPane list1 = new JScrollPane(itemList);
 
-		selectedList = new JList(courseOptions);
-		// selectedList.setVisibleRowCount(10);
-		// selectedList.setFixedCellHeight(20);
-		// selectedList.setFixedCellWidth(140);
-		selectedList
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		courses = new JList(items);
+		courses.setVisibleRowCount(45);
+		// courses.setFixedCellHeight(20);
+		// courses.setFixedCellWidth(140);
+		courses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		// We add this list to a JScrollPane too.
 		// This is so the list is displayed even though there are
-		// currently no courseOptions in the list.
+		// currently no items in the list.
 		// Without the scrollpane, the list would not show.
-		JScrollPane list2 = new JScrollPane(selectedList);
+		JScrollPane list2 = new JScrollPane(courses);
 
-		Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
-		JLabel sourceLabel = new JLabel("Available Classes");
-
-		totalGUI.add(sourceLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				EMPTY_INSETS, 0, 0));
-		totalGUI.add(list2, new GridBagConstraints(0, 1, 1, 5, .5, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				EMPTY_INSETS, 0, 0));
+		// We create the buttons to be placed between the lists.
+		JPanel buttonPanel1 = new JPanel();
+		JPanel buttonPanel2 = new JPanel();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int verticalSpacing = screenSize.height - 300;
+		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
 		buttonin = new JButton("Add >>");
-		totalGUI.add(buttonin, new GridBagConstraints(1, 2, 1, 2, 0, .25,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				EMPTY_INSETS, 0, 0));
 		buttonin.addActionListener(this);
+		buttonPanel1.add(buttonin);
+
 		buttonout = new JButton("<< Remove");
-		totalGUI.add(buttonout, new GridBagConstraints(1, 4, 1, 2, 0, .25,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-						0, 5, 0, 5), 0, 0));
 		buttonout.addActionListener(this);
-		buttonnext = new JButton("Done");
-		totalGUI.add(buttonnext, new GridBagConstraints(1, 4, 1, 2, 0, .25,
-				GridBagConstraints.PAGE_END, GridBagConstraints.NONE,
-				new Insets(0, 5, 0, 5), 0, 0));
-		// buttonnext.addActionListener(this);
-		buttonback = new JButton("Done");
-		totalGUI.add(buttonback, new GridBagConstraints(1, 4, 1, 2, 0, .25,
-				GridBagConstraints.PAGE_END, GridBagConstraints.NONE,
-				new Insets(0, 5, 0, 5), 0, 0));
-		// buttonback.addActionListener(this);
+		buttonPanel1.add(buttonout);
 
-		JLabel destLabel = new JLabel("Classes completed:");
+		buttonnext = new JButton("Next");
+		buttonnext.addActionListener(this);
+		buttonPanel2.add(buttonnext);
 
-		totalGUI.add(destLabel, new GridBagConstraints(2, 0, 1, 1, 0, 0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE,
-				EMPTY_INSETS, 0, 0));
-		totalGUI.add(list2, new GridBagConstraints(2, 1, 1, 5, .5, 1.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				EMPTY_INSETS, 0, 0));
+		buttonback = new JButton("Back");
+		buttonback.addActionListener(this);
+		buttonPanel2.add(buttonback);
+
+		buttons.add(buttonPanel1);
+		buttons.add(buttonPanel2);
+		// This final bit of code uses a BoxLayout to space out the widgets
+		// in the GUI.
+
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
+
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+		bottomPanel.add(list1);
+		bottomPanel.add(Box.createRigidArea(new Dimension(3, 0)));
+		bottomPanel.add(buttons);
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+		bottomPanel.add(list2);
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+
+		totalGUI.add(bottomPanel);
+		totalGUI.setOpaque(true);
 		return totalGUI;
-
 	}
 
-	// In this method, we create a square JPanel of a colour and set size
+	// In this method, we create a square JPanel of a color and set size
 	// specified by the arguments.
 
 	private JPanel createSquareJPanel(Color color, int size) {
@@ -139,60 +141,54 @@ public class chooseClasses2 implements ActionListener {
 		int i = 0;
 
 		// When the 'in' button is pressed,
-		// we take the indices and values of the selected courseOptions
+		// we take the indices and values of the selected items
 		// and output them to an array.
 
 		if (e.getSource() == buttonin) {
-			int[] fromindex = CourseList.getSelectedIndices();
-			Object[] from = CourseList.getSelectedValues();
+			int[] fromindex = itemList.getSelectedIndices();
+			Object[] from = itemList.getSelectedValues();
 
 			// Then, for each item in the array, we add them to
 			// the other list.
 			for (i = 0; i < from.length; i++) {
-				courseOptions.addElement(from[i]);
+				items.addElement(from[i]);
 			}
-			
 
-			// Finally, we remove the courseOptions from the first list.
+			// Finally, we remove the items from the first list.
 			// We must remove from the bottom, otherwise we try to
 			// remove the wrong objects.
 			for (i = (fromindex.length - 1); i >= 0; i--) {
-				courseList.remove(fromindex[i]);
+				shopping.remove(fromindex[i]);
 			}
 		}
 
 		// If the out button is pressed, we take the indices and values of
-		// the selected courseOptions and output them to an array.
+		// the selected items and output them to an array.
 		else if (e.getSource() == buttonout) {
-			Object[] to = selectedList.getSelectedValues();
-			int[] toindex = selectedList.getSelectedIndices();
+			Object[] to = courses.getSelectedValues();
+			int[] toindex = courses.getSelectedIndices();
 
 			// Then, for each item in the array, we add them to
 			// the other list.
 			for (i = 0; i < to.length; i++) {
-				courseList.addElement(to[i]);
+				shopping.addElement(to[i]);
 			}
 
-			// Finally, we remove the courseOptions from the first list.
+			// Finally, we remove the items from the first list.
 			// We must remove from the bottom, otherwise we try to
 			// remove the wrong objects.
 			for (i = (toindex.length - 1); i >= 0; i--) {
-				courseOptions.remove(toindex[i]);
+				items.remove(toindex[i]);
 			}
-		}
-		else if (e.getSource() == buttonnext) {
-			//stage
-			
-		}
-		else if (e.getSource() == buttonback) {
+		} else if (e.getSource() == buttonnext) {
+
+		} else if (e.getSource() == buttonback) {
 
 		}
-		
 	}
 
 	public static void main(String[] args) {
-
-		chooseClasses2 demo = new chooseClasses2();
+		chooseClasses2 j = new chooseClasses2();
 
 	}
 }
