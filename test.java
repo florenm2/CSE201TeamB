@@ -117,14 +117,17 @@ public class test implements  ActionListener{
 
         if(e.getSource() == buttonin)
         {
-        	System.out.println("test");
+        	//System.out.println("test");
             int[] fromindex = itemList.getSelectedIndices();
+           
             Object[] from = itemList.getSelectedValues();
-            System.out.println(from.toString());
-            for(Course c: allCourses){
-            	if(c.displayCourse().equals(from)){
-            		System.out.println("true");
-            		allCoursesLogic.add(c);
+            //System.out.println(from[0].toString());
+            for(int j = 0; j < from.length; j++){
+            	for(Course c: allCourses){
+	            	if(c.displayCourse().equals(from[j].toString())){
+	            		System.out.println("true");
+	            		allCoursesLogic.add(c);
+	            	}
             	}
             }
             for(Course c:allCoursesLogic){
