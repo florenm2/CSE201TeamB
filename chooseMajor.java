@@ -165,7 +165,7 @@ public class chooseMajor extends javax.swing.JFrame {
 
 	public void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
 			boolean CSSE) {
-		if (CSSE)
+		if (!CSSE)
 			isCS = true;
 		else
 			isCS = false;

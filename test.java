@@ -152,19 +152,30 @@ public class test implements ActionListener {
 				for (Course c : allCourses) {
 					if (c.displayCourse().equals(from[j].toString())) {
 						System.out.println("true");
-
+						
 						try {
 							if ((!Controller.isSameCourse(c, coursesScheduled)
 									&& !Controller.checkCourseTime(c, coursesScheduled)
 									&& Controller.checkPrereqs(c,prereqsTaken)
 							 )) {
 								coursesScheduled.add(c);
-
+								
+								
 								try {
 									if (isCSMajor) {
 										Controller.checkCSRequirements(c);
+										//
+										dispMessage.setText(Controller.getReqMessage());
+										dispMessage.setForeground(Color.black);
+										dispMessage.setVisible(true);
+										//
 									} else {
 										Controller.checkSERequirements(c);
+										//
+										dispMessage.setText(Controller.getReqMessage());
+										dispMessage.setForeground(Color.black);
+										dispMessage.setVisible(true);
+										//
 									}
 								} catch (IOException e1) {
 									e1.printStackTrace();
@@ -181,12 +192,15 @@ public class test implements ActionListener {
 								}
 							}else if(!Controller.checkPrereqs(c,prereqsTaken)){
 								dispMessage.setText(Controller.getErrorMessage());
+								dispMessage.setForeground(Color.red);
 								dispMessage.setVisible(true);
 							}else if(Controller.isSameCourse(c, coursesScheduled)){
 								dispMessage.setText(Controller.getErrorMessage());
+								dispMessage.setForeground(Color.red);
 								dispMessage.setVisible(true);
 							}else if(Controller.checkCourseTime(c, coursesScheduled)){
 								dispMessage.setText(Controller.getErrorMessage());
+								dispMessage.setForeground(Color.red);
 								dispMessage.setVisible(true);
 							}
 						} catch (IOException e1) {

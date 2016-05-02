@@ -18,7 +18,7 @@ public class Controller {
 	static String errorMessage = "Error";
 	static String reqMessage = "N/A";
 	
-	public String getReqMessage(){
+	public static String getReqMessage(){
 		return reqMessage;
 	}
 	
