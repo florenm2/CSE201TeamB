@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class chooseMajor extends javax.swing.JFrame {
 
-	String major = "";
+	Boolean isCS;
 	// if false CS, if true SE
 	boolean CSSE = false;
 	public int stage;
@@ -27,16 +27,12 @@ public class chooseMajor extends javax.swing.JFrame {
 
 	public chooseMajor() {
 		initComponents();
-		major = getMajor();
 		stage = getStage();
 		
 		setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
-	public String getMajor() {
-		return major;
-	}
 	
 	public int getStage() {
 		return stage;
@@ -170,18 +166,13 @@ public class chooseMajor extends javax.swing.JFrame {
 	public void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
 			boolean CSSE) {
 		if (CSSE)
-			major = "Computer Science";
+			isCS = true;
 		else
-			major = "Software Engineering";
+			isCS = false;
 
-		choosePrereqs cp = new choosePrereqs();
+		choosePrereqs cp = new choosePrereqs(isCS);
 		this.dispose();
-		try {
-			cp.createAndShowGUI();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 	public void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {

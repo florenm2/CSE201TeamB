@@ -17,6 +17,25 @@ public class choosePrereqs implements ActionListener {
 
 	boolean isCSMajor = true;
 
+	public choosePrereqs(boolean isitCS){
+		JFrame frame = new JFrame("Choose prerequisites");
+		isCSMajor = isitCS;
+		
+		try {
+			frame.setContentPane(this.createContentPane());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height - 100);
+		//
+
+		frame.setVisible(true);
+		
+	}
 	// The ListModels we will be using in the example.
 	DefaultListModel prereqList, items;
 
@@ -206,37 +225,7 @@ public class choosePrereqs implements ActionListener {
 		}
 	}
 
-	public static void createAndShowGUI() throws IOException {
-
-		// JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("[=] JListExample - Adding and Removing [=]");
-
-		choosePrereqs demo = new choosePrereqs();
-		frame.setContentPane(demo.createContentPane());
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height - 100);
-		//
-
-		// frame.pack();
-		frame.setVisible(true);
-		//return prereqsTaken;
-	}
-
 	public static void main(String[] args) {
-		// Schedule a job for the event-dispatching thread:
-		// creating and showing this application's GUI.
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					createAndShowGUI();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
 }
