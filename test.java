@@ -14,13 +14,15 @@ public class test implements ActionListener {
 	JLabel dispMessage;
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allCourses = new ArrayList<Course>();
+	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
 
 	boolean isCSMajor = true;
 
 	// using DefaultListModel to keep track of the two lists
 	DefaultListModel coursesDisplayed, coursesChosen;
 
-	public test(boolean isCS) {
+	public test(boolean isCS, ArrayList<Course> prereqsTaken) {
+		this.prereqsTaken = prereqsTaken;
 		isCSMajor = isCS;
 		JFrame frame = new JFrame("Choose your classes:");
 		try {
@@ -151,39 +153,45 @@ public class test implements ActionListener {
 					if (c.displayCourse().equals(from[j].toString())) {
 						System.out.println("true");
 
-						if ((!Controller.isSameCourse(c, coursesScheduled)
-								&& !Controller.checkCourseTime(c, coursesScheduled)
-						/*
-						 * && Controller.checkPrereqs(c,
-						 * Controller.getPrereqs())
-						 */)) {
-							coursesScheduled.add(c);
+						try {
+							if ((!Controller.isSameCourse(c, coursesScheduled)
+									&& !Controller.checkCourseTime(c, coursesScheduled)
+									&& Controller.checkPrereqs(c,prereqsTaken)
+							 )) {
+								coursesScheduled.add(c);
 
-							try {
-								if (isCSMajor) {
-									Controller.checkCSRequirements(c);
-								} else {
-									Controller.checkSERequirements(c);
+								try {
+									if (isCSMajor) {
+										Controller.checkCSRequirements(c);
+									} else {
+										Controller.checkSERequirements(c);
+									}
+								} catch (IOException e1) {
+									e1.printStackTrace();
 								}
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
 
-							for (i = 0; i < from.length; i++) {
-								coursesChosen.addElement(from[i]);
-							}
+								for (i = 0; i < from.length; i++) {
+									coursesChosen.addElement(from[i]);
+								}
 
-							// remove the courses chosen from the first list.
-							// remove from the bottom
-							for (i = (fromindex.length - 1); i >= 0; i--) {
-								coursesDisplayed.remove(fromindex[i]);
+								// remove the courses chosen from the first list.
+								// remove from the bottom
+								for (i = (fromindex.length - 1); i >= 0; i--) {
+									coursesDisplayed.remove(fromindex[i]);
+								}
+							}else if(!Controller.checkPrereqs(c,prereqsTaken)){
+								dispMessage.setText("Prereqs Not Met.");
+								dispMessage.setVisible(true);
+							}else if(Controller.isSameCourse(c, coursesScheduled)){
+								dispMessage.setText("Same course selected!");
+								dispMessage.setVisible(true);
+							}else if(Controller.checkCourseTime(c, coursesScheduled)){
+								dispMessage.setText("Time Overlap!");
+								dispMessage.setVisible(true);
 							}
-						}else if(Controller.isSameCourse(c, coursesScheduled)){
-							dispMessage.setText("Same course selected!");
-							dispMessage.setVisible(true);
-						}else if(Controller.checkCourseTime(c, coursesScheduled)){
-							dispMessage.setText("Time Overlap!");
-							dispMessage.setVisible(true);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
 
 					}
