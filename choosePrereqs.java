@@ -193,6 +193,11 @@ public class choosePrereqs implements ActionListener {
 				items.remove(toindex[i]);
 			}
 		}
+		//Clicks next button
+		else if(e.getSource() == nextButton){
+			test cc = new test();
+			this.
+		}
 	}
 
 	public static void createAndShowGUI() throws IOException {
