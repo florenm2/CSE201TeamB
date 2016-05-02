@@ -82,7 +82,7 @@ public class displayFinalExams extends JFrame {
 	private class CSVListener implements ActionListener {
 
 		public CSVListener(ArrayList<Course> scheduledCourses) throws IOException {
-			Controller.saveToCSV(scheduledCourses);
+			//Controller.saveToCSV(scheduledCourses);
 		}
 
 		public void actionPerformed(ActionEvent e) {
