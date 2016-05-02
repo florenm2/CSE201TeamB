@@ -151,6 +151,7 @@ public class chooseClasses2 implements ActionListener {
 			for (i = 0; i < from.length; i++) {
 				courseOptions.addElement(from[i]);
 			}
+			
 
 			// Finally, we remove the courseOptions from the first list.
 			// We must remove from the bottom, otherwise we try to
@@ -179,6 +180,14 @@ public class chooseClasses2 implements ActionListener {
 				courseOptions.remove(toindex[i]);
 			}
 		}
+		else if (e.getSource() == buttonnext) {
+			//stage
+			
+		}
+		else if (e.getSource() == buttonback) {
+
+		}
+		
 	}
 
 	public static void main(String[] args) {
