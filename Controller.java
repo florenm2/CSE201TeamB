@@ -12,10 +12,11 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
+	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
-
+	static String errorMessage = "Error";
+	static String reqMessage = "N/A";
 	
 	
 	public ArrayList<Course> getPrereqs(){
@@ -107,10 +108,14 @@ public class Controller {
 					}
 					// if never set to one, requirement not satisfied
 					if (reqMet == 0) {
-						System.out.println("Prequisite for CSE"
+						errorMessage ="Prequisite for CSE"
 								+ c.getCourseNum()
 								+ " not met. Requirement: CSE " + prereqs[i]
-								+ " not satisfied");
+								+ " not satisfied";
+						/*System.out.println("Prequisite for CSE"
+								+ c.getCourseNum()
+								+ " not met. Requirement: CSE " + prereqs[i]
+								+ " not satisfied");*/
 						reqsMet = false;
 					}
 				}
@@ -119,6 +124,9 @@ public class Controller {
 		br.close();
 
 		return reqsMet;
+	}
+	public static String getErrorMessage(){
+		return errorMessage;
 	}
 
 	/*
@@ -163,7 +171,7 @@ public class Controller {
 		for (Course scheduled : coursesScheduled) {
 			if (c.getCourseNum().equals(scheduled.getCourseNum())) {
 				conflict = true;
-				System.out.println("Same class!");
+				errorMessage="Same Course";
 			}
 		}
 
@@ -228,6 +236,8 @@ public class Controller {
 						&& (c.getEndTime() <= scheduled.getEndTime())) {
 					conflict = true;
 				}
+				if(conflict)
+					errorMessage = "Conflict between CSE"+c.getCourseNum() + " and CSE"+scheduled.getCourseNum();
 			}
 		}
 		return conflict;

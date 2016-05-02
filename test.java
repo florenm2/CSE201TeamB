@@ -180,13 +180,13 @@ public class test implements ActionListener {
 									coursesDisplayed.remove(fromindex[i]);
 								}
 							}else if(!Controller.checkPrereqs(c,prereqsTaken)){
-								dispMessage.setText("Prereqs Not Met.");
+								dispMessage.setText(Controller.getErrorMessage());
 								dispMessage.setVisible(true);
 							}else if(Controller.isSameCourse(c, coursesScheduled)){
-								dispMessage.setText("Same course selected!");
+								dispMessage.setText(Controller.getErrorMessage());
 								dispMessage.setVisible(true);
 							}else if(Controller.checkCourseTime(c, coursesScheduled)){
-								dispMessage.setText("Time Overlap!");
+								dispMessage.setText(Controller.getErrorMessage());
 								dispMessage.setVisible(true);
 							}
 						} catch (IOException e1) {

@@ -223,6 +223,8 @@ public class choosePrereqs implements ActionListener {
 			Boolean isCSMajor1 = isCSMajor;
 			test cc = new test(isCSMajor1,prereqsTaken);
 			
+		}else if(e.getSource() == prevButton){
+			chooseMajor cm = new chooseMajor();
 		}
 	}
 
