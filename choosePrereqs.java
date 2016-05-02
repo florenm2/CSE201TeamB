@@ -196,7 +196,7 @@ public class choosePrereqs implements ActionListener {
 		//Clicks next button
 		else if(e.getSource() == nextButton){
 			test cc = new test();
-			this.
+			
 		}
 	}
 
