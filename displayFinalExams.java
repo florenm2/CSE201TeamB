@@ -27,7 +27,7 @@ public class displayFinalExams extends JFrame {
 	
 	
 	
-	private displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
 		scheduledCourses = coursesScheduled;
 		frameSetup(coursesScheduled);
 		
@@ -785,6 +785,8 @@ public class displayFinalExams extends JFrame {
 	}
 
 	public static void main(String[] args) throws IOException {
+		
+		/*
 		Course c381 = new Course();
 		c381.setTitle("Operating Systems");
 		c381.setCourseNum("381");
@@ -824,6 +826,7 @@ public class displayFinalExams extends JFrame {
 		coursesScheduled.add(c274);
 
 		new displayFinalExams(coursesScheduled);
+		*/
 	}
 
 }
