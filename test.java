@@ -143,7 +143,8 @@ public class test implements ActionListener {
 					if (c.displayCourse().equals(from[j].toString())) {
 						System.out.println("true");
 
-						if ((!Controller.isSameCourse(c, coursesScheduled)
+						if ((!Controller.isSameCourse(c, coursesScheduled) &&
+								(!Controller.checkCourseTime(c, coursesScheduled))
 						/*
 						 * && Controller.checkPrereqs(c,
 						 * Controller.getPrereqs())
