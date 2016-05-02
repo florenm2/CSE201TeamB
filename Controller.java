@@ -12,12 +12,15 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
+	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 	static String errorMessage = "Error";
 	static String reqMessage = "N/A";
 	
+	public String getReqMessage(){
+		return reqMessage;
+	}
 	
 	public ArrayList<Course> getPrereqs(){
 		return prereqs;
@@ -237,7 +240,7 @@ public class Controller {
 					conflict = true;
 				}
 				if(conflict)
-					errorMessage = "Conflict between CSE"+c.getCourseNum() + " and CSE"+scheduled.getCourseNum();
+					errorMessage = "Time conflict between CSE"+c.getCourseNum() + " and CSE"+scheduled.getCourseNum();
 			}
 		}
 		return conflict;
@@ -258,6 +261,9 @@ public class Controller {
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isCoreSE = true;
+					
+					reqMessage = c.getCourseNum()
+							+ " is a core SE requirement";
 					System.out.println(c.getCourseNum()
 							+ " is a core SE requirement");
 				}
@@ -282,6 +288,8 @@ public class Controller {
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isCoreCS = true;
+					reqMessage = c.getCourseNum()
+							+ " is a core CS requirement";
 					System.out.println(c.getCourseNum()
 							+ " is a core CS requirement");
 				}
@@ -310,10 +318,14 @@ public class Controller {
 						System.out
 								.println(c.getCourseNum()
 										+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...");
+						reqMessage = c.getCourseNum()
+								+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...";
 					} else if (electiveIndex == 1) {
 						System.out
 								.println(c.getCourseNum()
 										+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...");
+						reqMessage = c.getCourseNum()
+								+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...";
 					}
 				}
 			}
@@ -340,6 +352,9 @@ public class Controller {
 					System.out.println(c.getCourseNum()
 							+ " meets Area of Specialization requirement for: "
 							+ prereqs[0]);
+					reqMessage = c.getCourseNum()
+							+ " meets Area of Specialization requirement for: "
+							+ prereqs[0];
 					meetsRequirement = true;
 				}
 			}
@@ -363,6 +378,7 @@ public class Controller {
 		}
 
 		if (!meetsRequirements)
+			reqMessage = c.getCourseNum() + " meets no CS requirements";
 			System.out.println(c.getCourseNum() + " meets no CS requirements");
 
 		return meetsRequirements;
@@ -378,6 +394,7 @@ public class Controller {
 		}
 
 		if (!meetsRequirements)
+			reqMessage = c.getCourseNum() + " meets no SE requirements";
 			System.out.println(c.getCourseNum() + " meets no SE requirements");
 
 		return meetsRequirements;
