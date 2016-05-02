@@ -25,8 +25,12 @@ public class displayFinalExams extends JFrame implements ActionListener {
 	private ArrayList<Course> scheduledCourses;
 	private JButton buttonsave, buttonback;
 	ArrayList<Course> coursesScheduled1;
+	ArrayList<Course> prereqsTaken;
+	boolean isCS;
 	
-	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+	public displayFinalExams(ArrayList<Course> coursesScheduled,boolean isCSMajor, ArrayList<Course> prereqsTaken1) throws IOException {
+		prereqsTaken = prereqsTaken1;
+		isCS = isCSMajor;
 		scheduledCourses = coursesScheduled;
 		frameSetup(coursesScheduled);
 		
@@ -831,8 +835,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonback) {
+			Boolean isCSMajor = isCS;
+			ArrayList<Course> prereqsTaken1 = prereqsTaken;
 			ArrayList<Course> coursesScheduled2 = coursesScheduled1;
-			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled2);
+			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled2,isCSMajor,prereqsTaken1);
 			
 		}
 		

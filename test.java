@@ -229,11 +229,13 @@ public class test implements ActionListener {
 				coursesChosen.remove(toindex[i]);
 			}
 		} else if (e.getSource() == buttonnext) {
-			
-			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled);
+			ArrayList<Course> prereqsTaken1 = prereqsTaken;
+			Boolean isCSMajor1 = isCSMajor;
+			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled, isCSMajor1, prereqsTaken1);
 
 		} else if (e.getSource() == buttonback) {
-
+			Boolean isCSMajor1 = isCSMajor;
+			choosePrereqs cp = new choosePrereqs(isCSMajor1);
 		}
 	}
 
