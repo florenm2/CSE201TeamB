@@ -108,7 +108,6 @@ public class choosePrereqs implements ActionListener {
 		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 
 		totalGUI.add(bottomPanel);
-		totalGUI.add(navButtons);
 		totalGUI.setOpaque(true);
 		return totalGUI;
 	}
