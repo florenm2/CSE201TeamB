@@ -19,7 +19,8 @@ public class test implements ActionListener {
 	// using DefaultListModel to keep track of the two lists
 	DefaultListModel coursesDisplayed, coursesChosen;
 
-	public test() {
+	public test(boolean isCS) {
+		isCSMajor = isCS;
 		JFrame frame = new JFrame("Choose your classes:");
 		try {
 			frame.setContentPane(this.createContentPane());
@@ -214,6 +215,6 @@ public class test implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		test t = new test();
+		//test t = new test();
 	}
 }
