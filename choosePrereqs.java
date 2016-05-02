@@ -79,25 +79,11 @@ public class choosePrereqs implements ActionListener {
 		buttonPanel.add(buttonout);
 		
 		prevButton = new JButton("Prev");
-		nextButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				//go back a page
-			}
-		});
+		prevButton.addActionListener(this);
 		navButtons.add(prevButton);
 		
 		nextButton = new JButton("Next");
-		nextButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				/*test cc = new test();
-				try {
-					cc.createAndShowGUI();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-			}
-		});
+		nextButton.addActionListener(this);
 		navButtons.add(nextButton);
 
 		// This final bit of code uses a BoxLayout to space out the widgets
