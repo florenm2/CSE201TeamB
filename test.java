@@ -10,6 +10,8 @@ public class test implements  ActionListener{
 
     JList itemList, courses;
     JButton buttonin, buttonout;
+    ArrayList<Course> allCoursesLogic = new ArrayList<Course>();
+    ArrayList<Course> allCourses = new ArrayList<Course>();
     
     // The ListModels we will be using in the example.
     DefaultListModel shopping, items;
@@ -24,7 +26,8 @@ public class test implements  ActionListener{
         items = new DefaultListModel();
 
         // Things to be in the list.
-        ArrayList<Course> allCourses = ImportCSV.csvFileIN();
+        allCourses = ImportCSV.csvFileIN();
+        //allCoursesLogic = allCourses;
 
         // Using a for loop, we add every item in the String array
         // into the ListModel.
@@ -114,9 +117,19 @@ public class test implements  ActionListener{
 
         if(e.getSource() == buttonin)
         {
+        	System.out.println("test");
             int[] fromindex = itemList.getSelectedIndices();
             Object[] from = itemList.getSelectedValues();
-
+            System.out.println(from.toString());
+            for(Course c: allCourses){
+            	if(c.displayCourse().equals(from)){
+            		System.out.println("true");
+            		allCoursesLogic.add(c);
+            	}
+            }
+            for(Course c:allCoursesLogic){
+            	System.out.println(c.displayCourse());
+            }
             // Then, for each item in the array, we add them to
             // the other list.
             for(i = 0; i < from.length; i++)

@@ -33,7 +33,7 @@ public class ImportCSV {
 		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 
-		String fileName = "/Users/nehulyadav/Documents/workspace/201final/classes.csv";
+		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
 
 
 		// creatBufferedReader
