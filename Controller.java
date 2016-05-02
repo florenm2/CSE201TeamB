@@ -12,8 +12,21 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
+	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
+	ArrayList<Course> prereqs = new ArrayList<Course>();
+
+	
+	
+	public ArrayList<Course> getPrereqs(){
+		return prereqs;
+	}
+	
+	public void setPrereqs(ArrayList<Course> prereqs){
+		this.prereqs = prereqs;
+	}
+	
+	
 	/*
 	 * Filters through all courses offered in the .csv file and displays each
 	 * course only once (removes multiple sections)
@@ -399,6 +412,7 @@ public class Controller {
 
 		coursesOnce = displayCoursesOnce(allCourses);
 
+		/*
 		// Step 0: Testing
 		Course c274 = new Course();
 		c274.setCourseNum("274");
@@ -443,6 +457,7 @@ public class Controller {
 
 		coursesScheduled.add(c381);
 		coursesScheduled.add(c464);
+		
 
 		try {
 			checkPrereqs(c381, coursesPrevTaken);
@@ -484,7 +499,7 @@ public class Controller {
 			// areaOfSpecializationSE(c464);
 
 			//saveToCSV(coursesScheduled, coursesOnce);
-
+/*
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -495,6 +510,7 @@ public class Controller {
 		} else {
 			System.out.println("No time conflict");
 		}
+		*/
 
 		// Step 1: Display all course names for student to select the courses
 		// that he/she has previously taken
