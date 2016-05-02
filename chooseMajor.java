@@ -175,7 +175,7 @@ public class chooseMajor extends javax.swing.JFrame {
 
 		chooseClasses c = new chooseClasses();
 		this.dispose();
-	//	c.setVisible(true);
+		c.setVisible(true);
 	}
 
 	public void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {
