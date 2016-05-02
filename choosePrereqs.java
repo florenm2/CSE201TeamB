@@ -254,7 +254,6 @@ public class choosePrereqs extends JPanel {
   public static void main(String args[]) {
     
     choosePrereqs dual = new choosePrereqs();
-    
 
   }
 

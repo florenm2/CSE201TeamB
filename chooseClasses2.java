@@ -1,339 +1,209 @@
-/*
-Definitive Guide to Swing for Java 2, Second Edition
-By John Zukowski     
-ISBN: 1-893115-78-X
-Publisher: APress
-*/
+import javax.swing.*;
+import javax.swing.event.*;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
-import javax.swing.AbstractListModel;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
-import javax.swing.table.DefaultTableCellRenderer;
+public class chooseClasses2 implements  ActionListener{
 
-public class chooseClasses2 extends JPanel {
+    JList CourseList, selectedList;
+    JButton buttonin, buttonout, buttonnext, buttonback;
+    
+    // The ListModels we will be using in the example.
+    DefaultListModel courseList, courseOptions;
 
-  private static final Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
-  
-  private JLabel sourceLabel;
-  private JList sourceList;
-  private SortedListModel sourceListModel;
-  private JList destList;
-  private SortedListModel destListModel;
-  private JLabel destLabel;
-  private JButton addButton;
-  private JButton nextButton;
-  private JButton removeButton;
-  ArrayList<Course> allCourses = new ArrayList<Course>();
-  ArrayList<Course> selectedCourses = new ArrayList<Course>();
-
-  public chooseClasses2() {
-    initScreen();
-   
-    JFrame f = new JFrame("Courses:");
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.getContentPane().add(this, BorderLayout.CENTER);
-    f.setSize(900, 900);
-    f.setVisible(true);
-    this.addSourceElements(setInputClasses());
-  }
-  
-  public String[] setInputClasses(){
-		try {
-			allCourses = ImportCSV.csvFileIN();
+    public chooseClasses2(){
+    	
+    	
+    	
+        JFrame frame = new JFrame("Please choose your classes:");
+        try {
+			frame.setContentPane(this.createContentPane());
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Course[] courseArray = allCourses
-				.toArray(new Course[allCourses.size()]);
-		String[] courseInfo = new String[courseArray.length];
-		for(int i= 0; i < courseArray.length; i++){
-			courseInfo[i] = "" + courseArray[i].getTitle()
-					+ ", " + "CSE " + courseArray[i].getCourseNum() + ", "
-					+ courseArray[i].getStartTime() + "-"
-					+ courseArray[i].getStartTime();
-		}
-		
-		return courseInfo;
-  }
-
-  public String getSourceChoicesTitle() {
-    return sourceLabel.getText();
-  }
-
-  public void setSourceChoicesTitle(String newValue) {
-    sourceLabel.setText(newValue);
-  }
-
-  public String getDestinationChoicesTitle() {
-    return destLabel.getText();
-  }
-
-  public void setDestinationChoicesTitle(String newValue) {
-    destLabel.setText(newValue);
-  }
-
-  public void clearSourceListModel() {
-    sourceListModel.clear();
-  }
-
-  public void clearDestinationListModel() {
-    destListModel.clear();
-  }
-
-  public void addSourceElements(ListModel newValue) {
-    fillListModel(sourceListModel, newValue);
-  }
-
-  public void setSourceElements(ListModel newValue) {
-    clearSourceListModel();
-    addSourceElements(newValue);
-  }
-
-  public void addDestinationElements(ListModel newValue) {
-    fillListModel(destListModel, newValue);
-  }
-
-  private void fillListModel(SortedListModel model, ListModel newValues) {
-    int size = newValues.getSize();
-    for (int i = 0; i < size; i++) {
-      model.add(newValues.getElementAt(i));
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height-100);
+        frame.setVisible(true);
+        
     }
-  }
+    public JPanel createContentPane() throws IOException{
 
-  public void addSourceElements(Object newValue[]) {
-    fillListModel(sourceListModel, newValue);
-  }
+        // Create the final Panel.
+        JPanel totalGUI = new JPanel();
+        
+        
+        // Instantiate the List Models.
+        courseList = new DefaultListModel();
+        courseOptions = new DefaultListModel();
 
-  public void setSourceElements(Object newValue[]) {
-    clearSourceListModel();
-    addSourceElements(newValue);
-  }
+        
+        ArrayList<Course> allCourses = ImportCSV.csvFileIN();
 
-  public void addDestinationElements(Object newValue[]) {
-    fillListModel(destListModel, newValue);
-  }
 
-  private void fillListModel(SortedListModel model, Object newValues[]) {
-    model.addAll(newValues);
-  }
+        for(Course c: allCourses){
+        	courseList.addElement(c.displayCourse());
+        }
 
-  public Iterator sourceIterator() {
-    return sourceListModel.iterator();
-  }
+        // Creation of the list.
+        // We set the cells in the list to be 20px x 140px.
+        
+        CourseList = new JList(courseList);
+        CourseList.setVisibleRowCount(45);
+        //CourseList.setFixedCellHeight(20);
+       // CourseList.setFixedCellWidth(140);
+        CourseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
+        // We then add them to a JScrollPane.
+        // This means when we remove courseOptions from the JList
+        // it will not shrink in size.
+        JScrollPane list1 = new JScrollPane(CourseList);
+        
+        selectedList = new JList(courseOptions);
+       // selectedList.setVisibleRowCount(10);
+       // selectedList.setFixedCellHeight(20);
+        //selectedList.setFixedCellWidth(140);
+        selectedList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
+        // We add this list to a JScrollPane too.
+        // This is so the list is displayed even though there are 
+        // currently no courseOptions in the list.
+        // Without the scrollpane, the list would not show.
+        JScrollPane list2 = new JScrollPane(selectedList);
 
-  public Iterator destinationIterator() {
-    return destListModel.iterator();
-  }
+        JPanel topbuttonPanel = new JPanel(new GridLayout(2, 1));
+        buttonin = new JButton("Add >>");
+        buttonin.addActionListener(this);
+        buttonin.setSize(new Dimension(40, 40));
+        topbuttonPanel.add(buttonin);
 
-  public void setSourceCellRenderer(ListCellRenderer newValue) {
-    sourceList.setCellRenderer(newValue);
-  }
+        buttonout = new JButton("<< Remove");
+        buttonout.addActionListener(this);
+        buttonout.setSize(new Dimension(40, 40));
+        topbuttonPanel.add(buttonout);
+        
+        JPanel bottombuttonPanel = new JPanel(new GridLayout(1,2));
+        buttonnext = new JButton("Next");
+        //buttonnext.addActionListener(this);
+        buttonnext.setSize(new Dimension(40, 40));
+        bottombuttonPanel.add(buttonnext);
 
-  public ListCellRenderer getSourceCellRenderer() {
-    return sourceList.getCellRenderer();
-  }
+        buttonback = new JButton("Back");
+        //buttonback.addActionListener(this);
+        buttonback.setSize(new Dimension(40, 40));
+        bottombuttonPanel.add(buttonback);
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.add(topbuttonPanel);
+        buttonPanel.add(bottombuttonPanel);
+        
+        // This final bit of code uses a BoxLayout to space out the widgets
+        // in the GUI.
 
-  public void setDestinationCellRenderer(ListCellRenderer newValue) {
-    destList.setCellRenderer(newValue);
-  }
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
 
-  public ListCellRenderer getDestinationCellRenderer() {
-    return destList.getCellRenderer();
-  }
+        bottomPanel.add(Box.createRigidArea(new Dimension(10,0)));
+        bottomPanel.add(list1);
+        bottomPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        bottomPanel.add(buttonPanel);
+        bottomPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        bottomPanel.add(list2);
+        bottomPanel.add(Box.createRigidArea(new Dimension(10,0)));
 
-  public void setVisibleRowCount(int newValue) {
-    sourceList.setVisibleRowCount(newValue);
-    destList.setVisibleRowCount(newValue);
-  }
-
-  public int getVisibleRowCount() {
-    return sourceList.getVisibleRowCount();
-  }
-
-  public void setSelectionBackground(Color newValue) {
-    sourceList.setSelectionBackground(newValue);
-    destList.setSelectionBackground(newValue);
-  }
-
-  public Color getSelectionBackground() {
-    return sourceList.getSelectionBackground();
-  }
-
-  public void setSelectionForeground(Color newValue) {
-    sourceList.setSelectionForeground(newValue);
-    destList.setSelectionForeground(newValue);
-  }
-
-  public Color getSelectionForeground() {
-    return sourceList.getSelectionForeground();
-  }
-
-  private void clearSourceSelected() {
-    Object selected[] = sourceList.getSelectedValues();
-    for (int i = selected.length - 1; i >= 0; --i) {
-      sourceListModel.removeElement(selected[i]);
+        totalGUI.add(bottomPanel);
+        totalGUI.setOpaque(true);
+        return totalGUI;
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-    sourceList.getSelectionModel().clearSelection();
-  }
 
-  private void clearDestinationSelected() {
-    Object selected[] = destList.getSelectedValues();
-    for (int i = selected.length - 1; i >= 0; --i) {
-      destListModel.removeElement(selected[i]);
+    // In this method, we create a square JPanel of a colour and set size
+    // specified by the arguments.
+
+    private JPanel createSquareJPanel(Color color, int size) {
+        JPanel tempPanel = new JPanel();
+        tempPanel.setBackground(color);
+        tempPanel.setMinimumSize(new Dimension(size, size));
+       // tempPanel.setMaximumSize(new Dimension(size, size));
+        tempPanel.setPreferredSize(new Dimension(size, size));
+        return tempPanel;
     }
-    destList.getSelectionModel().clearSelection();
-  }
 
-  private void initScreen() {
-    setBorder(BorderFactory.createEtchedBorder());
-    setLayout(new GridBagLayout());
-    sourceLabel = new JLabel("Available Classes");
-    sourceListModel = new SortedListModel();
-    sourceList = new JList(sourceListModel);
-    add(sourceLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0,
-        GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        EMPTY_INSETS, 0, 0));
-    add(new JScrollPane(sourceList), new GridBagConstraints(0, 1, 1, 5, .5,
-        1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        EMPTY_INSETS, 0, 0));
+    // valueChanged is the method that deals with a ListSelectionEvent.
+    // This simply changes the boxes that are selected to true.
 
-    addButton = new JButton("Add >>");
-    add(addButton, new GridBagConstraints(1, 2, 1, 2, 0, .25,
-        GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        EMPTY_INSETS, 0, 0));
-    addButton.addActionListener(new AddListener());
-    removeButton = new JButton("<< Remove");
-    add(removeButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
-        GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-            0, 5, 0, 5), 0, 0));
-    removeButton.addActionListener(new RemoveListener());
-    nextButton = new JButton("Done");
-    add(nextButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
-        GridBagConstraints.PAGE_END, GridBagConstraints.NONE,
-        new Insets(0, 5, 0, 5), 0, 0));
-    nextButton.addActionListener(new NextListener());
-    
-    destLabel = new JLabel("Your Classes");
-    destListModel = new SortedListModel();
-    destList = new JList(destListModel);
-    add(destLabel, new GridBagConstraints(2, 0, 1, 1, 0, 0,
-        GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        EMPTY_INSETS, 0, 0));
-    add(new JScrollPane(destList), new GridBagConstraints(2, 1, 1, 5, .5,
-        1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        EMPTY_INSETS, 0, 0));
-  }
+    public void actionPerformed(ActionEvent e) 
+    {
+        int i = 0;
+        
+        // When the 'in' button is pressed,
+        // we take the indices and values of the selected courseOptions
+        // and output them to an array.
 
-  public static void main(String args[]) {
-    
-    chooseClasses2 dual = new chooseClasses2();
-    
+        if(e.getSource() == buttonin)
+        {
+            int[] fromindex = CourseList.getSelectedIndices();
+            Object[] from = CourseList.getSelectedValues();
 
-  }
-
-  private class AddListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      Object selected[] = sourceList.getSelectedValues();
-      addDestinationElements(selected);
-      clearSourceSelected();
+            // Then, for each item in the array, we add them to
+            // the other list.
+            for(i = 0; i < from.length; i++)
+            {
+                courseOptions.addElement(from[i]);
+            }
+            
+            // Finally, we remove the courseOptions from the first list.
+            // We must remove from the bottom, otherwise we try to 
+            // remove the wrong objects.
+            for(i = (fromindex.length-1); i >=0; i--)
+            {
+                courseList.remove(fromindex[i]);
+            }
+        }
+        
+        // If the out button is pressed, we take the indices and values of
+        // the selected courseOptions and output them to an array.
+        else if(e.getSource() == buttonout)
+        {
+            Object[] to = selectedList.getSelectedValues();
+            int[] toindex = selectedList.getSelectedIndices();
+            
+            // Then, for each item in the array, we add them to
+            // the other list.
+            for(i = 0; i < to.length; i++)
+            {
+                courseList.addElement(to[i]);
+            }
+            
+            // Finally, we remove the courseOptions from the first list.
+            // We must remove from the bottom, otherwise we try to
+            // remove the wrong objects.
+            for(i = (toindex.length-1); i >=0; i--)
+            {
+                courseOptions.remove(toindex[i]);
+            }
+        }
     }
-  }
 
-  private class RemoveListener implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-      Object selected[] = destList.getSelectedValues();
-      addSourceElements(selected);
-      clearDestinationSelected();
+
+    public static void main(String[] args) {
+            
+			
+			chooseClasses2 demo = new chooseClasses2();
+       
     }
-  }
-  
-  private class NextListener implements ActionListener {
-	  public void actionPerformed(ActionEvent e) {
-	      Object selected[] = destList.getCourse();
-	      
-	      
-	    }
-  }
 }
-
-class SortedListModel extends AbstractListModel {
-
-  SortedSet model;
-
-  public SortedListModel() {
-    model = new TreeSet();
-  }
-
-  public int getSize() {
-    return model.size();
-  }
-
-  public Object getElementAt(int index) {
-    return model.toArray()[index];
-  }
-
-  public void add(Object element) {
-    if (model.add(element)) {
-      fireContentsChanged(this, 0, getSize());
-    }
-  }
-
-  public void addAll(Object elements[]) {
-    Collection c = Arrays.asList(elements);
-    model.addAll(c);
-    fireContentsChanged(this, 0, getSize());
-  }
-
-  public void clear() {
-    model.clear();
-    fireContentsChanged(this, 0, getSize());
-  }
-
-  public boolean contains(Object element) {
-    return model.contains(element);
-  }
-
-  public Object firstElement() {
-    return model.first();
-  }
-
-  public Iterator iterator() {
-    return model.iterator();
-  }
-
-  public Object lastElement() {
-    return model.last();
-  }
-
-  public boolean removeElement(Object element) {
-    boolean removed = model.remove(element);
-    if (removed) {
-      fireContentsChanged(this, 0, getSize());
-    }
-    return removed;
-  }
-}
-
