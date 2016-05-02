@@ -495,7 +495,8 @@ public class Controller {
 		} else {
 			System.out.println("No time conflict");
 		}
-
+		
+		chooseMajor cm = new chooseMajor();
 		// Step 1: Display all course names for student to select the courses
 		// that he/she has previously taken
 		// coursesOnce = displayCoursesOnce(allCourses);
