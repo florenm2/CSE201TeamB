@@ -56,6 +56,12 @@ public class Course {
 	 * 
 	 * @return
 	 */
+	
+	public String displayCoursePrereq(){
+		course = getSubject() + getCourseNum() + ": " + getTitle();
+		return course;
+	}
+	
 	public String displayCourse() {
 		course = getSubject() + getCourseNum() + " " + getTitle() + "("
 				+ getSection() + ") " + getInstructorName() + " Start Time: "
