@@ -57,9 +57,19 @@ public class Course {
 	 * @return
 	 */
 	public String displayCourse() {
-		course = getSubject() + getCourseNum() + " " + getTitle() + "("
-				+ getSection() + ") " + getInstructorName() + " Start Time: "
-				+ getStartTime() + " End Time: " + getEndTime();
+		int standardStartTime = getStartTime();
+		int standardEndTime = getEndTime();
+		
+		if(getStartTime()-1200 > 0){
+			standardStartTime = standardStartTime-1200;
+		}
+		if(getEndTime()-1200 > 0){
+			standardEndTime = standardEndTime-1200;
+		}
+		
+		course = getSubject() + getCourseNum() + ": " + getTitle() + "("
+				+ getSection() + ") \n" + getDays()+ " "
+				+ standardStartTime + "-" + standardEndTime;
 		return course;
 	}
 

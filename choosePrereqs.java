@@ -20,6 +20,7 @@ public class choosePrereqs extends javax.swing.JFrame {
 		initComponents();
 		prereqsComplete = getPrereqsComplete();
 		stage = getStage();
+		this.setVisible(true);
 	}
 
 	public ArrayList<String> getPrereqsComplete() {
