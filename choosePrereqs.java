@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class choosePrereqs implements ActionListener {
 
 	JList itemList, courses;
-	JButton buttonin, buttonout;
+	JButton buttonin, buttonout,nextButton,prevButton;
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allPrereqs = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
@@ -68,6 +68,7 @@ public class choosePrereqs implements ActionListener {
 
 		// We create the buttons to be placed between the lists.
 		JPanel buttonPanel = new JPanel();
+		JPanel navButtons = new JPanel();
 
 		buttonin = new JButton(">>");
 		buttonin.addActionListener(this);
@@ -76,6 +77,26 @@ public class choosePrereqs implements ActionListener {
 		buttonout = new JButton("<<");
 		buttonout.addActionListener(this);
 		buttonPanel.add(buttonout);
+		
+		prevButton = new JButton("Prev");
+		nextButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				//go back a page
+			}
+		});
+		navButtons.add(prevButton);
+		
+		nextButton = new JButton("Next");
+		nextButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+					cc.createAndShowGUI();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+		});
+		navButtons.add(nextButton);
 
 		// This final bit of code uses a BoxLayout to space out the widgets
 		// in the GUI.
@@ -92,6 +113,7 @@ public class choosePrereqs implements ActionListener {
 		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 
 		totalGUI.add(bottomPanel);
+		totalGUI.add(navButtons);
 		totalGUI.setOpaque(true);
 		return totalGUI;
 	}
