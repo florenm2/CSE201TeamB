@@ -22,13 +22,15 @@ import javax.swing.border.Border;
 public class displayFinalExams extends JFrame {
 
 	private int numDays = 6;
+	private ArrayList<Course> scheduledCourses;
 
 	
 	
 	
-	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+	private displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+		scheduledCourses = coursesScheduled;
 		frameSetup(coursesScheduled);
-
+		
 		setVisible(true);
 	}
 
@@ -77,14 +79,20 @@ public class displayFinalExams extends JFrame {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-	public class CSVListener implements ActionListener {
+	private class CSVListener implements ActionListener {
 
 		public CSVListener(ArrayList<Course> scheduledCourses) throws IOException {
 			Controller.saveToCSV(scheduledCourses);
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
+			try {
+				Controller.saveToCSV(scheduledCourses );
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 	}
 	

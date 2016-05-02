@@ -473,7 +473,7 @@ public class Controller {
 			// areaOfSpecializationSE(c386);
 			// areaOfSpecializationSE(c464);
 
-			saveToCSV(coursesScheduled, coursesOnce);
+			//saveToCSV(coursesScheduled, coursesOnce);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
