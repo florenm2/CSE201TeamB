@@ -5,8 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -16,13 +20,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class displayWeeklySchedule extends JFrame {
+public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 	private int numDays = 5;
+	JButton back;
+	JButton save;
+	public ArrayList<Course> coursesScheduled;
 
 	public displayWeeklySchedule(ArrayList<Course> coursesScheduled) {
 		frameSetup(coursesScheduled);
-
+		coursesScheduled = this.coursesScheduled;
 		setVisible(true);
 	}
 
@@ -58,11 +65,13 @@ public class displayWeeklySchedule extends JFrame {
 
 	private void buttonPanelSetup() {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-		JButton back = new JButton("<<Select Courses");
-		JButton save = new JButton("View Final Exam Schedule>>");
+		back = new JButton("<<Select Courses");
+		save = new JButton("View Final Exam Schedule>>");
 
 		buttonPanel.add(back);
+		back.addActionListener(this);
 		buttonPanel.add(save);
+		save.addActionListener(this);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
@@ -470,7 +479,26 @@ public class displayWeeklySchedule extends JFrame {
 		return fri;
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == save) {
+			try {
+				displayFinalExams dFinal = new displayFinalExams(coursesScheduled);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		else if (e.getSource() == back) {
+			
+		}
+		
+	}
+	
 	public static void main(String[] args) {
+		
+		
+		
+		/*
 		Course c381 = new Course();
 		c381.setTitle("Operating Systems");
 		c381.setCourseNum("381");
@@ -512,8 +540,11 @@ public class displayWeeklySchedule extends JFrame {
 		coursesScheduled.add(c464);
 		coursesScheduled.add(c271);
 		coursesScheduled.add(c174);
-
+		
 		new displayWeeklySchedule(coursesScheduled);
+		*/
 	}
+
+	
 
 }

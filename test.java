@@ -7,240 +7,212 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class test implements  ActionListener{
+public class test implements ActionListener {
 
-    JList itemList, courses;
-    JButton buttonin, buttonout;
-    ArrayList<Course> coursesScheduled = new ArrayList<Course>();
-    ArrayList<Course> allCourses = new ArrayList<Course>();
-    
-    boolean isCSMajor = true;
-    
-    // The ListModels we will be using in the example.
-    DefaultListModel shopping, items;
+	JList courseList, courses;
+	JButton buttonin, buttonout, buttonnext, buttonback;
+	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
+	ArrayList<Course> allCourses = new ArrayList<Course>();
 
-    public JPanel createContentPane () throws IOException{
+	boolean isCSMajor = true;
 
-        // Create the final Panel.
-        JPanel totalGUI = new JPanel();
-        
-        // Instantiate the List Models.
-        shopping = new DefaultListModel();
-        items = new DefaultListModel();
+	// using DefaultListModel to keep track of the two lists
+	DefaultListModel coursesDisplayed, coursesChosen;
 
-        // Things to be in the list.
-        allCourses = ImportCSV.csvFileIN();
-        //coursesScheduled = allCourses;
+	public test() {
+		JFrame frame = new JFrame("Choose your classes:");
+		try {
+			frame.setContentPane(this.createContentPane());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        // Using a for loop, we add every item in the String array
-        // into the ListModel.
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for(Course c: allCourses){
-        	shopping.addElement(c.displayCourse());
-        }
+		// all panes are same size
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height - 100);
 
-        // Creation of the list.
-        // We set the cells in the list to be 20px x 140px.
-        
-        itemList = new JList(shopping);
-        itemList.setVisibleRowCount(25);
-        //itemList.setFixedCellHeight(20);
-       // itemList.setFixedCellWidth(140);
-        itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        
-        // We then add them to a JScrollPane.
-        // This means when we remove items from the JList
-        // it will not shrink in size.
-        JScrollPane list1 = new JScrollPane(itemList);
-        
-        courses = new JList(items);
-       courses.setVisibleRowCount(25);
-       // courses.setFixedCellHeight(20);
-        //courses.setFixedCellWidth(140);
-        courses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        
-        // We add this list to a JScrollPane too.
-        // This is so the list is displayed even though there are 
-        // currently no items in the list.
-        // Without the scrollpane, the list would not show.
-        JScrollPane list2 = new JScrollPane(courses);
+		frame.setVisible(true);
 
-        // We create the buttons to be placed between the lists.
-        JPanel buttonPanel = new JPanel();
+	}
 
-        buttonin = new JButton(">>");
-        buttonin.addActionListener(this);
-        buttonPanel.add(buttonin);
+	public JPanel createContentPane() throws IOException {
 
-        buttonout = new JButton("<<");
-        buttonout.addActionListener(this);
-        buttonPanel.add(buttonout);
+		// the complete panel
+		JPanel overallGUI = new JPanel();
 
-        // This final bit of code uses a BoxLayout to space out the widgets
-        // in the GUI.
+		// Instantiate the List Models.
+		coursesDisplayed = new DefaultListModel();
+		coursesChosen = new DefaultListModel();
 
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
+		// Things to be in the list.
+		allCourses = ImportCSV.csvFileIN();
+		// coursesScheduled = allCourses;
 
-        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
-        bottomPanel.add(list1);
-        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
-        bottomPanel.add(buttonPanel);
-        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
-        bottomPanel.add(list2);
-        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
+		// add every Course into the coursesDisplayed list
+		for (Course c : allCourses) {
+			coursesDisplayed.addElement(c.displayCourse());
+		}
 
-        totalGUI.add(bottomPanel);
-        totalGUI.setOpaque(true);
-        return totalGUI;
-    }
+		// create list
+		courseList = new JList(coursesDisplayed);
+		courseList.setVisibleRowCount(45);
+		courseList
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-    // In this method, we create a square JPanel of a colour and set size
-    // specified by the arguments.
+		// add to a JScrollPane
+		JScrollPane list1 = new JScrollPane(courseList);
 
-    private JPanel createSquareJPanel(Color color, int size) {
-        JPanel tempPanel = new JPanel();
-        tempPanel.setBackground(color);
-        tempPanel.setMinimumSize(new Dimension(size, size));
-       // tempPanel.setMaximumSize(new Dimension(size, size));
-        tempPanel.setPreferredSize(new Dimension(size, size));
-        return tempPanel;
-    }
+		courses = new JList(coursesChosen);
+		courses.setVisibleRowCount(25);
+		courses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-    // valueChanged is the method that deals with a ListSelectionEvent.
-    // This simply changes the boxes that are selected to true.
+		// second list to JScrollPane
+		JScrollPane list2 = new JScrollPane(courses);
 
-    public void actionPerformed(ActionEvent e) 
-    {
-        int i = 0;
-        
-        // When the 'in' button is pressed,
-        // we take the indices and values of the selected items
-        // and output them to an array.
+		JPanel buttonPanel1 = new JPanel();
+		JPanel buttonPanel2 = new JPanel();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int verticalSpacing = screenSize.height - 300;
+		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
-        if(e.getSource() == buttonin)
-        {
-        	//System.out.println("test");
-            int[] fromindex = itemList.getSelectedIndices();
-           
-            Object[] from = itemList.getSelectedValues();
-            //System.out.println(from[0].toString());
-            for(int j = 0; j < from.length; j++){
-            	for(Course c: allCourses){
-	            	if(c.displayCourse().equals(from[j].toString())){
-	            		System.out.println("true");
-	            		
-	            		
-	            		if((!Controller.isSameCourse(c, coursesScheduled)
-	            				/*&& Controller.checkPrereqs(c, Controller.getPrereqs())*/)){
-	            			coursesScheduled.add(c);
-	            			
-	            			
-	            			try {
-	            				if(isCSMajor){
-	            					Controller.checkCSRequirements(c);
-	            				}
-	            				else{
-	            					Controller.checkSERequirements(c);
-	            				}
+		buttonin = new JButton("Add >>");
+		buttonin.addActionListener(this);
+		buttonPanel1.add(buttonin);
+
+		buttonout = new JButton("<< Remove");
+		buttonout.addActionListener(this);
+		buttonPanel1.add(buttonout);
+
+		buttonback = new JButton("Back");
+		buttonback.addActionListener(this);
+		buttonPanel2.add(buttonback);
+		
+		buttonnext = new JButton("Next");
+		buttonnext.addActionListener(this);
+		buttonPanel2.add(buttonnext);
+
+		buttons.add(buttonPanel1);
+		buttons.add(buttonPanel2);
+
+		// put everything together
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
+
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+		bottomPanel.add(list1);
+		bottomPanel.add(Box.createRigidArea(new Dimension(3, 0)));
+		bottomPanel.add(buttons);
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+		bottomPanel.add(list2);
+		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
+
+		overallGUI.add(bottomPanel);
+		overallGUI.setOpaque(true);
+		return overallGUI;
+	}
+
+	private JPanel createSquareJPanel(Color color, int size) {
+		JPanel tempPanel = new JPanel();
+		tempPanel.setBackground(color);
+		tempPanel.setMinimumSize(new Dimension(size, size));
+		// tempPanel.setMaximumSize(new Dimension(size, size));
+		tempPanel.setPreferredSize(new Dimension(size, size));
+		return tempPanel;
+	}
+
+	// valueChanged is the method that deals with a ListSelectionEvent.
+	// This simply changes the boxes that are selected to true.
+
+	public void actionPerformed(ActionEvent e) {
+		int i = 0;
+
+		// When the 'in' button is pressed,
+		// we take the indices and values of the selected coursesChosen
+		// and output them to an array.
+
+		if (e.getSource() == buttonin) {
+			int[] fromindex = courseList.getSelectedIndices();
+
+			Object[] from = courseList.getSelectedValues();
+
+			for (int j = 0; j < from.length; j++) {
+				for (Course c : allCourses) {
+					if (c.displayCourse().equals(from[j].toString())) {
+						System.out.println("true");
+
+						if ((!Controller.isSameCourse(c, coursesScheduled)
+						/*
+						 * && Controller.checkPrereqs(c,
+						 * Controller.getPrereqs())
+						 */)) {
+							coursesScheduled.add(c);
+
+							try {
+								if (isCSMajor) {
+									Controller.checkCSRequirements(c);
+								} else {
+									Controller.checkSERequirements(c);
+								}
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-	            			
-	            			
-	            			for(i = 0; i < from.length; i++)
-	                        {
-	                            items.addElement(from[i]);
-	                        }
-	                        
-	                        // Finally, we remove the items from the first list.
-	                        // We must remove from the bottom, otherwise we try to 
-	                        // remove the wrong objects.
-	                        for(i = (fromindex.length-1); i >=0; i--)
-	                        {
-	                            shopping.remove(fromindex[i]);
-	                        }
+
+							for (i = 0; i < from.length; i++) {
+								coursesChosen.addElement(from[i]);
+							}
+
+							// remove the courses chosen from the first list.
+							// remove from the bottom
+							for (i = (fromindex.length - 1); i >= 0; i--) {
+								coursesDisplayed.remove(fromindex[i]);
+							}
 						}
-	            		
-	            	}
-            	}
-            }
-            
-            // Then, for each item in the array, we add them to
-            // the other list.
-            
-        }
-        
-        // If the out button is pressed, we take the indices and values of
-        // the selected items and output them to an array.
-        else if(e.getSource() == buttonout)
-        {
-            Object[] to = courses.getSelectedValues();
-            int[] toindex = courses.getSelectedIndices();
-            
-            for(int j = 0; j < to.length; j++){
-            	for(Iterator<Course> iterator = coursesScheduled.iterator(); iterator.hasNext();){
-	            	Course c = iterator.next();
-            		if(c.displayCourse().equals(to[j].toString())){
-	            		System.out.println("remove");
-	            		iterator.remove();
-	  
-	            	}
-            	}
-            }
-            for(Course c:coursesScheduled){
-            	System.out.println(c.displayCourse());
-            }
-            
-            // Then, for each item in the array, we add them to
-            // the other list.
-            for(i = 0; i < to.length; i++)
-            {
-                shopping.addElement(to[i]);
-            }
-            
-            // Finally, we remove the items from the first list.
-            // We must remove from the bottom, otherwise we try to
-            // remove the wrong objects.
-            for(i = (toindex.length-1); i >=0; i--)
-            {
-                items.remove(toindex[i]);
-            }
-        }
-    }
 
-    private static void createAndShowGUI() throws IOException {
-
-        //JFrame.setDefaultLookAndFeelDecorated(true);
-        JFrame frame = new JFrame("[=] JListExample - Adding and Removing [=]");
-   
-        test demo = new test();
-        frame.setContentPane(demo.createContentPane());
-        
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setSize(screenSize.width, screenSize.height-100);
-		//
-        
-        //frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-					createAndShowGUI();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					}
 				}
-            } 
-        });
-    }
+			}
+
+		}
+
+		// If out button is pressed, take the indices and values of
+		// the selected courses and output them to an array
+		else if (e.getSource() == buttonout) {
+			Object[] to = courses.getSelectedValues();
+			int[] toindex = courses.getSelectedIndices();
+
+			for (int j = 0; j < to.length; j++) {
+				for (Iterator<Course> iterator = coursesScheduled.iterator(); iterator
+						.hasNext();) {
+					Course c = iterator.next();
+					if (c.displayCourse().equals(to[j].toString())) {
+						System.out.println("remove");
+						iterator.remove();
+
+					}
+				}
+			}
+			for (Course c : coursesScheduled) {
+				System.out.println(c.displayCourse());
+			}
+
+			for (i = 0; i < to.length; i++) {
+				coursesDisplayed.addElement(to[i]);
+			}
+
+			for (i = (toindex.length - 1); i >= 0; i--) {
+				coursesChosen.remove(toindex[i]);
+			}
+		} else if (e.getSource() == buttonnext) {
+			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled);
+
+		} else if (e.getSource() == buttonback) {
+
+		}
+	}
+
+	public static void main(String[] args) {
+		test t = new test();
+	}
 }
