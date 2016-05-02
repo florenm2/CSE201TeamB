@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class chooseClasses2 extends JPanel {
 
@@ -271,7 +272,7 @@ public class chooseClasses2 extends JPanel {
   
   private class NextListener implements ActionListener {
 	  public void actionPerformed(ActionEvent e) {
-	      Object selected[] = destList.getSelectedValues();
+	      Object selected[] = destList.getCourse();
 	      
 	      
 	    }
@@ -335,3 +336,4 @@ class SortedListModel extends AbstractListModel {
     return removed;
   }
 }
+

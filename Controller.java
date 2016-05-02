@@ -60,34 +60,7 @@ public class Controller {
 		return prereqOnceList;
 	}
 
-	public static ArrayList<Course> stringToCourseObject(ArrayList<String> courseString) throws IOException {
-
-		String fileName = path + "classes.csv";
-		BufferedReader br = null;
-		String cur = "";
-		br = new BufferedReader(new FileReader(fileName));
-		
-		ArrayList<Course> courseObjects = new ArrayList<Course>();
-
-		while ((cur = br.readLine()) != null) {
-			String[] courses = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-			// if current line, first course listed is the course
-			for(String s: courseString){
-			if (courses.equals(s)) {
-				
-				
-				}
-			
-			
-			
-		
-		}
-		br.close();
-		
-		ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
-		
-		return prereqOnceList;
-	}
+	
 
 	/*
 	 * CS requirements
@@ -387,23 +360,33 @@ public class Controller {
 		return meetsRequirements;
 	}
 
+
 	public static void saveToCSV(ArrayList<Course> scheduledCourses,
 			ArrayList<Course> cOnce) throws IOException {
 		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
 		FileWriter scheduleOnceWriter = new FileWriter(path
 				+ "coursesOnceSchedule.csv");
 
+	public static void saveToCSV(ArrayList<Course> scheduledCourses) //ArrayList<Course> cOnce)
+			throws IOException {
+		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
+		
+		//FileWriter scheduleOnceWriter = new FileWriter(path + "coursesOnceSchedule.csv");
+
+
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
+		/*
 		for (Course c : cOnce) {
 			scheduleOnceWriter.append(c.displayCourseCSVFormat());
 			scheduleOnceWriter.append('\n');
 		}
+		*/
 
 		scheduleWriter.close();
-		scheduleOnceWriter.close();
+		//scheduleOnceWriter.close();
 	}
 
 	public static void main(String[] args) {

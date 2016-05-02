@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.Comparator;
+
 
 import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
@@ -66,6 +68,7 @@ public class choosePrereqs extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		
 		Course[] courseArray = prereqsOnce
 				.toArray(new Course[prereqsOnce.size()]);
@@ -124,20 +127,20 @@ public class choosePrereqs extends JPanel {
     }
   }
 
-  public void addSourceElements(Object newValue[]) {
+  public void addSourceElements(Course newValue[]) {
     fillListModel(sourceListModel, newValue);
   }
 
-  public void setSourceElements(Object newValue[]) {
+  public void setSourceElements(Course newValue[]) {
     clearSourceListModel();
     addSourceElements(newValue);
   }
 
-  public void addDestinationElements(Object newValue[]) {
+  public void addDestinationElements(Course newValue[]) {
     fillListModel(destListModel, newValue);
   }
 
-  private void fillListModel(SortedListModel model, Object newValues[]) {
+  private void fillListModel(SortedListModel model, Course newValues[]) {
     model.addAll(newValues);
   }
 
@@ -193,7 +196,7 @@ public class choosePrereqs extends JPanel {
   }
 
   private void clearSourceSelected() {
-    Object selected[] = sourceList.getSelectedValues();
+    Course selected[] = sourceList.getSelectedValues();
     for (int i = selected.length - 1; i >= 0; --i) {
       sourceListModel.removeElement(selected[i]);
     }
@@ -201,7 +204,7 @@ public class choosePrereqs extends JPanel {
   }
 
   private void clearDestinationSelected() {
-    Object selected[] = destList.getSelectedValues();
+    Course selected[] = destList.getSelectedValues();
     for (int i = selected.length - 1; i >= 0; --i) {
       destListModel.removeElement(selected[i]);
     }
@@ -257,7 +260,7 @@ public class choosePrereqs extends JPanel {
 
   private class AddListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      Object selected[] = sourceList.getSelectedValues();
+      Course selected[] = sourceList.getSelectedValues();
       addDestinationElements(selected);
       clearSourceSelected();
     }
@@ -265,7 +268,7 @@ public class choosePrereqs extends JPanel {
 
   private class RemoveListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      Object selected[] = destList.getSelectedValues();
+      Course selected[] = destList.getSelectedValues();
       addSourceElements(selected);
       clearDestinationSelected();
     }
@@ -273,7 +276,7 @@ public class choosePrereqs extends JPanel {
   
   private class NextListener implements ActionListener {
 	  public void actionPerformed(ActionEvent e) {
-	      Object selected[] = destList.getSelectedValues();
+	      Course selected[] = destList.getSelectedValues();
 	      
 	      Course selected1[] = new Course[selected.length];
 	      
@@ -286,29 +289,37 @@ public class choosePrereqs extends JPanel {
   }
 }
 
+
+class CourseComp implements Comparator<Course>{
+	 
+    public int compare(Course c1, Course c2) {
+    	return c1.getCourseNum().compareTo(c2.getCourseNum());
+    }
+}  
+
 class SortedListModel extends AbstractListModel {
 
-  SortedSet model;
+  SortedSet<Course> model;
 
   public SortedListModel() {
-    model = new TreeSet();
+    model = new TreeSet<Course>(new CourseComp());
   }
 
   public int getSize() {
     return model.size();
   }
 
-  public Object getElementAt(int index) {
-    return model.toArray()[index];
+  public Course getElementAt(int index) {
+    return (Course) model.toArray()[index];
   }
 
-  public void add(Object element) {
+  public void add(Course element) {
     if (model.add(element)) {
       fireContentsChanged(this, 0, getSize());
     }
   }
 
-  public void addAll(Object elements[]) {
+  public void addAll(Course elements[]) {
     Collection c = Arrays.asList(elements);
     model.addAll(c);
     fireContentsChanged(this, 0, getSize());
@@ -319,11 +330,11 @@ class SortedListModel extends AbstractListModel {
     fireContentsChanged(this, 0, getSize());
   }
 
-  public boolean contains(Object element) {
+  public boolean contains(Course element) {
     return model.contains(element);
   }
 
-  public Object firstElement() {
+  public Course firstElement() {
     return model.first();
   }
 
@@ -331,11 +342,11 @@ class SortedListModel extends AbstractListModel {
     return model.iterator();
   }
 
-  public Object lastElement() {
+  public Course lastElement() {
     return model.last();
   }
 
-  public boolean removeElement(Object element) {
+  public boolean removeElement(Course element) {
     boolean removed = model.remove(element);
     if (removed) {
       fireContentsChanged(this, 0, getSize());
