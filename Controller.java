@@ -348,22 +348,25 @@ public class Controller {
 		return meetsRequirements;
 	}
 
-	public static void saveToCSV(ArrayList<Course> scheduledCourses, ArrayList<Course> cOnce)
+	public static void saveToCSV(ArrayList<Course> scheduledCourses) //ArrayList<Course> cOnce)
 			throws IOException {
 		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
-		FileWriter scheduleOnceWriter = new FileWriter(path + "coursesOnceSchedule.csv");
+		
+		//FileWriter scheduleOnceWriter = new FileWriter(path + "coursesOnceSchedule.csv");
 
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
+		/*
 		for (Course c : cOnce) {
 			scheduleOnceWriter.append(c.displayCourseCSVFormat());
 			scheduleOnceWriter.append('\n');
 		}
+		*/
 
 		scheduleWriter.close();
-		scheduleOnceWriter.close();
+		//scheduleOnceWriter.close();
 	}
 
 	public static void main(String[] args) {

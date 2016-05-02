@@ -1,9 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -18,20 +23,29 @@ public class displayFinalExams extends JFrame {
 
 	private int numDays = 6;
 
-	public displayFinalExams(ArrayList<Course> coursesScheduled) {
+	
+	
+	
+	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
 		frameSetup(coursesScheduled);
 
 		setVisible(true);
 	}
 
-	private void frameSetup(ArrayList<Course> coursesScheduled) {
+	private void frameSetup(ArrayList<Course> coursesScheduled) throws IOException {
 		setLayout(new BorderLayout());
 		setBounds(0, 0, 900, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
 		finalExamSetup(coursesScheduled);
-		buttonPanelSetup();
+		buttonPanelSetup(coursesScheduled);
 		heading();
+		
+		//
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(screenSize.width, screenSize.height-100);
+		//
+		
 		setVisible(true);
 
 	}
@@ -50,17 +64,30 @@ public class displayFinalExams extends JFrame {
 		add(days, BorderLayout.CENTER);
 	}
 
-	private void buttonPanelSetup() {
+	private void buttonPanelSetup(ArrayList<Course>scheduledCourses) throws IOException {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
-		JButton back = new JButton("Back");
-		JButton save = new JButton("Save");
+		JButton back = new JButton("<<View Weekly Schedule");
+		JButton save = new JButton("Save Schedule to .csv");
 
+		save.addActionListener(new CSVListener(scheduledCourses));
+		
 		buttonPanel.add(back);
 		buttonPanel.add(save);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	public class CSVListener implements ActionListener {
+
+		public CSVListener(ArrayList<Course> scheduledCourses) throws IOException {
+			Controller.saveToCSV(scheduledCourses);
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
+	
 	private void heading() {
 		JPanel heading = new JPanel();
 		JLabel header = new JLabel("Final Exam Schedule");
@@ -749,7 +776,7 @@ public class displayFinalExams extends JFrame {
 		return fri;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Course c381 = new Course();
 		c381.setTitle("Operating Systems");
 		c381.setCourseNum("381");
