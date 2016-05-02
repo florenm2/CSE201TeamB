@@ -185,7 +185,7 @@ public class choosePrereqs implements ActionListener {
 		}
 	}
 
-	private static void createAndShowGUI() throws IOException {
+	public static void createAndShowGUI() throws IOException {
 
 		// JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("[=] JListExample - Adding and Removing [=]");

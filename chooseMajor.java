@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -173,9 +174,14 @@ public class chooseMajor extends javax.swing.JFrame {
 		else
 			major = "Software Engineering";
 
-		chooseClasses c = new chooseClasses();
+		choosePrereqs cp = new choosePrereqs();
 		this.dispose();
-		c.setVisible(true);
+		try {
+			cp.createAndShowGUI();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {
