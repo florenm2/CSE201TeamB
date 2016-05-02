@@ -12,7 +12,7 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "/Users/maryfloren/Documents/workspace/CSE201TeamB/";
+	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
 
 	/*
 	 * Filters through all courses offered in the .csv file and displays each
@@ -359,13 +359,6 @@ public class Controller {
 
 		return meetsRequirements;
 	}
-
-
-	public static void saveToCSV(ArrayList<Course> scheduledCourses,
-			ArrayList<Course> cOnce) throws IOException {
-		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
-		FileWriter scheduleOnceWriter = new FileWriter(path
-				+ "coursesOnceSchedule.csv");
 
 	public static void saveToCSV(ArrayList<Course> scheduledCourses) //ArrayList<Course> cOnce)
 			throws IOException {
