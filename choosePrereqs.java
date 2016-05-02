@@ -37,7 +37,7 @@ public class choosePrereqs implements ActionListener {
 		// into the ListModel.
 
 		for (Course c : allPrereqs) {
-			prereqList.addElement(c.displayCourse());
+			prereqList.addElement(c.displayCoursePrereq());
 		}
 
 		// Creation of the list.
@@ -126,7 +126,7 @@ public class choosePrereqs implements ActionListener {
 			// System.out.println(from[0].toString());
 			for (int j = 0; j < from.length; j++) {
 				for (Course c : allPrereqs) {
-					if (c.displayCourse().equals(from[j].toString())) {
+					if (c.displayCoursePrereq().equals(from[j].toString())) {
 						System.out.println("true");
 						prereqsTaken.add(c);
 
@@ -159,7 +159,7 @@ public class choosePrereqs implements ActionListener {
 				for (Iterator<Course> iterator = prereqsTaken.iterator(); iterator
 						.hasNext();) {
 					Course c = iterator.next();
-					if (c.displayCourse().equals(to[j].toString())) {
+					if (c.displayCoursePrereq().equals(to[j].toString())) {
 						System.out.println("remove");
 						iterator.remove();
 
@@ -201,6 +201,7 @@ public class choosePrereqs implements ActionListener {
 
 		// frame.pack();
 		frame.setVisible(true);
+		//return prereqsTaken;
 	}
 
 	public static void main(String[] args) {
