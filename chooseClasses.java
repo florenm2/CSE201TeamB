@@ -22,7 +22,6 @@ public class chooseClasses extends javax.swing.JFrame {
 	 */
 	public chooseClasses() {
 		initComponents();
-		this.setVisible(true);
 		courseList = getCourseList();
 		stage = getStage();
 		classesChosen = getclassesChosen();
@@ -197,8 +196,6 @@ public class chooseClasses extends javax.swing.JFrame {
 
 	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt, ArrayList<String> CC) {
 		this.classesChosen = CC;
-		stage = 2;
-
 	}
 
 	public static void main(String args[]) {
@@ -211,7 +208,7 @@ public class chooseClasses extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify
-	private javax.swing.JButton nextButton;
-	private javax.swing.JTable jTable2;
+	public static javax.swing.JButton nextButton;
+	private static javax.swing.JTable jTable2;
 	// End of variables declaration
 }

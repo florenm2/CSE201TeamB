@@ -1,6 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.*;
 
+import choosePrereqs.AddListener;
+import choosePrereqs.NextListener;
+import choosePrereqs.RemoveListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -123,7 +127,43 @@ public class chooseClasses2 implements  ActionListener{
         
         
         
+        setBorder(BorderFactory.createEtchedBorder());
+        setLayout(new GridBagLayout());
+        sourceLabel = new JLabel("Available Classes");
+        sourceListModel = new SortedListModel();
+        sourceList = new JList(sourceListModel);
+        add(sourceLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0,
+            GridBagConstraints.CENTER, GridBagConstraints.NONE,
+            EMPTY_INSETS, 0, 0));
+        add(new JScrollPane(sourceList), new GridBagConstraints(0, 1, 1, 5, .5,
+            1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            EMPTY_INSETS, 0, 0));
+
+        addButton = new JButton("Add >>");
+        add(addButton, new GridBagConstraints(1, 2, 1, 2, 0, .25,
+            GridBagConstraints.CENTER, GridBagConstraints.NONE,
+            EMPTY_INSETS, 0, 0));
+        addButton.addActionListener(new AddListener());
+        removeButton = new JButton("<< Remove");
+        add(removeButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
+            GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
+                0, 5, 0, 5), 0, 0));
+        removeButton.addActionListener(new RemoveListener());
+        nextButton = new JButton("Done");
+        add(nextButton, new GridBagConstraints(1, 4, 1, 2, 0, .25,
+            GridBagConstraints.PAGE_END, GridBagConstraints.NONE,
+            new Insets(0, 5, 0, 5), 0, 0));
+        nextButton.addActionListener(new NextListener());
         
+        destLabel = new JLabel("Classes completed:");
+        destListModel = new SortedListModel();
+        destList = new JList(destListModel);
+        add(destLabel, new GridBagConstraints(2, 0, 1, 1, 0, 0,
+            GridBagConstraints.CENTER, GridBagConstraints.NONE,
+            EMPTY_INSETS, 0, 0));
+        add(new JScrollPane(destList), new GridBagConstraints(2, 1, 1, 5, .5,
+            1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            EMPTY_INSETS, 0, 0));
         
         
         
