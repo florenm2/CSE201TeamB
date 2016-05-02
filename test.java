@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class test implements  ActionListener{
 
-    JList itemList, shoppingList;
+    JList itemList, courses;
     JButton buttonin, buttonout;
     
     // The ListModels we will be using in the example.
@@ -24,11 +24,6 @@ public class test implements  ActionListener{
         items = new DefaultListModel();
 
         // Things to be in the list.
-        /*
-        String shoppingItems[] = {"Milk", "Cheese", "Bread", "Butter", "Beans",
-        "Soup", "Bacon", "Chicken", "Curry Sauce", "Chocolate", "fuck", "fuck"};
-        */
-        
         ArrayList<Course> allCourses = ImportCSV.csvFileIN();
 
         // Using a for loop, we add every item in the String array
@@ -42,7 +37,7 @@ public class test implements  ActionListener{
         // We set the cells in the list to be 20px x 140px.
         
         itemList = new JList(shopping);
-        //itemList.setVisibleRowCount(10);
+        itemList.setVisibleRowCount(25);
         //itemList.setFixedCellHeight(20);
        // itemList.setFixedCellWidth(140);
         itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -52,17 +47,17 @@ public class test implements  ActionListener{
         // it will not shrink in size.
         JScrollPane list1 = new JScrollPane(itemList);
         
-        shoppingList = new JList(items);
-       // shoppingList.setVisibleRowCount(10);
-       // shoppingList.setFixedCellHeight(20);
-        //shoppingList.setFixedCellWidth(140);
-        shoppingList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        courses = new JList(items);
+       courses.setVisibleRowCount(25);
+       // courses.setFixedCellHeight(20);
+        //courses.setFixedCellWidth(140);
+        courses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
         // We add this list to a JScrollPane too.
         // This is so the list is displayed even though there are 
         // currently no items in the list.
         // Without the scrollpane, the list would not show.
-        JScrollPane list2 = new JScrollPane(shoppingList);
+        JScrollPane list2 = new JScrollPane(courses);
 
         // We create the buttons to be placed between the lists.
         JPanel buttonPanel = new JPanel();
@@ -81,13 +76,13 @@ public class test implements  ActionListener{
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
 
-        bottomPanel.add(Box.createRigidArea(new Dimension(10,0)));
+        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
         bottomPanel.add(list1);
-        bottomPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
         bottomPanel.add(buttonPanel);
-        bottomPanel.add(Box.createRigidArea(new Dimension(5,0)));
+        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
         bottomPanel.add(list2);
-        bottomPanel.add(Box.createRigidArea(new Dimension(10,0)));
+        bottomPanel.add(Box.createRigidArea(new Dimension(15,0)));
 
         totalGUI.add(bottomPanel);
         totalGUI.setOpaque(true);
@@ -142,8 +137,8 @@ public class test implements  ActionListener{
         // the selected items and output them to an array.
         else if(e.getSource() == buttonout)
         {
-            Object[] to = shoppingList.getSelectedValues();
-            int[] toindex = shoppingList.getSelectedIndices();
+            Object[] to = courses.getSelectedValues();
+            int[] toindex = courses.getSelectedIndices();
             
             // Then, for each item in the array, we add them to
             // the other list.
@@ -164,15 +159,20 @@ public class test implements  ActionListener{
 
     private static void createAndShowGUI() throws IOException {
 
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("[=] JListExample - Adding and Removing [=]");
-
+   
         test demo = new test();
         frame.setContentPane(demo.createContentPane());
         
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        //
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height-100);
+		//
+        
+        //frame.pack();
         frame.setVisible(true);
     }
 
