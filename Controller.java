@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Controller {
 
 	// Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\"
-	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\"
+	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\";
+	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 
