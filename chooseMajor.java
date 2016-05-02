@@ -1,3 +1,6 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +21,8 @@ public class chooseMajor extends javax.swing.JFrame {
 		initComponents();
 		major = getMajor();
 		stage = getStage();
+		
+		setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
@@ -46,7 +51,7 @@ public class chooseMajor extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-		jLabel1.setText("Welcome! Please select your major(s): ");
+		jLabel1.setText("Welcome! Please select your major: ");
 
 		jToggleButton1.setLabel("Next");
 		jToggleButton1.addActionListener(new java.awt.event.ActionListener() {

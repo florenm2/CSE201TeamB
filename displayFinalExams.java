@@ -22,13 +22,15 @@ import javax.swing.border.Border;
 public class displayFinalExams extends JFrame {
 
 	private int numDays = 6;
+	private ArrayList<Course> scheduledCourses;
 
 	
 	
 	
-	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+	private displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
+		scheduledCourses = coursesScheduled;
 		frameSetup(coursesScheduled);
-
+		
 		setVisible(true);
 	}
 
@@ -77,14 +79,20 @@ public class displayFinalExams extends JFrame {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-	public class CSVListener implements ActionListener {
+	private class CSVListener implements ActionListener {
 
 		public CSVListener(ArrayList<Course> scheduledCourses) throws IOException {
 			Controller.saveToCSV(scheduledCourses);
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
+			try {
+				Controller.saveToCSV(scheduledCourses );
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 	}
 	
@@ -801,19 +809,19 @@ public class displayFinalExams extends JFrame {
 		c271.setStartTime(1430);
 		c271.setEndTime(1500);
 		
-		Course c174 = new Course();
-		c174.setTitle("Into");
-		c174.setCourseNum("174");
-		c174.setSubject("CSE");
-		c174.setDays("WF");
-		c174.setStartTime(1430);
-		c174.setEndTime(1500);
+		Course c274 = new Course();
+		c274.setTitle("Data Structures");
+		c274.setCourseNum("274");
+		c274.setSubject("CSE");
+		c274.setDays("WF");
+		c274.setStartTime(1430);
+		c274.setEndTime(1500);
 
 		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 		coursesScheduled.add(c381);
 		coursesScheduled.add(c464);
 		coursesScheduled.add(c271);
-		coursesScheduled.add(c174);
+		coursesScheduled.add(c274);
 
 		new displayFinalExams(coursesScheduled);
 	}
