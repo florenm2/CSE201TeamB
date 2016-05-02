@@ -69,6 +69,9 @@ public class choosePrereqs implements ActionListener {
 		// We create the buttons to be placed between the lists.
 		JPanel buttonPanel = new JPanel();
 		JPanel navButtons = new JPanel();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int verticalSpacing = screenSize.height - 500;
+		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
 		buttonin = new JButton(">>");
 		buttonin.addActionListener(this);
@@ -85,6 +88,10 @@ public class choosePrereqs implements ActionListener {
 		nextButton = new JButton("Next");
 		nextButton.addActionListener(this);
 		navButtons.add(nextButton);
+		
+		buttons.add(buttonPanel);
+		buttons.add(navButtons);
+
 
 		// This final bit of code uses a BoxLayout to space out the widgets
 		// in the GUI.
@@ -94,8 +101,8 @@ public class choosePrereqs implements ActionListener {
 
 		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 		bottomPanel.add(list1);
-		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
-		bottomPanel.add(buttonPanel);
+		bottomPanel.add(Box.createRigidArea(new Dimension(3, 0)));
+		bottomPanel.add(buttons);
 		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
 		bottomPanel.add(list2);
 		bottomPanel.add(Box.createRigidArea(new Dimension(15, 0)));
