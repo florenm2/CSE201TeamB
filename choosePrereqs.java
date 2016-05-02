@@ -33,7 +33,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
 
-public class choosePrereqs extends JPanel {
+/*public class choosePrereqs extends JPanel {
 
   private static final Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
   
@@ -173,7 +173,7 @@ public class choosePrereqs extends JPanel {
     destList.setVisibleRowCount(newValue);
   }
 
-<<<<<<< HEAD
+
   public int getVisibleRowCount() {
     return sourceList.getVisibleRowCount();
   }
@@ -287,7 +287,7 @@ public class choosePrereqs extends JPanel {
 	      //selectedCourses = (ArrayList<Course>) Arrays.asList(selected1);
 	    }
   }
-=======
+=======*/
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 
@@ -454,7 +454,6 @@ public class choosePrereqs extends javax.swing.JFrame {
 	private javax.swing.JButton nextButton;
 	private javax.swing.JTable jTable2;
 	// End of variables declaration
->>>>>>> 88540cef5aad3d44742342228a18f76dd45ad784
 }
 
 
