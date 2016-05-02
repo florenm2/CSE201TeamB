@@ -150,7 +150,6 @@ public class choosePrereqs extends javax.swing.JFrame {
 	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
 			ArrayList<String> PC) {
 		this.prereqsComplete = PC;
-		stage = 3;
 	}
 
 

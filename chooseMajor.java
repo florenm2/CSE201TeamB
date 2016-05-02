@@ -14,6 +14,13 @@ public class chooseMajor extends javax.swing.JFrame {
 	/**
 	 * Creates new form frontend.
 	 */
+
+//	private void makeFrameFullSize(JFrame chooseMajor)
+//	{
+//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		aFrame.setSize(screenSize.width, screenSize.height);
+//	}
+
 	public chooseMajor() {
 		initComponents();
 		major = getMajor();
@@ -28,6 +35,8 @@ public class chooseMajor extends javax.swing.JFrame {
 		return stage;
 	}
 
+
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +44,7 @@ public class chooseMajor extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
-	private void initComponents() {
+	public void initComponents() {
 
 		jLabel1 = new javax.swing.JLabel();
 		jToggleButton1 = new javax.swing.JToggleButton();
@@ -50,6 +59,7 @@ public class chooseMajor extends javax.swing.JFrame {
 		jToggleButton1.setLabel("Next");
 		jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
+
 				jToggleButton1ActionPerformed(evt, CSSE);
 
 			}
@@ -150,21 +160,23 @@ public class chooseMajor extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 
-	private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
+	public void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt,
 			boolean CSSE) {
 		if (CSSE)
 			major = "Computer Science";
 		else
 			major = "Software Engineering";
-		stage = 1;
 
+		chooseClasses c = new chooseClasses();
+		this.dispose();
+	//	c.setVisible(true);
 	}
 
-	private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+	public void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 	}
 
-	private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+	public void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 	}
 
@@ -179,10 +191,10 @@ public class chooseMajor extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JToggleButton jToggleButton1;
-	private javax.swing.JToggleButton jToggleButton2;
-	private javax.swing.JToggleButton jToggleButton3;
+	public static javax.swing.JLabel jLabel1;
+	public static javax.swing.JToggleButton jToggleButton1;
+	public static javax.swing.JToggleButton jToggleButton2;
+	public static javax.swing.JToggleButton jToggleButton3;
 	// End of variables declaration
 
 }
