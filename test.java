@@ -5,13 +5,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class test implements  ActionListener{
 
     JList itemList, courses;
     JButton buttonin, buttonout;
-    ArrayList<Course> allCoursesLogic = new ArrayList<Course>();
+    ArrayList<Course> coursesScheduled = new ArrayList<Course>();
     ArrayList<Course> allCourses = new ArrayList<Course>();
+    
+    boolean isCSMajor = true;
     
     // The ListModels we will be using in the example.
     DefaultListModel shopping, items;
@@ -27,7 +30,7 @@ public class test implements  ActionListener{
 
         // Things to be in the list.
         allCourses = ImportCSV.csvFileIN();
-        //allCoursesLogic = allCourses;
+        //coursesScheduled = allCourses;
 
         // Using a for loop, we add every item in the String array
         // into the ListModel.
@@ -126,37 +129,47 @@ public class test implements  ActionListener{
             	for(Course c: allCourses){
 	            	if(c.displayCourse().equals(from[j].toString())){
 	            		System.out.println("true");
-	            		allCoursesLogic.add(c);
 	            		
-	            		try {
-							if(Controller.checkCSRequirements(c)){
-								
+	            		
+	            		if((!Controller.isSameCourse(c, coursesScheduled)
+	            				/*&& Controller.checkPrereqs(c, Controller.getPrereqs())*/)){
+	            			coursesScheduled.add(c);
+	            			
+	            			
+	            			try {
+	            				if(isCSMajor){
+	            					Controller.checkCSRequirements(c);
+	            				}
+	            				else{
+	            					Controller.checkSERequirements(c);
+	            				}
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+	            			
+	            			
+	            			for(i = 0; i < from.length; i++)
+	                        {
+	                            items.addElement(from[i]);
+	                        }
+	                        
+	                        // Finally, we remove the items from the first list.
+	                        // We must remove from the bottom, otherwise we try to 
+	                        // remove the wrong objects.
+	                        for(i = (fromindex.length-1); i >=0; i--)
+	                        {
+	                            shopping.remove(fromindex[i]);
+	                        }
 						}
 	            		
 	            	}
             	}
             }
-            for(Course c:allCoursesLogic){
-            	System.out.println(c.displayCourse());
-            }
+            
             // Then, for each item in the array, we add them to
             // the other list.
-            for(i = 0; i < from.length; i++)
-            {
-                items.addElement(from[i]);
-            }
             
-            // Finally, we remove the items from the first list.
-            // We must remove from the bottom, otherwise we try to 
-            // remove the wrong objects.
-            for(i = (fromindex.length-1); i >=0; i--)
-            {
-                shopping.remove(fromindex[i]);
-            }
         }
         
         // If the out button is pressed, we take the indices and values of
@@ -165,6 +178,20 @@ public class test implements  ActionListener{
         {
             Object[] to = courses.getSelectedValues();
             int[] toindex = courses.getSelectedIndices();
+            
+            for(int j = 0; j < to.length; j++){
+            	for(Iterator<Course> iterator = coursesScheduled.iterator(); iterator.hasNext();){
+	            	Course c = iterator.next();
+            		if(c.displayCourse().equals(to[j].toString())){
+	            		System.out.println("remove");
+	            		iterator.remove();
+	  
+	            	}
+            	}
+            }
+            for(Course c:coursesScheduled){
+            	System.out.println(c.displayCourse());
+            }
             
             // Then, for each item in the array, we add them to
             // the other list.
@@ -205,6 +232,8 @@ public class test implements  ActionListener{
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
+    	final ArrayList<Course>prereq = new ArrayList<Course>();
+    	final boolean isCSMajor = true;
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
