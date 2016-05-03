@@ -14,11 +14,12 @@ public class choosePrereqs implements ActionListener {
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allPrereqs = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
+	JFrame frame;
 
 	boolean isCSMajor = true;
 
 	public choosePrereqs(boolean isitCS){
-		JFrame frame = new JFrame("Choose prerequisites");
+		frame = new JFrame("Choose prerequisites");
 		isCSMajor = isitCS;
 		
 		try {
@@ -222,9 +223,11 @@ public class choosePrereqs implements ActionListener {
 		else if(e.getSource() == nextButton){
 			Boolean isCSMajor1 = isCSMajor;
 			test cc = new test(isCSMajor1,prereqsTaken);
+			frame.dispose();
 			
-		}else if(e.getSource() == prevButton){
+		}else if(e.getSource() == prevButton){//clicks prev button
 			chooseMajor cm = new chooseMajor();
+			frame.dispose();
 		}
 	}
 
