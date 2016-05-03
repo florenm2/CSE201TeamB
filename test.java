@@ -15,7 +15,7 @@ public class test implements ActionListener {
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allCourses = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
-
+	JFrame frame;
 	boolean isCSMajor = true;
 
 	// using DefaultListModel to keep track of the two lists
@@ -24,7 +24,7 @@ public class test implements ActionListener {
 	public test(boolean isCS, ArrayList<Course> prereqsTaken) {
 		this.prereqsTaken = prereqsTaken;
 		isCSMajor = isCS;
-		JFrame frame = new JFrame("Choose your classes:");
+		frame = new JFrame("Choose your classes:");
 		try {
 			frame.setContentPane(this.createContentPane());
 		} catch (IOException e) {
@@ -243,11 +243,13 @@ public class test implements ActionListener {
 				coursesChosen.remove(toindex[i]);
 			}
 		} else if (e.getSource() == buttonnext) {
-			
 			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled);
+			frame.dispose();
 
 		} else if (e.getSource() == buttonback) {
-
+			choosePrereqs cp = new choosePrereqs(isCSMajor);
+			frame.dispose();
+			
 		}
 	}
 
