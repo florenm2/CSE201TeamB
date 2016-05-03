@@ -33,10 +33,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		coursesScheduled1 = cc.coursesScheduled;
 		setVisible(true);
 	}
-	public void displayDisplayWeekly(){
-		frameSetup(cc.coursesScheduled);
-		setVisible(true);
-	}
 
 	private void frameSetup(ArrayList<Course> coursesScheduled) {
 		setLayout(new BorderLayout());
