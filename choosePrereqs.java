@@ -15,12 +15,13 @@ public class choosePrereqs implements ActionListener {
 	ArrayList<Course> allPrereqs = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
 	JFrame frame;
+	chooseMajor cm;
 
 	boolean isCSMajor = true;
 
-	public choosePrereqs(boolean isitCS){
+	public choosePrereqs(chooseMajor cm){
 		frame = new JFrame("Choose prerequisites");
-		isCSMajor = isitCS;
+		this.cm = cm;
 		
 		try {
 			frame.setContentPane(this.createContentPane());
@@ -36,6 +37,23 @@ public class choosePrereqs implements ActionListener {
 
 		frame.setVisible(true);
 		
+	}
+	public void displayChoosePrereqs(){
+		frame = new JFrame("Choose prerequisites");
+
+		try {
+			frame.setContentPane(this.createContentPane());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height - 100);
+		//
+
+		frame.setVisible(true);
 	}
 	// The ListModels we will be using in the example.
 	DefaultListModel prereqList, items;
@@ -221,12 +239,11 @@ public class choosePrereqs implements ActionListener {
 		}
 		//Clicks next button
 		else if(e.getSource() == nextButton){
-			Boolean isCSMajor1 = isCSMajor;
-			test cc = new test(isCSMajor1,prereqsTaken);
+			test cc = new test(this);
 			frame.dispose();
 			
 		}else if(e.getSource() == prevButton){//clicks prev button
-			chooseMajor cm = new chooseMajor();
+			cm.displayChooseMajor();
 			frame.dispose();
 		}
 	}

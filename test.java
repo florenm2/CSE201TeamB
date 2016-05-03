@@ -16,14 +16,15 @@ public class test implements ActionListener {
 	ArrayList<Course> allCourses = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
 	JFrame frame;
-	boolean isCSMajor = true;
+	choosePrereqs cp;
 
 	// using DefaultListModel to keep track of the two lists
 	DefaultListModel coursesDisplayed, coursesChosen;
 
-	public test(boolean isCS, ArrayList<Course> prereqsTaken) {
-		this.prereqsTaken = prereqsTaken;
-		isCSMajor = isCS;
+	public test(choosePrereqs cp) {
+		this.cp = cp;
+		this.prereqsTaken = cp.prereqsTaken;
+		
 		frame = new JFrame("Choose your classes:");
 		try {
 			frame.setContentPane(this.createContentPane());
@@ -39,6 +40,22 @@ public class test implements ActionListener {
 
 		frame.setVisible(true);
 
+	}
+	public void displayChooseClasses(){
+		frame = new JFrame("Choose your classes:");
+		try {
+			frame.setContentPane(this.createContentPane());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// all panes are same size
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setSize(screenSize.width, screenSize.height - 100);
+
+		frame.setVisible(true);
 	}
 
 	public JPanel createContentPane() throws IOException {
@@ -162,7 +179,7 @@ public class test implements ActionListener {
 								
 								
 								try {
-									if (isCSMajor) {
+									if (cp.cm.isCS) {
 										Controller.checkCSRequirements(c);
 										//
 										dispMessage.setText(Controller.getReqMessage());
@@ -243,11 +260,12 @@ public class test implements ActionListener {
 				coursesChosen.remove(toindex[i]);
 			}
 		} else if (e.getSource() == buttonnext) {
-			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled);
+			displayWeeklySchedule dWeekly = new displayWeeklySchedule(this);
 			frame.dispose();
 
 		} else if (e.getSource() == buttonback) {
-			choosePrereqs cp = new choosePrereqs(isCSMajor);
+			//choosePrereqs cp = new choosePrereqs(isCSMajor);
+			cp.displayChoosePrereqs();
 			frame.dispose();
 			
 		}

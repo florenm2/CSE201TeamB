@@ -25,12 +25,14 @@ public class displayFinalExams extends JFrame implements ActionListener {
 	private ArrayList<Course> scheduledCourses;
 	private JButton buttonsave, buttonback;
 	ArrayList<Course> coursesScheduled1;
+	displayWeeklySchedule dws;
 	
-	public displayFinalExams(ArrayList<Course> coursesScheduled) throws IOException {
-		scheduledCourses = coursesScheduled;
-		frameSetup(coursesScheduled);
+	public displayFinalExams(displayWeeklySchedule dws) throws IOException {
+		this.dws = dws;
+		scheduledCourses = dws.coursesScheduled1;
+		frameSetup(dws.coursesScheduled1);
 		
-		coursesScheduled1 = coursesScheduled;
+		coursesScheduled1 = dws.coursesScheduled1;
 		setVisible(true);
 	}
 
@@ -831,8 +833,8 @@ public class displayFinalExams extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonback) {
-			ArrayList<Course> coursesScheduled2 = coursesScheduled1;
-			displayWeeklySchedule dWeekly = new displayWeeklySchedule(coursesScheduled2);
+			this.dispose();
+			dws.displayDisplayWeekly();
 			
 		}
 		

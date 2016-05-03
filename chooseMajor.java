@@ -32,6 +32,11 @@ public class chooseMajor extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
+	public void displayChooseMajor(){
+		initComponents();
+		setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
 
 	
 	public int getStage() {
@@ -170,7 +175,7 @@ public class chooseMajor extends javax.swing.JFrame {
 		else
 			isCS = false;
 
-		choosePrereqs cp = new choosePrereqs(isCS);
+		choosePrereqs cp = new choosePrereqs(this);
 		this.dispose();
 
 	}

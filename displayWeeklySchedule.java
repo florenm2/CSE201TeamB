@@ -25,10 +25,16 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 	private int numDays = 5;
 	JButton buttonback, buttonsave;
 	public ArrayList<Course> coursesScheduled1;
+	test cc;
 
-	public displayWeeklySchedule(ArrayList<Course> coursesScheduled) {
-		frameSetup(coursesScheduled);
-		coursesScheduled1 = coursesScheduled;
+	public displayWeeklySchedule(test cc) {
+		this.cc=cc;
+		frameSetup(cc.coursesScheduled);
+		coursesScheduled1 = cc.coursesScheduled;
+		setVisible(true);
+	}
+	public void displayDisplayWeekly(){
+		frameSetup(cc.coursesScheduled);
 		setVisible(true);
 	}
 
@@ -482,9 +488,9 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonsave) {
-			ArrayList<Course> coursesScheduled2 = coursesScheduled1;
 				try {
-					displayFinalExams dFinal = new displayFinalExams(coursesScheduled2);
+					this.dispose();
+					displayFinalExams dFinal = new displayFinalExams(this);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -492,8 +498,8 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		}
 		
 		else if (e.getSource() == buttonback) {
-			
-			
+			this.dispose();
+			cc.displayChooseClasses();
 		}
 		
 	}
