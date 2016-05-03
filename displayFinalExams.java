@@ -834,7 +834,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonback) {
 			this.dispose();
-			dws.displayDisplayWeekly();
+			displayWeeklySchedule dws1 = new displayWeeklySchedule(dws.cc);
 			
 		}
 		
