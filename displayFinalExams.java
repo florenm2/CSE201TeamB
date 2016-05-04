@@ -1,3 +1,10 @@
+/*
+ * Creates a JFrame using javax.swing that displays a user's final exam times based on the classes that
+ * the user selected in chooseCourses.java
+ * 
+ * by: Adam Benjamin, Mark Sullivan, Mary Floren, Nehul Yadav
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -28,6 +35,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 	ArrayList<Course> coursesScheduled1;
 	displayWeeklySchedule dws;
 	
+	/*
+	 * Constructor that calls all other methods. Takes in displayWeeklySchedule object that contains all the 
+	 * data necessary to create and display schedule. 
+	 */
 	public displayFinalExams(displayWeeklySchedule dws) throws IOException {
 		this.dws = dws;
 		scheduledCourses = dws.coursesScheduled1;
@@ -37,6 +48,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	//Sets up layout of entire frame
 	private void frameSetup(ArrayList<Course> coursesScheduled) throws IOException {
 		setLayout(new BorderLayout());
 		setBounds(0, 0, 900, 400);
@@ -55,6 +67,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 
 	}
 
+	//Sets up JPanel grid for each day of the week's final exams
 	private void finalExamSetup(ArrayList<Course> coursesScheduled) {
 
 		JPanel days = new JPanel(new GridLayout(0, numDays));
@@ -69,6 +82,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		add(days, BorderLayout.CENTER);
 	}
 
+	//Sets up two buttons at bottom of the frame to go back and save schedule
 	private void buttonPanelSetup(ArrayList<Course>scheduledCourses) throws IOException {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 		buttonback = new JButton("<<View Weekly Schedule");
@@ -83,6 +97,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	/*
+	 * Implementation of ActionListener that calls the saveToCSV(ArrayList<Course>) method from Controller to create
+	 * csv file of courses scheduled
+	 */
 	private class CSVListener implements ActionListener {
 
 		public CSVListener(ArrayList<Course> scheduledCourses) throws IOException {
@@ -100,6 +118,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		}
 	}
 	
+	//Creates JPanel of header of JFrame
 	private void heading() {
 		JPanel heading = new JPanel();
 		JLabel header = new JLabel("Final Exam Schedule");
@@ -109,6 +128,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		add(heading, BorderLayout.NORTH);
 	}
 
+	//Creates JPanel that display exam times
 	private JPanel times() {
 		JPanel time = new JPanel(new GridLayout(13, 0));
 		// sets border
@@ -159,6 +179,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return time;
 	}
 
+	/*
+	 * Creates JPanel for Monday exams. This method also includes all logic for Monday exams and places
+	 * them in the correct slot
+	 */
 	private JPanel monday(ArrayList<Course> coursesScheduled) {
 		JPanel mon = new JPanel(new GridLayout(13, 0));
 
@@ -266,6 +290,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return mon;
 	}
 
+	/*
+	 * Creates JPanel for Tuesday exams. This method also includes all logic for Tuesday exams and places
+	 * them in the correct slot
+	 */
 	private Component tuesday(ArrayList<Course> coursesScheduled) {
 		JPanel tues = new JPanel(new GridLayout(13, 0));
 
@@ -407,6 +435,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return tues;
 	}
 
+	/*
+	 * Creates JPanel for Wednesday exams. This method also includes all logic for Monday exams and places
+	 * them in the correct slot
+	 */
 	private Component wednesday(ArrayList<Course> coursesScheduled) {
 		JPanel wed = new JPanel(new GridLayout(13, 0));
 
@@ -550,6 +582,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return wed;
 	}
 
+	/*
+	 * Creates JPanel for Thursday exams. This method also includes all logic for Thursday exams and places
+	 * them in the correct slot
+	 */
 	private Component thursday(ArrayList<Course> coursesScheduled) {
 		JPanel thur = new JPanel(new GridLayout(13, 0));
 
@@ -689,6 +725,10 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return thur;
 	}
 
+	/*
+	 * Creates JPanel for Friday exams. This method also includes all logic for Friday exams and places
+	 * them in the correct slot
+	 */
 	private Component friday(ArrayList<Course> coursesScheduled) {
 		JPanel fri = new JPanel(new GridLayout(13, 0));
 
@@ -780,51 +820,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		return fri;
 	}
 
-	public static void main(String[] args) throws IOException {
-		
-		/*
-		Course c381 = new Course();
-		c381.setTitle("Operating Systems");
-		c381.setCourseNum("381");
-		c381.setSubject("CSE");
-		c381.setDays("MW");
-		c381.setStartTime(1300);
-		c381.setEndTime(1400);
-
-		Course c464 = new Course();
-		c464.setTitle("Algorithms");
-		c464.setCourseNum("464");
-		c464.setSubject("CSE");
-		c464.setDays("TR");
-		c464.setStartTime(1300);
-		c464.setEndTime(1350);
-
-		Course c271 = new Course();
-		c271.setTitle("Object Oriented");
-		c271.setCourseNum("271");
-		c271.setSubject("CSE");
-		c271.setDays("WF");
-		c271.setStartTime(1430);
-		c271.setEndTime(1500);
-		
-		Course c274 = new Course();
-		c274.setTitle("Data Structures");
-		c274.setCourseNum("274");
-		c274.setSubject("CSE");
-		c274.setDays("WF");
-		c274.setStartTime(1430);
-		c274.setEndTime(1500);
-
-		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
-		coursesScheduled.add(c381);
-		coursesScheduled.add(c464);
-		coursesScheduled.add(c271);
-		coursesScheduled.add(c274);
-
-		new displayFinalExams(coursesScheduled);
-		*/
-	}
-
+	//ActionListener called when back button is pressed. Creates object of displayWeeklySchedule with necessary information
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttonback) {
 			this.dispose();

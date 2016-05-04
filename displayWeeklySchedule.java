@@ -1,3 +1,10 @@
+/*
+ * Creates a JFrame using javax.swing that displays a user's weekly course times based on the classes that
+ * the user selected in chooseCourses.java
+ * 
+ * by: Adam Benjamin, Mark Sullivan, Mary Floren, Nehul Yadav
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -10,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -23,35 +29,39 @@ import javax.swing.border.Border;
 public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 	private int numDays = 5;
-	JButton buttonback, buttonsave;
+	JButton buttonback, buttonnext;
 	public ArrayList<Course> coursesScheduled1;
 	chooseCourses cc;
 
+	/*
+	 * Constructor that calls all other methods. Takes in chooseCourses object that contains all the 
+	 * data necessary to create and display schedule. 
+	 */
 	public displayWeeklySchedule(chooseCourses cc) {
-		this.cc=cc;
+		this.cc = cc;
 		frameSetup(cc.coursesScheduled);
 		coursesScheduled1 = cc.coursesScheduled;
 		setVisible(true);
 	}
-
+	//Sets up layout of entire frame
 	private void frameSetup(ArrayList<Course> coursesScheduled) {
 		setLayout(new BorderLayout());
 		setBounds(0, 0, 900, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setLocationRelativeTo(null);
-		finalExamSetup(coursesScheduled);
+		// setLocationRelativeTo(null);
+		weeklySetup(coursesScheduled);
 		buttonPanelSetup();
 		heading();
-		
+
 		//
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(screenSize.width, screenSize.height-100);
+		setSize(screenSize.width, screenSize.height - 100);
 		//
 		setVisible(true);
 
 	}
-
-	private void finalExamSetup(ArrayList<Course> coursesScheduled) {
+	//Sets up JPanel grid for each day of the week's final exams
+	private void weeklySetup(ArrayList<Course> coursesScheduled) {
 
 		JPanel days = new JPanel(new GridLayout(0, numDays));
 
@@ -64,21 +74,22 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		add(days, BorderLayout.CENTER);
 	}
 
+	//Sets up bottom two buttons
 	private void buttonPanelSetup() {
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 		buttonback = new JButton("<<Select Courses");
-		buttonsave = new JButton("View Final Exam Schedule>>");
+		buttonnext = new JButton("View Final Exam Schedule>>");
 
 		buttonback.addActionListener(this);
 		buttonPanel.add(buttonback);
-		
-		buttonsave.addActionListener(this);
-		buttonPanel.add(buttonsave);
-		
+
+		buttonnext.addActionListener(this);
+		buttonPanel.add(buttonnext);
 
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	//Sets up heading
 	private void heading() {
 		JPanel heading = new JPanel();
 		JLabel header = new JLabel("Weekly Course Schedule");
@@ -88,10 +99,11 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		add(heading, BorderLayout.NORTH);
 	}
 
+	//Creates JPanel for Monday courses and includes logic for displaying
 	private JPanel monday(ArrayList<Course> coursesScheduled) {
 		JPanel mon = new JPanel(new GridLayout(13, 0));
-		ArrayList<Course>mondayCourses = new ArrayList<Course>();
-		
+		ArrayList<Course> mondayCourses = new ArrayList<Course>();
+
 		// sets border
 		Border blackline = BorderFactory.createLineBorder(Color.BLACK, 1);
 		mon.setBorder(blackline);
@@ -124,35 +136,27 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		JLabel time6 = new JLabel("");
 		JLabel time66 = new JLabel("");
 
-		for(Course scheduled: coursesScheduled){
-			if(scheduled.getDays().contains("M")){
+		for (Course scheduled : coursesScheduled) {
+			if (scheduled.getDays().contains("M")) {
 				mondayCourses.add(scheduled);
-				if(scheduled.getStartTime() <= 830){
+				if (scheduled.getStartTime() <= 830) {
 					time1.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1000){
+				} else if (scheduled.getStartTime() <= 1000) {
 					time2.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1130){
+				} else if (scheduled.getStartTime() <= 1130) {
 					time3.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1300){
+				} else if (scheduled.getStartTime() <= 1300) {
 					time4.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1430){
+				} else if (scheduled.getStartTime() <= 1430) {
 					time5.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1600){
+				} else if (scheduled.getStartTime() <= 1600) {
 					time6.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() > 1600){
+				} else if (scheduled.getStartTime() > 1600) {
 					time66.setText(scheduled.displayCourse());
 				}
 			}
 		}
-		
-		
-		
+
 		mon.add(time1);
 		mon.add(time11);
 		mon.add(time2);
@@ -169,6 +173,7 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		return mon;
 	}
 
+	//Creates JPanel for Tuesday courses and includes logic for displaying
 	private Component tuesday(ArrayList<Course> coursesScheduled) {
 		JPanel tues = new JPanel(new GridLayout(13, 0));
 
@@ -204,32 +209,26 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		JLabel time6 = new JLabel("");
 		JLabel time66 = new JLabel("");
 
-		for(Course scheduled: coursesScheduled){
-			if(scheduled.getDays().contains("T")){
-				if(scheduled.getStartTime() <= 830){
+		for (Course scheduled : coursesScheduled) {
+			if (scheduled.getDays().contains("T")) {
+				if (scheduled.getStartTime() <= 830) {
 					time1.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1000){
+				} else if (scheduled.getStartTime() <= 1000) {
 					time2.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1130){
+				} else if (scheduled.getStartTime() <= 1130) {
 					time3.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1300){
+				} else if (scheduled.getStartTime() <= 1300) {
 					time4.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1430){
+				} else if (scheduled.getStartTime() <= 1430) {
 					time5.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1600){
+				} else if (scheduled.getStartTime() <= 1600) {
 					time6.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() > 1600){
+				} else if (scheduled.getStartTime() > 1600) {
 					time66.setText(scheduled.displayCourse());
 				}
 			}
 		}
-		
+
 		tues.add(time1);
 		tues.add(time11);
 		tues.add(time2);
@@ -246,6 +245,7 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		return tues;
 	}
 
+	//Creates JPanel for Wednesday courses and includes logic for displaying
 	private Component wednesday(ArrayList<Course> coursesScheduled) {
 		JPanel wed = new JPanel(new GridLayout(13, 0));
 
@@ -281,32 +281,26 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		JLabel time6 = new JLabel("");
 		JLabel time66 = new JLabel("");
 
-		for(Course scheduled: coursesScheduled){
-			if(scheduled.getDays().contains("W")){
-				if(scheduled.getStartTime() <= 830){
+		for (Course scheduled : coursesScheduled) {
+			if (scheduled.getDays().contains("W")) {
+				if (scheduled.getStartTime() <= 830) {
 					time1.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1000){
+				} else if (scheduled.getStartTime() <= 1000) {
 					time2.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1130){
+				} else if (scheduled.getStartTime() <= 1130) {
 					time3.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1300){
+				} else if (scheduled.getStartTime() <= 1300) {
 					time4.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1430){
+				} else if (scheduled.getStartTime() <= 1430) {
 					time5.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1600){
+				} else if (scheduled.getStartTime() <= 1600) {
 					time6.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() > 1600){
+				} else if (scheduled.getStartTime() > 1600) {
 					time66.setText(scheduled.displayCourse());
 				}
 			}
 		}
-		
+
 		wed.add(time1);
 		wed.add(time11);
 		wed.add(time2);
@@ -323,6 +317,7 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		return wed;
 	}
 
+	//Creates JPanel for Thursday courses and includes logic for displaying
 	private Component thursday(ArrayList<Course> coursesScheduled) {
 		JPanel thur = new JPanel(new GridLayout(13, 0));
 
@@ -358,32 +353,26 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		JLabel time6 = new JLabel("");
 		JLabel time66 = new JLabel("");
 
-		for(Course scheduled: coursesScheduled){
-			if(scheduled.getDays().contains("R")){
-				if(scheduled.getStartTime() <= 830){
+		for (Course scheduled : coursesScheduled) {
+			if (scheduled.getDays().contains("R")) {
+				if (scheduled.getStartTime() <= 830) {
 					time1.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1000){
+				} else if (scheduled.getStartTime() <= 1000) {
 					time2.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1130){
+				} else if (scheduled.getStartTime() <= 1130) {
 					time3.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1300){
+				} else if (scheduled.getStartTime() <= 1300) {
 					time4.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1430){
+				} else if (scheduled.getStartTime() <= 1430) {
 					time5.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1600){
+				} else if (scheduled.getStartTime() <= 1600) {
 					time6.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() > 1600){
+				} else if (scheduled.getStartTime() > 1600) {
 					time66.setText(scheduled.displayCourse());
 				}
 			}
 		}
-		
+
 		thur.add(time1);
 		thur.add(time11);
 		thur.add(time2);
@@ -400,6 +389,7 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		return thur;
 	}
 
+	//Creates JPanel for Friday courses and includes logic for displaying
 	private Component friday(ArrayList<Course> coursesScheduled) {
 		JPanel fri = new JPanel(new GridLayout(13, 0));
 
@@ -435,32 +425,26 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		JLabel time6 = new JLabel("");
 		JLabel time66 = new JLabel("");
 
-		for(Course scheduled: coursesScheduled){
-			if(scheduled.getDays().contains("F")){
-				if(scheduled.getStartTime() <= 830){
+		for (Course scheduled : coursesScheduled) {
+			if (scheduled.getDays().contains("F")) {
+				if (scheduled.getStartTime() <= 830) {
 					time1.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1000){
+				} else if (scheduled.getStartTime() <= 1000) {
 					time2.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1130){
+				} else if (scheduled.getStartTime() <= 1130) {
 					time3.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1300){
+				} else if (scheduled.getStartTime() <= 1300) {
 					time4.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1430){
+				} else if (scheduled.getStartTime() <= 1430) {
 					time5.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() <= 1600){
+				} else if (scheduled.getStartTime() <= 1600) {
 					time6.setText(scheduled.displayCourse());
-				}
-				else if(scheduled.getStartTime() > 1600){
+				} else if (scheduled.getStartTime() > 1600) {
 					time66.setText(scheduled.displayCourse());
 				}
 			}
 		}
-		
+
 		fri.add(time1);
 		fri.add(time11);
 		fri.add(time2);
@@ -477,75 +461,19 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		return fri;
 	}
 
+	//ActionListener for buttons being clicked
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == buttonsave) {
-				try {
-					this.dispose();
-					displayFinalExams dFinal = new displayFinalExams(this);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			
-		}
-		
-		else if (e.getSource() == buttonback) {
+		if (e.getSource() == buttonnext) {
+			try {
+				this.dispose();
+				displayFinalExams dFinal = new displayFinalExams(this);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
+		}else if (e.getSource() == buttonback) {
 			this.dispose();
 			cc.displayChooseClasses();
 		}
-		
 	}
-	
-	public static void main(String[] args) {
-		
-		
-		
-		/*
-		Course c381 = new Course();
-		c381.setTitle("Operating Systems");
-		c381.setCourseNum("381");
-		c381.setSubject("CSE");
-		c381.setDays("MW");
-		c381.setStartTime(1300);
-		c381.setEndTime(1400);
-		c381.setSection("B");
-
-		Course c464 = new Course();
-		c464.setTitle("Algorithms");
-		c464.setCourseNum("464");
-		c464.setSubject("CSE");
-		c464.setDays("TR");
-		c464.setStartTime(1300);
-		c464.setEndTime(1350);
-		c464.setSection("A");
-
-		Course c271 = new Course();
-		c271.setTitle("Object Oriented");
-		c271.setCourseNum("271");
-		c271.setSubject("CSE");
-		c271.setDays("WF");
-		c271.setStartTime(1430);
-		c271.setEndTime(1500);
-		c271.setSection("B");
-
-		Course c174 = new Course();
-		c174.setTitle("Into");
-		c174.setCourseNum("174");
-		c174.setSubject("CSE");
-		c174.setDays("MWF");
-		c174.setStartTime(830);
-		c174.setEndTime(950);
-		c174.setSection("A");
-
-		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
-		coursesScheduled.add(c381);
-		coursesScheduled.add(c464);
-		coursesScheduled.add(c271);
-		coursesScheduled.add(c174);
-		
-		new displayWeeklySchedule(coursesScheduled);
-		*/
-	}
-
-	
-
 }
