@@ -6,13 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+ * Controls the main calculations and logic of the program. 
+ */
 public class Controller {
-
-	// Marks: "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\"
-	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
-	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
-	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	//static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 	static String errorMessage = "Error";
@@ -41,45 +38,17 @@ public class Controller {
 		for (Course all : allClasses) {
 			if (!all.getCourseNum().equals(prev)) {
 				coursesOnce.add(all);
-				// System.out.println("CSE" + all.getCourseNum() + " "
-				// + all.getTitle());
 				prev = all.getCourseNum();
 			}
 		}
 		return coursesOnce;
 	}
+
 	/*
+	 * Returns each possible prerequisite in an ArrayList of Course objects
+	 */
 	public static ArrayList<Course> displayPrereqOptions() throws IOException {
 
-		ArrayList<Course> courses = ImportCSV.csvFileIN();
-		String fileName = path + "prereqsOnce.txt";
-		BufferedReader br = null;
-		String cur = "";
-		br = new BufferedReader(new FileReader(fileName));
-
-		ArrayList<Course> prereqList = new ArrayList<Course>();
-
-		while ((cur = br.readLine()) != null) {
-			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-			for (Course c : courses) {
-				for (int i = 0; i < 11; i++){
-					if (prereqs[i].equals(c.getCourseNum())) {
-						prereqList.add(c);
-					}
-				}
-			}
-
-		}
-		br.close();
-
-		ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
-		System.out.println(prereqOnceList);
-		return prereqOnceList;
-	}
-	*/
-	
-	public static ArrayList<Course> displayPrereqOptions() throws IOException {
-		
 		Course p1 = new Course();
 		p1.setTitle("Fundmntls-Progrming&Prob Solvg");
 		p1.setCourseNum("174");
@@ -110,9 +79,9 @@ public class Controller {
 		Course p10 = new Course();
 		p10.setTitle("Senior Design Project");
 		p10.setCourseNum("448");
-		
+
 		ArrayList<Course> courses = new ArrayList<Course>();
-		
+
 		courses.add(p1);
 		courses.add(p2);
 		courses.add(p3);
@@ -123,11 +92,11 @@ public class Controller {
 		courses.add(p8);
 		courses.add(p9);
 		courses.add(p10);
-		
+
 		return courses;
-		
+
 	}
-	
+
 	/*
 	 * CS requirements
 	 * http://bulletin.miamioh.edu/engineering-computing/computer-science-bs/
@@ -135,10 +104,8 @@ public class Controller {
 	 * SE requirements
 	 * http://bulletin.miamioh.edu/engineering-computing/software-bs/
 	 */
-
-	// working
 	public static boolean checkPrereqs(Course c,
-		ArrayList<Course> coursesPrevTaken) throws IOException {
+			ArrayList<Course> coursesPrevTaken) throws IOException {
 
 		String fileName = "prereqs.txt";
 		BufferedReader br = null;
@@ -163,11 +130,6 @@ public class Controller {
 						errorMessage = "Prequisite for CSE" + c.getCourseNum()
 								+ " not met. Requirement: CSE " + prereqs[i]
 								+ " not satisfied";
-						/*
-						 * System.out.println("Prequisite for CSE" +
-						 * c.getCourseNum() + " not met. Requirement: CSE " +
-						 * prereqs[i] + " not satisfied");
-						 */
 						reqsMet = false;
 					}
 				}
@@ -183,46 +145,15 @@ public class Controller {
 	}
 
 	/*
-	 * public static ArrayList<String> listIncompletePrereqs(Course c,
-	 * ArrayList<Course> coursesPrevTaken ) throws IOException{
-	 * 
-	 * ArrayList<String> prereqsUnfinished = new ArrayList<String>(); String
-	 * fileName = path + "prereqs.txt"; BufferedReader br = null; String cur =
-	 * ""; br = new BufferedReader(new FileReader(fileName));
-	 * 
-	 * while ((cur = br.readLine()) != null){ String[] prereqs =
-	 * cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); //if current line, first
-	 * course listed is the course if(prereqs[0].equals(c.getCourseNum())){
-	 * prereqsUnfinished = prereqs; //loop through checking all requirements
-	 * for(int i = 1; i<prereqs.length;i++){ boolean notFoundYet = true; //check
-	 * courses taken to see if it matches requirement for(int j = 0;
-	 * j<coursesPrevTaken.size();j++){
-	 * if((prereqs[i]).equals(coursesPrevTaken.get(j).getCourseNum()))
-	 * prereqsToTake.remove(prereqs[i])
-	 * 
-	 * 
-	 * prereqsUnfinished.add("CSE " + prereqs[i]); } } for(int i = 1;
-	 * i<prereqs.length;i++){ int reqMet = 0; //check courses taken to see if it
-	 * matches requirement for(Course taken: coursesPrevTaken){
-	 * if(taken.getCourseNum().equals(prereqs[i])) reqMet = 1; } //if never set
-	 * to one, requirement not satisfied if(reqMet == 0){
-	 * System.out.println("Prequisite for CSE" + c.getCourseNum() +
-	 * " not met. Requirement: CSE "+prereqs[i]+" not satisfied"); reqsMet =
-	 * false; } }
-	 * 
-	 * 
-	 * 
-	 * } } br.close();
-	 * 
-	 * return prereqsUnfinished; }
+	 * Determines if the selected Course has already been selected
 	 */
-
 	public static boolean isSameCourse(Course c,
 			ArrayList<Course> coursesScheduled) {
 		boolean conflict = false;
 
 		for (Course scheduled : coursesScheduled) {
-			if (c.getCourseNum().equals(scheduled.getCourseNum()) && c.getCrn() != scheduled.getCrn()) {
+			if (c.getCourseNum().equals(scheduled.getCourseNum())
+					&& c.getCrn() != scheduled.getCrn()) {
 				conflict = true;
 				errorMessage = "Same Course";
 			}
@@ -241,7 +172,6 @@ public class Controller {
 				for (int j = 1; j < scheduled.getDays().length(); j++) {
 					if (c.getDays().substring(i, i)
 							.equals(scheduled.getDays().substring(j, j))) {
-						//System.out.println("Same day between: " + c.displayCourse() + " and " + scheduled.displayCourse());
 						sameDay = true;
 					}
 				}
@@ -298,7 +228,7 @@ public class Controller {
 		return conflict;
 	}
 
-	// works
+	// CS requirements
 	public static boolean coreSE(Course c) throws IOException {
 		boolean isCoreSE = false;
 
@@ -325,7 +255,7 @@ public class Controller {
 		return isCoreSE;
 	}
 
-	// works
+	// SE requirements
 	public static boolean coreCS(Course c) throws IOException {
 		boolean isCoreCS = false;
 		String fileName = "coreCS.txt";
@@ -350,6 +280,7 @@ public class Controller {
 		return isCoreCS;
 	}
 
+	// Determines if Course is a usable CS elective
 	public static boolean electiveCS(Course c) throws IOException {
 		boolean isElectiveCS = false;
 		String fileName = "electiveCS.txt";
@@ -386,6 +317,8 @@ public class Controller {
 		return isElectiveCS;
 	}
 
+	// Determines if Course applies to the Software Engineering Areas of
+	// Specialization
 	public static boolean areaOfSpecializationSE(Course c) throws IOException {
 		boolean meetsRequirement = false;
 
@@ -450,136 +383,25 @@ public class Controller {
 		return meetsRequirements;
 	}
 
-	public static void saveToCSV(ArrayList<Course> scheduledCourses) // ArrayList<Course>
-																		// cOnce)
+	/*
+	 * Saves the final course schedule, in the form of an ArrayList of Courses,
+	 * to a .csv file
+	 */
+	public static void saveToCSV(ArrayList<Course> scheduledCourses)
 			throws IOException {
 		FileWriter scheduleWriter = new FileWriter("createdSchedule.csv");
-
-		// FileWriter scheduleOnceWriter = new FileWriter(path +
-		// "coursesOnceSchedule.csv");
 
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
 			scheduleWriter.append('\n');
 		}
-		/*
-		 * for (Course c : cOnce) {
-		 * scheduleOnceWriter.append(c.displayCourseCSVFormat());
-		 * scheduleOnceWriter.append('\n'); }
-		 */
 
 		scheduleWriter.close();
-		// scheduleOnceWriter.close();
 	}
 
 	public static void main(String[] args) {
 
-		ArrayList<Course> allCourses = new ArrayList<Course>();
-		ArrayList<Course> coursesOnce = new ArrayList<Course>();// notice
-																// unused, never
-																// returned
-		ArrayList<Course> coursesPrevTaken = new ArrayList<Course>();
-		ArrayList<Course> coursesScheduled = new ArrayList<Course>();
-		ArrayList<Course> prereqs = new ArrayList<Course>();
-
-		try {
-			allCourses = ImportCSV.csvFileIN();
-			prereqs = displayPrereqOptions();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		coursesOnce = displayCoursesOnce(allCourses);
-		for (Course c : prereqs)
-			System.out.println(c.getCourseNum());
-
-		/*
-		 * // Step 0: Testing Course c274 = new Course();
-		 * c274.setCourseNum("274"); c274.setSubject("CSE");
-		 * 
-		 * Course c289 = new Course(); c289.setCourseNum("289");
-		 * c289.setSubject("CSE");
-		 * 
-		 * Course c381 = new Course(); c381.setCourseNum("381");
-		 * c381.setSubject("CSE"); c381.setDays("MW"); c381.setStartTime(10000);
-		 * c381.setEndTime(11000);
-		 * 
-		 * Course c464 = new Course(); c464.setCourseNum("464");
-		 * c464.setSubject("CSE"); c464.setDays("WF"); c464.setStartTime(10050);
-		 * c464.setEndTime(12050);
-		 * 
-		 * Course c174 = new Course(); c174.setCourseNum("174");
-		 * c174.setSubject("CSE");
-		 * 
-		 * Course c211 = new Course(); c211.setCourseNum("211");
-		 * c211.setSubject("CSE");
-		 * 
-		 * Course c386 = new Course(); c386.setCourseNum("386");
-		 * c386.setSubject("CSE");
-		 * 
-		 * Course c600 = new Course(); c600.setCourseNum("600");
-		 * c600.setSubject("CSE");
-		 * 
-		 * coursesPrevTaken.add(c274); coursesPrevTaken.add(c289);
-		 * 
-		 * coursesScheduled.add(c381); coursesScheduled.add(c464);
-		 * 
-		 * 
-		 * try { checkPrereqs(c381, coursesPrevTaken); checkPrereqs(c464,
-		 * coursesPrevTaken); checkPrereqs(c174, coursesPrevTaken); //
-		 * coreSE(c174); // coreSE(c464); // coreCS(c174); // coreCS(c464);
-		 * 
-		 * isSameCourse(c464, coursesScheduled);
-		 * 
-		 * // electiveCS(c211); // electiveCS(c386);
-		 * System.out.println("\nCS Checks"); checkCSRequirements(c600);
-		 * checkCSRequirements(c211); checkCSRequirements(c386);
-		 * checkCSRequirements(c174); checkCSRequirements(c386);
-		 * checkCSRequirements(c464);
-		 * 
-		 * System.out.println("\nSE Checks"); checkSERequirements(c600);
-		 * checkSERequirements(c211); checkSERequirements(c386);
-		 * checkSERequirements(c174); checkSERequirements(c386);
-		 * checkSERequirements(c464);
-		 * 
-		 * /* System.out.println("ONE"); ArrayList<String> prereqsNeeded = new
-		 * ArrayList<String>(); prereqsNeeded = listIncompletePrereqs(c381,
-		 * coursesPrevTaken); for (String s : prereqsNeeded)
-		 * System.out.println(s); System.out.println("TWO");
-		 */
-
-		// areaOfSpecializationSE(c386);
-		// areaOfSpecializationSE(c464);
-
-		// saveToCSV(coursesScheduled, coursesOnce);
-		/*
-		 * } catch (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 * 
-		 * if (checkCourseTime(c464, coursesScheduled)) {
-		 * System.out.println("Time conflict"); } else {
-		 * System.out.println("No time conflict"); }
-		 */
-
-		// Step 1: Display all course names for student to select the courses
-		// that he/she has previously taken
-		// coursesOnce = displayCoursesOnce(allCourses);
-
-		// Step 2: Let student select courses and store in coursesPrevTaken
-
-		// Step 3: Display all courses offered in a given semester
-		for (Course c : allCourses) {
-			// System.out.println(c.displayCourse());
-		}
-
-		// Step 4: Let student select all courses he/she wants to schedule and
-		// store in coursesScheduled
-
-		// Step 5: Check requirements
-		// 5a: Check prereqs, will call check prereqs here
-
-		// 5b: Check
-
+		//begin the process, open a chooseMajor window
 		chooseMajor cm = new chooseMajor();
 
 	}
