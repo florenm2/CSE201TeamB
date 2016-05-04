@@ -161,14 +161,21 @@ public class test implements ActionListener {
 		// and output them to an array.
 
 		if (e.getSource() == buttonin) {
+			
+			int counter = 0;
+			
 			int[] fromindex = courseList.getSelectedIndices();
 
 			Object[] from = courseList.getSelectedValues();
 
 			for (int j = 0; j < from.length; j++) {
 				for (Course c : allCourses) {
-					if (c.displayCourse().equals(from[j].toString())) {
-						System.out.println("true");
+					boolean hasLab = false;
+					if (c.displayCourse().substring(1, 5).equals(from[j].toString().substring(1, 5))) {
+						counter++;
+						System.out.println("Count: " + counter);
+						
+						System.out.println("Course object added: " + c.displayCourse());
 						
 						try {
 							if ((!Controller.isSameCourse(c, coursesScheduled)
@@ -177,6 +184,20 @@ public class test implements ActionListener {
 							 )) {
 								coursesScheduled.add(c);
 								
+								//
+								for (i = 0; i < from.length; i++) {
+									coursesChosen.addElement(from[i]);
+									
+								}
+
+								// remove the courses chosen from the first list.
+								// remove from the bottom
+								for (i = (fromindex.length - 1); i >= 0; i--) {
+									coursesDisplayed.remove(fromindex[i]);
+								}
+								//
+								
+								hasLab = true;
 								
 								try {
 									if (cp.cm.isCS) {
@@ -198,15 +219,7 @@ public class test implements ActionListener {
 									e1.printStackTrace();
 								}
 
-								for (i = 0; i < from.length; i++) {
-									coursesChosen.addElement(from[i]);
-								}
-
-								// remove the courses chosen from the first list.
-								// remove from the bottom
-								for (i = (fromindex.length - 1); i >= 0; i--) {
-									coursesDisplayed.remove(fromindex[i]);
-								}
+								
 							}else if(!Controller.checkPrereqs(c,prereqsTaken)){
 								dispMessage.setText(Controller.getErrorMessage());
 								dispMessage.setForeground(Color.red);
@@ -226,9 +239,12 @@ public class test implements ActionListener {
 						}
 
 					}
+					
 				}
+				
 			}
 
+			
 		}
 
 		// If out button is pressed, take the indices and values of
@@ -241,24 +257,27 @@ public class test implements ActionListener {
 				for (Iterator<Course> iterator = coursesScheduled.iterator(); iterator
 						.hasNext();) {
 					Course c = iterator.next();
-					if (c.displayCourse().equals(to[j].toString())) {
+					if (c.displayCourse().substring(1, 5).equals(to[j].toString().substring(1,5))) {
 						System.out.println("remove");
 						iterator.remove();
+						
+						
 
 					}
+				}
+				for (i = 0; i < to.length; i++) {
+					coursesDisplayed.addElement(to[i]);
+				}
+
+				for (i = (toindex.length - 1); i >= 0; i--) {
+					coursesChosen.remove(toindex[i]);
 				}
 			}
 			for (Course c : coursesScheduled) {
 				System.out.println(c.displayCourse());
 			}
 
-			for (i = 0; i < to.length; i++) {
-				coursesDisplayed.addElement(to[i]);
-			}
-
-			for (i = (toindex.length - 1); i >= 0; i--) {
-				coursesChosen.remove(toindex[i]);
-			}
+			
 		} else if (e.getSource() == buttonnext) {
 			displayWeeklySchedule dWeekly = new displayWeeklySchedule(this);
 			frame.dispose();
