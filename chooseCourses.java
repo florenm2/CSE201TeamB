@@ -1,5 +1,8 @@
 /*
- * Displays all classes and allows user to select
+ * Displays all classes and sections of each class that is offered in the spring
+ * If they user does not meet prereqs they will not be allowed to schedule same
+ * if time conflicts occur. In either scenario the user will be notified. If successful 
+ * they will also be notified what the course satisfies
  */
 import javax.swing.*;
 import javax.swing.event.*;
@@ -44,6 +47,7 @@ public class chooseCourses implements ActionListener {
 		frame.setVisible(true);
 
 	}
+	//called on back button press
 	public void displayChooseClasses(){
 		coursesScheduled.clear();
 		frame = new JFrame("Choose your classes:");
@@ -103,6 +107,7 @@ public class chooseCourses implements ActionListener {
 		int verticalSpacing = screenSize.height/3;
 		JPanel buttons = new JPanel(new GridLayout(3, 2, 0, verticalSpacing));
 
+		//create and add buttons to the screen
 		buttonin = new JButton("Add >>");
 		buttonin.addActionListener(this);
 		buttonPanel1.add(buttonin);
@@ -272,13 +277,12 @@ public class chooseCourses implements ActionListener {
 				}
 			}
 
-			
+		//next button clicked
 		} else if (e.getSource() == buttonnext) {
 			displayWeeklySchedule dWeekly = new displayWeeklySchedule(this);
 			frame.dispose();
-
+			
 		} else if (e.getSource() == buttonback) {
-			//choosePrereqs cp = new choosePrereqs(isCSMajor);
 			cp.displayChoosePrereqs();
 			frame.dispose();
 			
