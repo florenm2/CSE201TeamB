@@ -196,6 +196,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict2 = false;
 		for (Course scheduled : coursesScheduled) {
 			System.out.println(scheduled.getCourseNum());
+			//if start time = 1pm and is on MW, MWF, or WF, exam time is 12:45pm
 			if (scheduled.getStartTime() == 1300
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
@@ -217,7 +218,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time3.setBackground(Color.RED);
 				time3.setOpaque(true);
 			}
-
+			//if start time = 2:30pm and is on MW, MWF, or WF, exam time is 12:45pm
 			if (scheduled.getStartTime() == 1430
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
@@ -240,7 +241,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time4.setOpaque(true);
 
 			}
-
+			//if start time is 5:30pm or later and on Monday's only, exam is 7:45pm
 			if (scheduled.getStartTime() >= 1730
 					&& scheduled.getDays().equals("M")) {
 				time6.setText(scheduled.getSubject() + scheduled.getCourseNum()
@@ -500,22 +501,22 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time3.setOpaque(true);
 
 			}
-			// If course starts at 4pm and is on either T, R, or TR
+			// If course starts at 4pm and is on either MW, WF, MWF. Exam is 5:30
 			if (scheduled.getStartTime() == 1600
-					&& (scheduled.getDays().equals("T")
-							|| scheduled.getDays().equals("R") || scheduled
-							.getDays().equals("TR")) && !conflict3) {
-				System.out.println("T1600Success: " + scheduled.getCourseNum());
+					&& (scheduled.getDays().equals("MW")
+							|| scheduled.getDays().equals("WF") || scheduled
+							.getDays().equals("MWF")) && !conflict3) {
+				System.out.println("W1600Success: " + scheduled.getCourseNum());
 				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict3 = true;
 			} else if (scheduled.getStartTime() == 1600
-					&& (scheduled.getDays().equals("T")
-							|| scheduled.getDays().equals("R") || scheduled
-							.getDays().equals("TR")) && conflict3) {
+					&& (scheduled.getDays().equals("MW")
+							|| scheduled.getDays().equals("WF") || scheduled
+							.getDays().equals("MWF")) && conflict3) {
 				System.out
 						.println("T1600Conflict: " + scheduled.getCourseNum());
-				time44.setText(scheduled.getSubject()
+				time55.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
 				time44.setBackground(Color.RED);
@@ -524,15 +525,15 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time4.setOpaque(true);
 
 			}
-			// if a course starts at 5:30pm or later and is on TR
+			// if a course starts at 5:30pm or later and is on MW
 			if (scheduled.getStartTime() >= 1730
-					&& scheduled.getDays().equals("TR")) {
+					&& scheduled.getDays().equals("MW")) {
 				time5.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 			}
-			// if a course starts at 5:30pm or later and is on T
+			// if a course starts at 5:30pm or later and is on W
 			if (scheduled.getStartTime() >= 1730
-					&& scheduled.getDays().equals("T")) {
+					&& scheduled.getDays().equals("W")) {
 				time6.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 			}
