@@ -369,13 +369,13 @@ public class Controller {
 								.println(c.getCourseNum()
 										+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
-								+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...";
+								+ " is a CS core elective. You need 9 credit hours of core electives.";
 					} else if (electiveIndex == 1) {
 						System.out
 								.println(c.getCourseNum()
 										+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
-								+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...";
+								+ " is a CS affiliate elective. You need 6 credit hours of affiliate electives.";
 					}
 				}
 			}

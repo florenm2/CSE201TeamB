@@ -170,8 +170,7 @@ public class test implements ActionListener {
 
 			for (int j = 0; j < from.length; j++) {
 				for (Course c : allCourses) {
-					boolean hasLab = false;
-					if (c.displayCourse().substring(1, 5).equals(from[j].toString().substring(1, 5))) {
+					if (c.displayCourse().equals(from[j].toString())) {//c.displayCourse().substring(1, 5).equals(from[j].toString().substring(1, 5))
 						counter++;
 						System.out.println("Count: " + counter);
 						
@@ -197,7 +196,6 @@ public class test implements ActionListener {
 								}
 								//
 								
-								hasLab = true;
 								
 								try {
 									if (cp.cm.isCS) {
