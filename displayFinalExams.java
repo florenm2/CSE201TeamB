@@ -16,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -91,6 +92,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				Controller.saveToCSV(scheduledCourses );
+				JOptionPane.showMessageDialog(null, "CSV created! See file: createdSchedule.csv to view your schedule!");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
