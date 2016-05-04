@@ -25,9 +25,9 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 	private int numDays = 5;
 	JButton buttonback, buttonsave;
 	public ArrayList<Course> coursesScheduled1;
-	test cc;
+	chooseCourses cc;
 
-	public displayWeeklySchedule(test cc) {
+	public displayWeeklySchedule(chooseCourses cc) {
 		this.cc=cc;
 		frameSetup(cc.coursesScheduled);
 		coursesScheduled1 = cc.coursesScheduled;

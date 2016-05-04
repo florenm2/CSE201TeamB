@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class test implements ActionListener {
+public class chooseCourses implements ActionListener {
 
 	JList courseList, courses;
 	JButton buttonin, buttonout, buttonnext, buttonback;
@@ -21,7 +21,7 @@ public class test implements ActionListener {
 	// using DefaultListModel to keep track of the two lists
 	DefaultListModel coursesDisplayed, coursesChosen;
 
-	public test(choosePrereqs cp) {
+	public chooseCourses(choosePrereqs cp) {
 		this.cp = cp;
 		this.prereqsTaken = cp.prereqsTaken;
 		
