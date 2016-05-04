@@ -197,13 +197,12 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict1 = false;
 		boolean conflict2 = false;
 		for (Course scheduled : coursesScheduled) {
-			System.out.println(scheduled.getCourseNum());
 			//if start time = 1pm and is on MW, MWF, or WF, exam time is 12:45pm
 			if (scheduled.getStartTime() == 1300
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
 							.getDays().equals("WF")) && !conflict1) {
-				System.out.println("1300Success: " + scheduled.getCourseNum());
+				//System.out.println("1300Success: " + scheduled.getCourseNum());
 				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict1 = true;
@@ -211,7 +210,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
 							.getDays().equals("WF")) && conflict1) {
-				System.out.println("1300Conflict: " + scheduled.getCourseNum());
+				//System.out.println("1300Conflict: " + scheduled.getCourseNum());
 				time33.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -225,7 +224,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
 							.getDays().equals("WF")) && !conflict2) {
-				System.out.println("1430Success: " + scheduled.getCourseNum());
+				//System.out.println("1430Success: " + scheduled.getCourseNum());
 				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict2 = true;
@@ -233,7 +232,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
 							.getDays().equals("WF")) && conflict2) {
-				System.out.println("1430Conflict: " + scheduled.getCourseNum());
+				//System.out.println("1430Conflict: " + scheduled.getCourseNum());
 				time44.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -308,13 +307,13 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict4 = false;
 
 		for (Course scheduled : coursesScheduled) {
-			System.out.println(scheduled.getCourseNum());
+			//System.out.println(scheduled.getCourseNum());
 			// If course starts at 10am and is on either T, R, or TR
 			if (scheduled.getStartTime() == 1000
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict1) {
-				System.out.println("T1000Success: " + scheduled.getCourseNum());
+				//System.out.println("T1000Success: " + scheduled.getCourseNum());
 				time2.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict1 = true;
@@ -322,8 +321,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict1) {
-				System.out
-						.println("T1000Conflict: " + scheduled.getCourseNum());
+				//System.out.println("T1000Conflict: " + scheduled.getCourseNum());
 				time22.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -338,7 +336,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict2) {
-				System.out.println("T1300Success: " + scheduled.getCourseNum());
+				//System.out.println("T1300Success: " + scheduled.getCourseNum());
 				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict2 = true;
@@ -346,8 +344,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict2) {
-				System.out
-						.println("T1300Conflict: " + scheduled.getCourseNum());
+				//System.out.println("T1300Conflict: " + scheduled.getCourseNum());
 				time33.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -362,7 +359,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict3) {
-				System.out.println("T1600Success: " + scheduled.getCourseNum());
+				//System.out.println("T1600Success: " + scheduled.getCourseNum());
 				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict3 = true;
@@ -370,8 +367,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict3) {
-				System.out
-						.println("T1600Conflict: " + scheduled.getCourseNum());
+				//System.out.println("T1600Conflict: " + scheduled.getCourseNum());
 				time44.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -452,14 +448,14 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict4 = false;
 
 		for (Course scheduled : coursesScheduled) {
-			System.out.println(scheduled.getCourseNum());
+			//System.out.println(scheduled.getCourseNum());
 			// If course starts at 10am and is on either MW, WF, or MWF: exam is
 			// at 10:15am
 			if (scheduled.getStartTime() == 1000
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && !conflict1) {
-				System.out.println("W1000Success: " + scheduled.getCourseNum());
+				//System.out.println("W1000Success: " + scheduled.getCourseNum());
 				time2.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict1 = true;
@@ -467,8 +463,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && conflict1) {
-				System.out
-						.println("W1000Conflict: " + scheduled.getCourseNum());
+				//System.out.println("W1000Conflict: " + scheduled.getCourseNum());
 				time22.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -484,7 +479,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && !conflict2) {
-				System.out.println("W1300Success: " + scheduled.getCourseNum());
+				//System.out.println("W1300Success: " + scheduled.getCourseNum());
 				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict2 = true;
@@ -492,8 +487,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && conflict2) {
-				System.out
-						.println("W1300Conflict: " + scheduled.getCourseNum());
+				//System.out.println("W1300Conflict: " + scheduled.getCourseNum());
 				time33.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -508,7 +502,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && !conflict3) {
-				System.out.println("W1600Success: " + scheduled.getCourseNum());
+				//System.out.println("W1600Success: " + scheduled.getCourseNum());
 				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict3 = true;
@@ -516,8 +510,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && conflict3) {
-				System.out
-						.println("T1600Conflict: " + scheduled.getCourseNum());
+				//System.out.println("T1600Conflict: " + scheduled.getCourseNum());
 				time55.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -598,14 +591,14 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict4 = false;
 
 		for (Course scheduled : coursesScheduled) {
-			System.out.println(scheduled.getCourseNum());
+			//System.out.println(scheduled.getCourseNum());
 			// If course starts at 8 or 8:30am and is on either T, R, or TR:
 			// exam is at 8:00am
 			if ((scheduled.getStartTime() == 800 || scheduled.getStartTime() == 830)
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict1) {
-				System.out.println("R800Success: " + scheduled.getCourseNum());
+				//System.out.println("R800Success: " + scheduled.getCourseNum());
 				time1.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict1 = true;
@@ -614,7 +607,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict1) {
-				System.out.println("R800Conflict: " + scheduled.getCourseNum());
+				//System.out.println("R800Conflict: " + scheduled.getCourseNum());
 				time11.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -630,7 +623,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict2) {
-				System.out.println("R1300Success: " + scheduled.getCourseNum());
+				//System.out.println("R1300Success: " + scheduled.getCourseNum());
 				time3.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict2 = true;
@@ -638,8 +631,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict2) {
-				System.out
-						.println("R1300Conflict: " + scheduled.getCourseNum());
+				//System.out.println("R1300Conflict: " + scheduled.getCourseNum());
 				time33.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -655,7 +647,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && !conflict3) {
-				System.out.println("T1600Success: " + scheduled.getCourseNum());
+				//System.out.println("T1600Success: " + scheduled.getCourseNum());
 				time4.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict3 = true;
@@ -663,8 +655,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("T")
 							|| scheduled.getDays().equals("R") || scheduled
 							.getDays().equals("TR")) && conflict3) {
-				System.out
-						.println("T1600Conflict: " + scheduled.getCourseNum());
+				//System.out.println("T1600Conflict: " + scheduled.getCourseNum());
 				time44.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());
@@ -739,14 +730,14 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict4 = false;
 
 		for (Course scheduled : coursesScheduled) {
-			System.out.println(scheduled.getCourseNum());
+			//System.out.println(scheduled.getCourseNum());
 			// If course starts at 8 or 8:30am and is on either MW, WF, or MWF:
 			// exam is at 8:00am
 			if ((scheduled.getStartTime() == 800 || scheduled.getStartTime() == 830)
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && !conflict1) {
-				System.out.println("F800Success: " + scheduled.getCourseNum());
+				//System.out.println("F800Success: " + scheduled.getCourseNum());
 				time1.setText(scheduled.getSubject() + scheduled.getCourseNum()
 						+ ": " + scheduled.getTitle());
 				conflict1 = true;
@@ -755,7 +746,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("WF") || scheduled
 							.getDays().equals("MWF")) && conflict1) {
-				System.out.println("F800Conflict: " + scheduled.getCourseNum());
+				//System.out.println("F800Conflict: " + scheduled.getCourseNum());
 				time11.setText(scheduled.getSubject()
 						+ scheduled.getCourseNum() + ": "
 						+ scheduled.getTitle());

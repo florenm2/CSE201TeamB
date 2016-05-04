@@ -245,8 +245,6 @@ public class Controller {
 					isCoreSE = true;
 
 					reqMessage = c.getCourseNum() + " is a core SE requirement";
-					System.out.println(c.getCourseNum()
-							+ " is a core SE requirement");
 				}
 			}
 		}
@@ -270,8 +268,6 @@ public class Controller {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isCoreCS = true;
 					reqMessage = c.getCourseNum() + " is a core CS requirement";
-					System.out.println(c.getCourseNum()
-							+ " is a core CS requirement");
 				}
 			}
 		}
@@ -296,15 +292,9 @@ public class Controller {
 				if (c.getCourseNum().equals(prereqs[i])) {
 					isElectiveCS = true;
 					if (electiveIndex == 0) {
-						System.out
-								.println(c.getCourseNum()
-										+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
 								+ " is a CS core elective. You need 9 credit hours of core electives.";
 					} else if (electiveIndex == 1) {
-						System.out
-								.println(c.getCourseNum()
-										+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
 								+ " is a CS affiliate elective. You need 6 credit hours of affiliate electives.";
 					}
@@ -332,9 +322,6 @@ public class Controller {
 			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 			for (int i = 0; i < prereqs.length; i++) {
 				if (c.getCourseNum().equals(prereqs[i])) {
-					System.out.println(c.getCourseNum()
-							+ " meets Area of Specialization requirement for: "
-							+ prereqs[0]);
 					reqMessage = c.getCourseNum()
 							+ " meets Area of Specialization requirement for: "
 							+ prereqs[0];
@@ -362,7 +349,6 @@ public class Controller {
 
 		if (!meetsRequirements)
 			reqMessage = c.getCourseNum() + " meets no CS requirements";
-		System.out.println(c.getCourseNum() + " meets no CS requirements");
 
 		return meetsRequirements;
 	}
@@ -378,7 +364,6 @@ public class Controller {
 
 		if (!meetsRequirements)
 			reqMessage = c.getCourseNum() + " meets no SE requirements";
-		System.out.println(c.getCourseNum() + " meets no SE requirements");
 
 		return meetsRequirements;
 	}

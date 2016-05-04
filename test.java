@@ -172,9 +172,6 @@ public class test implements ActionListener {
 				for (Course c : allCourses) {
 					if (c.displayCourse().equals(from[j].toString())) {//c.displayCourse().substring(1, 5).equals(from[j].toString().substring(1, 5))
 						counter++;
-						System.out.println("Count: " + counter);
-						
-						System.out.println("Course object added: " + c.displayCourse());
 						
 						try {
 							if ((!Controller.isSameCourse(c, coursesScheduled)
@@ -256,7 +253,6 @@ public class test implements ActionListener {
 						.hasNext();) {
 					Course c = iterator.next();
 					if (c.displayCourse().substring(1, 5).equals(to[j].toString().substring(1,5))) {
-						System.out.println("remove");
 						iterator.remove();
 						
 						
@@ -270,9 +266,6 @@ public class test implements ActionListener {
 				for (i = (toindex.length - 1); i >= 0; i--) {
 					coursesChosen.remove(toindex[i]);
 				}
-			}
-			for (Course c : coursesScheduled) {
-				System.out.println(c.displayCourse());
 			}
 
 			

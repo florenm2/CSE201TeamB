@@ -127,7 +127,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 		for(Course scheduled: coursesScheduled){
 			if(scheduled.getDays().contains("M")){
 				mondayCourses.add(scheduled);
-				System.out.println(scheduled.displayCourse());
 				if(scheduled.getStartTime() <= 830){
 					time1.setText(scheduled.displayCourse());
 				}
@@ -207,7 +206,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 		for(Course scheduled: coursesScheduled){
 			if(scheduled.getDays().contains("T")){
-				System.out.println(scheduled.displayCourse());
 				if(scheduled.getStartTime() <= 830){
 					time1.setText(scheduled.displayCourse());
 				}
@@ -285,7 +283,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 		for(Course scheduled: coursesScheduled){
 			if(scheduled.getDays().contains("W")){
-				System.out.println(scheduled.displayCourse());
 				if(scheduled.getStartTime() <= 830){
 					time1.setText(scheduled.displayCourse());
 				}
@@ -363,7 +360,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 		for(Course scheduled: coursesScheduled){
 			if(scheduled.getDays().contains("R")){
-				System.out.println(scheduled.displayCourse());
 				if(scheduled.getStartTime() <= 830){
 					time1.setText(scheduled.displayCourse());
 				}
@@ -441,7 +437,6 @@ public class displayWeeklySchedule extends JFrame implements ActionListener {
 
 		for(Course scheduled: coursesScheduled){
 			if(scheduled.getDays().contains("F")){
-				System.out.println(scheduled.displayCourse());
 				if(scheduled.getStartTime() <= 830){
 					time1.setText(scheduled.displayCourse());
 				}
