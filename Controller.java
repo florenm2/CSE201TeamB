@@ -12,7 +12,7 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
+	//static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 	static String errorMessage = "Error";
@@ -140,7 +140,7 @@ public class Controller {
 	public static boolean checkPrereqs(Course c,
 		ArrayList<Course> coursesPrevTaken) throws IOException {
 
-		String fileName = path + "prereqs.txt";
+		String fileName = "prereqs.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -302,7 +302,7 @@ public class Controller {
 	public static boolean coreSE(Course c) throws IOException {
 		boolean isCoreSE = false;
 
-		String fileName = path + "coreSE.txt";
+		String fileName = "coreSE.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -328,7 +328,7 @@ public class Controller {
 	// works
 	public static boolean coreCS(Course c) throws IOException {
 		boolean isCoreCS = false;
-		String fileName = path + "coreCS.txt";
+		String fileName = "coreCS.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -352,7 +352,7 @@ public class Controller {
 
 	public static boolean electiveCS(Course c) throws IOException {
 		boolean isElectiveCS = false;
-		String fileName = path + "electiveCS.txt";
+		String fileName = "electiveCS.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -389,7 +389,7 @@ public class Controller {
 	public static boolean areaOfSpecializationSE(Course c) throws IOException {
 		boolean meetsRequirement = false;
 
-		String fileName = path + "areaOfSpecialization.txt";
+		String fileName = "areaOfSpecialization.txt";
 		BufferedReader br = null;
 		String cur = "";
 		br = new BufferedReader(new FileReader(fileName));
@@ -453,7 +453,7 @@ public class Controller {
 	public static void saveToCSV(ArrayList<Course> scheduledCourses) // ArrayList<Course>
 																		// cOnce)
 			throws IOException {
-		FileWriter scheduleWriter = new FileWriter(path + "createdSchedule.csv");
+		FileWriter scheduleWriter = new FileWriter("createdSchedule.csv");
 
 		// FileWriter scheduleOnceWriter = new FileWriter(path +
 		// "coursesOnceSchedule.csv");
