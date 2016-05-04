@@ -63,7 +63,7 @@ public class Course {
 	}
 	
 	public String displayCourse() {
-		course = getSubject() + getCourseNum() + ": " + getTitle() + "("
+		course = getCrn() + " " + getSubject() + getCourseNum() + ": " + getTitle() + "("
 				+ getSection() + ") " + getInstructorName() +  getDays() +  " "
 				+ getStartTime() + "-" + getEndTime();
 		return course;

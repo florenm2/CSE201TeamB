@@ -12,7 +12,7 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	static String path = "/Users/maryfloren/Documents/workspace/CSE201TeamB/";
+	static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 	static String errorMessage = "Error";
@@ -222,7 +222,7 @@ public class Controller {
 		boolean conflict = false;
 
 		for (Course scheduled : coursesScheduled) {
-			if (c.getCourseNum().equals(scheduled.getCourseNum())) {
+			if (c.getCourseNum().equals(scheduled.getCourseNum()) && c.getCrn() != scheduled.getCrn()) {
 				conflict = true;
 				errorMessage = "Same Course";
 			}
@@ -237,11 +237,11 @@ public class Controller {
 		boolean sameDay = false;
 		for (Course scheduled : coursesScheduled) {
 			// 1. check days
-			for (int i = 0; i < c.getDays().length(); i++) {
-				for (int j = 0; j < scheduled.getDays().length(); j++) {
+			for (int i = 1; i < c.getDays().length(); i++) {
+				for (int j = 1; j < scheduled.getDays().length(); j++) {
 					if (c.getDays().substring(i, i)
 							.equals(scheduled.getDays().substring(j, j))) {
-						// System.out.println("Same day = true");
+						//System.out.println("Same day between: " + c.displayCourse() + " and " + scheduled.displayCourse());
 						sameDay = true;
 					}
 				}
@@ -369,13 +369,13 @@ public class Controller {
 								.println(c.getCourseNum()
 										+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
-								+ " is a CS elective. You need a total of 9 credit hours from the following courses: ...";
+								+ " is a CS core elective. You need 9 credit hours of core electives.";
 					} else if (electiveIndex == 1) {
 						System.out
 								.println(c.getCourseNum()
 										+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...");
 						reqMessage = c.getCourseNum()
-								+ " is a CS affiliate elective. You need a total of 6 credit hours from the following courses: ...";
+								+ " is a CS affiliate elective. You need 6 credit hours of affiliate electives.";
 					}
 				}
 			}
