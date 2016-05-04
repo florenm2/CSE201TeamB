@@ -12,7 +12,8 @@ public class Controller {
 	// Adams: "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\"
 	// Mary's: "/Users/maryfloren/Documents/workspace/CSE201TeamB/"
 	// String fileName = "/Users/nehulyadav/Documents/workspace/CSE201TeamB/";
-	//static String path = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
+	// static String path =
+	// "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201TeamB\\";
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
 	static String errorMessage = "Error";
@@ -48,38 +49,30 @@ public class Controller {
 		}
 		return coursesOnce;
 	}
+
 	/*
+	 * public static ArrayList<Course> displayPrereqOptions() throws IOException
+	 * {
+	 * 
+	 * ArrayList<Course> courses = ImportCSV.csvFileIN(); String fileName = path
+	 * + "prereqsOnce.txt"; BufferedReader br = null; String cur = ""; br = new
+	 * BufferedReader(new FileReader(fileName));
+	 * 
+	 * ArrayList<Course> prereqList = new ArrayList<Course>();
+	 * 
+	 * while ((cur = br.readLine()) != null) { String[] prereqs =
+	 * cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); for (Course c : courses) {
+	 * for (int i = 0; i < 11; i++){ if (prereqs[i].equals(c.getCourseNum())) {
+	 * prereqList.add(c); } } }
+	 * 
+	 * } br.close();
+	 * 
+	 * ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
+	 * System.out.println(prereqOnceList); return prereqOnceList; }
+	 */
+
 	public static ArrayList<Course> displayPrereqOptions() throws IOException {
 
-		ArrayList<Course> courses = ImportCSV.csvFileIN();
-		String fileName = path + "prereqsOnce.txt";
-		BufferedReader br = null;
-		String cur = "";
-		br = new BufferedReader(new FileReader(fileName));
-
-		ArrayList<Course> prereqList = new ArrayList<Course>();
-
-		while ((cur = br.readLine()) != null) {
-			String[] prereqs = cur.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-			for (Course c : courses) {
-				for (int i = 0; i < 11; i++){
-					if (prereqs[i].equals(c.getCourseNum())) {
-						prereqList.add(c);
-					}
-				}
-			}
-
-		}
-		br.close();
-
-		ArrayList<Course> prereqOnceList = displayCoursesOnce(prereqList);
-		System.out.println(prereqOnceList);
-		return prereqOnceList;
-	}
-	*/
-	
-	public static ArrayList<Course> displayPrereqOptions() throws IOException {
-		
 		Course p1 = new Course();
 		p1.setTitle("Fundmntls-Progrming&Prob Solvg");
 		p1.setCourseNum("174");
@@ -110,9 +103,9 @@ public class Controller {
 		Course p10 = new Course();
 		p10.setTitle("Senior Design Project");
 		p10.setCourseNum("448");
-		
+
 		ArrayList<Course> courses = new ArrayList<Course>();
-		
+
 		courses.add(p1);
 		courses.add(p2);
 		courses.add(p3);
@@ -123,11 +116,11 @@ public class Controller {
 		courses.add(p8);
 		courses.add(p9);
 		courses.add(p10);
-		
+
 		return courses;
-		
+
 	}
-	
+
 	/*
 	 * CS requirements
 	 * http://bulletin.miamioh.edu/engineering-computing/computer-science-bs/
@@ -138,7 +131,7 @@ public class Controller {
 
 	// working
 	public static boolean checkPrereqs(Course c,
-		ArrayList<Course> coursesPrevTaken) throws IOException {
+			ArrayList<Course> coursesPrevTaken) throws IOException {
 
 		String fileName = "prereqs.txt";
 		BufferedReader br = null;
@@ -222,7 +215,8 @@ public class Controller {
 		boolean conflict = false;
 
 		for (Course scheduled : coursesScheduled) {
-			if (c.getCourseNum().equals(scheduled.getCourseNum()) && c.getCrn() != scheduled.getCrn()) {
+			if (c.getCourseNum().equals(scheduled.getCourseNum())
+					&& c.getCrn() != scheduled.getCrn()) {
 				conflict = true;
 				errorMessage = "Same Course";
 			}
@@ -241,7 +235,9 @@ public class Controller {
 				for (int j = 1; j < scheduled.getDays().length(); j++) {
 					if (c.getDays().substring(i, i)
 							.equals(scheduled.getDays().substring(j, j))) {
-						//System.out.println("Same day between: " + c.displayCourse() + " and " + scheduled.displayCourse());
+						// System.out.println("Same day between: " +
+						// c.displayCourse() + " and " +
+						// scheduled.displayCourse());
 						sameDay = true;
 					}
 				}
@@ -427,8 +423,9 @@ public class Controller {
 			meetsRequirements = true;
 		}
 
-		if (!meetsRequirements)
+		if (!meetsRequirements) {
 			reqMessage = c.getCourseNum() + " meets no CS requirements";
+		}
 		System.out.println(c.getCourseNum() + " meets no CS requirements");
 
 		return meetsRequirements;
@@ -443,8 +440,9 @@ public class Controller {
 			meetsRequirements = true;
 		}
 
-		if (!meetsRequirements)
+		if (!meetsRequirements) {
 			reqMessage = c.getCourseNum() + " meets no SE requirements";
+		}
 		System.out.println(c.getCourseNum() + " meets no SE requirements");
 
 		return meetsRequirements;
@@ -454,7 +452,11 @@ public class Controller {
 																		// cOnce)
 			throws IOException {
 		FileWriter scheduleWriter = new FileWriter("createdSchedule.csv");
+		// String[] header =
+		// ["CRN,Department,Course Number,Title,Section,Instructor,Start Time,End Time"];
 
+		scheduleWriter
+				.append("CRN,Department,Course Number,Title,Section,Instructor,Start Time,End Time \n");
 		// FileWriter scheduleOnceWriter = new FileWriter(path +
 		// "coursesOnceSchedule.csv");
 

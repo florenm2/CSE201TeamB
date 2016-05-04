@@ -196,6 +196,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 		boolean conflict2 = false;
 		for (Course scheduled : coursesScheduled) {
 			System.out.println(scheduled.getCourseNum());
+			//if start time = 1pm and is on MW, MWF, or WF, exam time is 12:45pm
 			if (scheduled.getStartTime() == 1300
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
@@ -217,7 +218,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time3.setBackground(Color.RED);
 				time3.setOpaque(true);
 			}
-
+			//if start time = 2:30pm and is on MW, MWF, or WF, exam time is 12:45pm
 			if (scheduled.getStartTime() == 1430
 					&& (scheduled.getDays().equals("MW")
 							|| scheduled.getDays().equals("MWF") || scheduled
@@ -240,7 +241,7 @@ public class displayFinalExams extends JFrame implements ActionListener {
 				time4.setOpaque(true);
 
 			}
-
+			//if start time is 5:30pm or later and on Monday's only, exam 
 			if (scheduled.getStartTime() >= 1730
 					&& scheduled.getDays().equals("M")) {
 				time6.setText(scheduled.getSubject() + scheduled.getCourseNum()
