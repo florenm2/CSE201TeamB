@@ -1,3 +1,7 @@
+/*
+ * Mark, Adam, Mary, Nehul
+ * Controls the main calculations and logic of the program. 
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,9 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/*
- * Controls the main calculations and logic of the program. 
- */
 public class Controller {
 
 	ArrayList<Course> prereqs = new ArrayList<Course>();
