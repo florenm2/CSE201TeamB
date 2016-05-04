@@ -42,6 +42,7 @@ public class chooseCourses implements ActionListener {
 
 	}
 	public void displayChooseClasses(){
+		coursesScheduled.clear();
 		frame = new JFrame("Choose your classes:");
 		try {
 			frame.setContentPane(this.createContentPane());
