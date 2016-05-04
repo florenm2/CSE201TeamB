@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * This class is where all of the data from the CSV file are read in and course
@@ -33,7 +35,7 @@ public class ImportCSV {
 		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 
-		String fileName = "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv";
+		String fileName = "/Users/maryfloren/Documents/workspace/CSE201TeamB/CSECourseScheduleSpring2016.csv";
 
 
 		// creatBufferedReader
@@ -137,6 +139,17 @@ public class ImportCSV {
 
 		// scan.close();
 		br.close();
+		
+		Collections.sort(courseList, new Comparator<Course>() {
+	       public int compare(Course c1, Course c2) {
+	        	int intc1 = Integer.parseInt(c1.getCourseNum().substring(0, 3));
+	        	int intc2 = Integer.parseInt(c2.getCourseNum().substring(0, 3));
+	        	//System.out.println("intc1 " + intc1+ ", intc2 " + intc2);
+	            return intc1 - intc2;
+	        }
+
+
+	    });
 
 		return courseList;
 	}

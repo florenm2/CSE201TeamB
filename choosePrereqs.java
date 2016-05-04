@@ -69,7 +69,7 @@ public class choosePrereqs implements ActionListener {
 
 		// Things to be in the list.
 
-		allPrereqs = Controller.displayPrereqOptions(ImportCSV.csvFileIN());
+		allPrereqs = Controller.displayPrereqOptions();
 
 		// Using a for loop, we add every item in the String array
 		// into the ListModel.

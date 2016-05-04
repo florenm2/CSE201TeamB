@@ -58,7 +58,7 @@ public class Course {
 	 */
 	
 	public String displayCoursePrereq(){
-		course = getSubject() + getCourseNum() + ": " + getTitle();
+		course = "CSE" + getCourseNum() + ": " + getTitle();
 		return course;
 	}
 	
