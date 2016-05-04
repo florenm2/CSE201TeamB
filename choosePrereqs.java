@@ -64,10 +64,12 @@ public class choosePrereqs implements ActionListener {
 		for(int i =0; i<prereqList.getSize(); i++){
 			System.out.println(prereqList.getElementAt(i));
 			for(Course c: prereqsTaken){
+				try{
 				if(c.displayCoursePrereq().equals(prereqList.getElementAt(i).toString())){
 					items.addElement(prereqList.getElementAt(i));
 					prereqList.removeElementAt(i);
 				}
+				}catch(Exception e){}
 			}
 		}
 		
