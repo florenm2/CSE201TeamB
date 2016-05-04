@@ -1,11 +1,12 @@
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.io.IOException;
-
 /*
  * Displays a window that allows the use to select whether their major
  * is Computer Science or Software Engineering.
  */
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+
+
 
 public class chooseMajor extends javax.swing.JFrame {
 

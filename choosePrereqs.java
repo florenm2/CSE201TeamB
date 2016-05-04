@@ -1,18 +1,18 @@
 import javax.swing.*;
-import javax.swing.event.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 /*
  * Displays a window that allows user to choose from a list of 
  * prerequisites and populate a list of prerequisites he/she
  * has completed. Chosen prerequisites are stores in an
  * ArrayList for future use.
  */
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
 public class choosePrereqs implements ActionListener {
 
 	JList itemList, courses;

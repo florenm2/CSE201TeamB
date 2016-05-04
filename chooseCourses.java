@@ -1,3 +1,6 @@
+/*
+ * Displays all classes and allows user to select
+ */
 import javax.swing.*;
 import javax.swing.event.*;
 
