@@ -60,7 +60,7 @@ public class chooseMajor extends javax.swing.JFrame {
 
 			}
 		});
-
+		//add computer science toggle button
 		CSButton.setLabel("Computer Science");
 		CSButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +68,7 @@ public class chooseMajor extends javax.swing.JFrame {
 				CSButtonActionPerformed(evt);
 			}
 		});
-
+		//add software engineering toggle button
 		SEButton.setLabel("Software Engineering");
 		SEButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class chooseMajor extends javax.swing.JFrame {
 				SEButtonActionPerformed(evt);
 			}
 		});
-
+		//add buttons to the screen and position
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
@@ -156,6 +156,7 @@ public class chooseMajor extends javax.swing.JFrame {
 		pack();
 	}
 
+	//event called when next button clicked
 	public void nextButtonActionPerformed(java.awt.event.ActionEvent evt,
 			boolean CSSE) {
 		if (!CSSE)
