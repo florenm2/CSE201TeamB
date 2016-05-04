@@ -62,7 +62,6 @@ public class choosePrereqs implements ActionListener {
 		//
 		
 		for(int i =0; i<prereqList.getSize(); i++){
-			System.out.println(prereqList.getElementAt(i));
 			for(Course c: prereqsTaken){
 				try{
 				if(c.displayCoursePrereq().equals(prereqList.getElementAt(i).toString())){
@@ -192,15 +191,12 @@ public class choosePrereqs implements ActionListener {
 		// and output them to an array.
 
 		if (e.getSource() == buttonin) {
-			// System.out.println("test");
 			int[] fromindex = itemList.getSelectedIndices();
 
 			Object[] from = itemList.getSelectedValues();
-			// System.out.println(from[0].toString());
 			for (int j = 0; j < from.length; j++) {
 				for (Course c : allPrereqs) {
 					if (c.displayCoursePrereq().equals(from[j].toString())) {
-						System.out.println("true");
 						prereqsTaken.add(c);
 
 						for (i = 0; i < from.length; i++) {
@@ -233,15 +229,12 @@ public class choosePrereqs implements ActionListener {
 						.hasNext();) {
 					Course c = iterator.next();
 					if (c.displayCoursePrereq().equals(to[j].toString())) {
-						System.out.println("remove");
 						iterator.remove();
 
 					}
 				}
 			}
-			for (Course c : prereqsTaken) {
-				System.out.println(c.displayCourse());
-			}
+			
 
 			// Then, for each item in the array, we add them to
 			// the other list.
