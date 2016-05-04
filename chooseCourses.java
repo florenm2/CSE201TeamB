@@ -1,4 +1,5 @@
 /*
+ * Mark, Adam, Mary, Nehul
  * Displays all classes and sections of each class that is offered in the spring
  * If they user does not meet prereqs they will not be allowed to schedule same
  * if time conflicts occur. In either scenario the user will be notified. If successful 

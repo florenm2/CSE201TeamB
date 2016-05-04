@@ -1,4 +1,5 @@
 /*
+ * Mark, Adam, Mary, Nehul
  * Displays a window that allows the use to select whether their major
  * is Computer Science or Software Engineering.
  */
