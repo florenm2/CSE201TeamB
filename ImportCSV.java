@@ -140,6 +140,9 @@ public class ImportCSV {
 		// scan.close();
 		br.close();
 		
+		/*
+		 * Sorts the ArrayList of classes
+		 */
 		Collections.sort(courseList, new Comparator<Course>() {
 	       public int compare(Course c1, Course c2) {
 	        	int intc1 = Integer.parseInt(c1.getCourseNum().substring(0, 3));

@@ -7,22 +7,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+ * Displays a window that allows user to choose from a list of 
+ * prerequisites and populate a list of prerequisites he/she
+ * has completed. Chosen prerequisites are stores in an
+ * ArrayList for future use.
+ */
 public class choosePrereqs implements ActionListener {
 
 	JList itemList, courses;
-	JButton buttonin, buttonout,nextButton,prevButton;
+	JButton buttonin, buttonout, nextButton, prevButton;
 	ArrayList<Course> coursesScheduled = new ArrayList<Course>();
 	ArrayList<Course> allPrereqs = new ArrayList<Course>();
 	ArrayList<Course> prereqsTaken = new ArrayList<Course>();
 	JFrame frame;
 	chooseMajor cm;
 
-	boolean isCSMajor = true;
-
-	public choosePrereqs(chooseMajor cm){
+	public choosePrereqs(chooseMajor cm) {
 		frame = new JFrame("Choose prerequisites");
 		this.cm = cm;
-		
+
 		try {
 			frame.setContentPane(this.createContentPane());
 		} catch (IOException e) {
@@ -30,15 +34,15 @@ public class choosePrereqs implements ActionListener {
 		}
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height - 100);
-		//
 
 		frame.setVisible(true);
-		
+
 	}
-	public void displayChoosePrereqs(){
+
+	public void displayChoosePrereqs() {
 		frame = new JFrame("Choose prerequisites");
 
 		try {
@@ -48,13 +52,13 @@ public class choosePrereqs implements ActionListener {
 		}
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(screenSize.width, screenSize.height - 100);
-		//
 
 		frame.setVisible(true);
 	}
+
 	// The ListModels we will be using in the example.
 	DefaultListModel prereqList, items;
 
@@ -118,18 +122,17 @@ public class choosePrereqs implements ActionListener {
 		buttonout = new JButton("<< Remove");
 		buttonout.addActionListener(this);
 		buttonPanel.add(buttonout);
-		
+
 		prevButton = new JButton("Prev");
 		prevButton.addActionListener(this);
 		navButtons.add(prevButton);
-		
+
 		nextButton = new JButton("Next");
 		nextButton.addActionListener(this);
 		navButtons.add(nextButton);
-		
+
 		buttons.add(buttonPanel);
 		buttons.add(navButtons);
-
 
 		// This final bit of code uses a BoxLayout to space out the widgets
 		// in the GUI.
@@ -237,12 +240,12 @@ public class choosePrereqs implements ActionListener {
 				items.remove(toindex[i]);
 			}
 		}
-		//Clicks next button
-		else if(e.getSource() == nextButton){
+		// Clicks next button
+		else if (e.getSource() == nextButton) {
 			test cc = new test(this);
 			frame.dispose();
-			
-		}else if(e.getSource() == prevButton){//clicks prev button
+
+		} else if (e.getSource() == prevButton) {// clicks prev button
 			cm.displayChooseMajor();
 			frame.dispose();
 		}
