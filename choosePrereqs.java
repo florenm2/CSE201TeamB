@@ -111,11 +111,11 @@ public class choosePrereqs implements ActionListener {
 		int verticalSpacing = screenSize.height - 500;
 		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
-		buttonin = new JButton(">>");
+		buttonin = new JButton("Add >>");
 		buttonin.addActionListener(this);
 		buttonPanel.add(buttonin);
 
-		buttonout = new JButton("<<");
+		buttonout = new JButton("<< Remove");
 		buttonout.addActionListener(this);
 		buttonPanel.add(buttonout);
 		
