@@ -9,15 +9,14 @@ import java.io.IOException;
 
 public class chooseMajor extends javax.swing.JFrame {
 
-	Boolean isCS;
+	public static javax.swing.JLabel topMessage;
+	public static javax.swing.JToggleButton nextButton;
+	public static javax.swing.JToggleButton CSButton;
+	public static javax.swing.JToggleButton SEButton;
+	
+	boolean isCS;
 	// if false CS, if true SE
 	boolean CSSE = false;
-
-//	private void makeFrameFullSize(JFrame chooseMajor)
-//	{
-//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//		aFrame.setSize(screenSize.width, screenSize.height);
-//	}
 
 	/*
 	 * chooseMajor constructor
@@ -25,24 +24,22 @@ public class chooseMajor extends javax.swing.JFrame {
 	 */
 	public chooseMajor() {
 		initComponents();
-		
+
 		setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-	
+
 	/*
-	 * Method used to display the chooseMajor window of an existing object
-	 * Used in the back button of choosePrereqs
+	 * Method used to display the chooseMajor window of an existing object Used
+	 * in the back button of choosePrereqs
 	 */
-	public void displayChooseMajor(){
+	public void displayChooseMajor() {
 		initComponents();
 		setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
-
 	@SuppressWarnings({ "deprecation" })
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	public void initComponents() {
 
 		topMessage = new javax.swing.JLabel();
@@ -52,13 +49,12 @@ public class chooseMajor extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		topMessage.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+		topMessage.setFont(new java.awt.Font("Lucida Grande", 0, 24));
 		topMessage.setText("Welcome! Please select your major: ");
 
 		nextButton.setLabel("Next");
 		nextButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-
 				nextButtonActionPerformed(evt, CSSE);
 
 			}
@@ -170,30 +166,27 @@ public class chooseMajor extends javax.swing.JFrame {
 		this.dispose();
 
 	}
-
-	public void CSButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	public void SEButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	/**
-	 * @param args
-	 *            the command line arguments
+	
+	/*
+	 * Called when button is initiated.
+	 * Though empty, this is kept to keep consistency
+	 * in the implementation of the buttons
 	 */
+	public void CSButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		
+	}
+
+	/*
+	 * Called when button is initiated.
+	 * Though empty, this is kept to keep consistency
+	 * in the implementation of the buttons
+	 */
+	public void SEButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		
+	}
+
 	public static void main(String args[]) {
 
-		
-		
 	}
-
-	// Variables declaration - do not modify
-	public static javax.swing.JLabel topMessage;
-	public static javax.swing.JToggleButton nextButton;
-	public static javax.swing.JToggleButton CSButton;
-	public static javax.swing.JToggleButton SEButton;
-	// End of variables declaration
 
 }

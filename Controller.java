@@ -390,6 +390,7 @@ public class Controller {
 	public static void saveToCSV(ArrayList<Course> scheduledCourses)
 			throws IOException {
 		FileWriter scheduleWriter = new FileWriter("createdSchedule.csv");
+		scheduleWriter.append("CRN,Department,Course Number,Title,Section,Instructor,Start Time, End Time \n");
 
 		for (Course scheduled : scheduledCourses) {
 			scheduleWriter.append(scheduled.displayCourseCSVFormat());
