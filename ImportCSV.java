@@ -11,6 +11,7 @@ import java.util.Comparator;
  * objects are created.
  * 
  * @author lauren
+ * Edited by Mary Floren, Adam Benjamin, Mark Sullivan, and Nehul Yadav
  * 
  */
 
@@ -25,26 +26,13 @@ public class ImportCSV {
 	@SuppressWarnings("null")
 	public static ArrayList<Course> csvFileIN() throws IOException {
 
-		// Marks:
-		// "C:\\Users\\Owner\\Documents\\github\\CSE201TeamB\\classes.csv"
-		// Adams:
-		// "C:\\Users\\AdamBenjamin\\Documents\\CSE 201\\CSE201_dev\\src\\classes.csv"
-		// Mary's:
-		// "/Users/maryfloren/Documents/workspace/CSE201TeamB/classes.csv"
-		// String fileName =
-		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
-
-
 		String fileName = "CSECourseScheduleSpring2016.csv";
-
 
 		// creatBufferedReader
 		BufferedReader br = null;
 
 		// current line
 		String cur = "";
-		// String fileName =
-		// "/Users/nehulyadav/Documents/workspace/CSE201TeamB/classes.csv";
 
 		// this stores all of the parts seperated by commas in the current line
 		ArrayList<Course> courseList = new ArrayList<Course>();
@@ -102,14 +90,12 @@ public class ImportCSV {
 				obj.setStartTime(Integer.parseInt(course[8].toString()));
 			} catch (NumberFormatException ex) {
 				obj.setStartTime(0);
-				// System.err.println("Ilegal input: Start time");
 			}
 
 			try {
 				obj.setEndTime(Integer.parseInt(course[9].toString()));
 			} catch (NumberFormatException ex) {
 				obj.setEndTime(0);
-				// System.err.println("Ilegal input: End time");
 			}
 
 			if (course[10] != null) {
@@ -132,27 +118,21 @@ public class ImportCSV {
 			// add to array of courses
 			courseList.add(obj);
 
-			// display to console for testing
-			// System.out.println(obj.displayCourse());
-
 		}
 
-		// scan.close();
 		br.close();
-		
+
 		/*
 		 * Sorts the ArrayList of classes
 		 */
 		Collections.sort(courseList, new Comparator<Course>() {
-	       public int compare(Course c1, Course c2) {
-	        	int intc1 = Integer.parseInt(c1.getCourseNum().substring(0, 3));
-	        	int intc2 = Integer.parseInt(c2.getCourseNum().substring(0, 3));
-	        	//System.out.println("intc1 " + intc1+ ", intc2 " + intc2);
-	            return intc1 - intc2;
-	        }
+			public int compare(Course c1, Course c2) {
+				int intc1 = Integer.parseInt(c1.getCourseNum().substring(0, 3));
+				int intc2 = Integer.parseInt(c2.getCourseNum().substring(0, 3));
+				return intc1 - intc2;
+			}
 
-
-	    });
+		});
 
 		return courseList;
 	}
