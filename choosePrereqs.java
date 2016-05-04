@@ -1,10 +1,4 @@
 import javax.swing.*;
-/*
- * Displays a window that allows user to choose from a list of 
- * prerequisites and populate a list of prerequisites he/she
- * has completed. Chosen prerequisites are stores in an
- * ArrayList for future use.
- */
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,7 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+/*
+ * Displays a window that allows user to choose from a list of 
+ * prerequisites and populate a list of prerequisites he/she
+ * has completed. Chosen prerequisites are stores in an
+ * ArrayList for future use.
+ */
 public class choosePrereqs implements ActionListener {
 
 	JList itemList, courses;
@@ -23,6 +22,9 @@ public class choosePrereqs implements ActionListener {
 	JFrame frame;
 	chooseMajor cm;
 
+	/*
+	 * Constructor of the class Parameter: chooseMajor object
+	 */
 	public choosePrereqs(chooseMajor cm) {
 		frame = new JFrame("Choose prerequisites");
 		this.cm = cm;
@@ -57,76 +59,72 @@ public class choosePrereqs implements ActionListener {
 		frame.setSize(screenSize.width, screenSize.height - 100);
 
 		frame.setVisible(true);
-		
-		//re-populating the list box
-		//
-		
-		for(int i =0; i<prereqList.getSize(); i++){
-			for(Course c: prereqsTaken){
-				try{
-				if(c.displayCoursePrereq().equals(prereqList.getElementAt(i).toString())){
-					items.addElement(prereqList.getElementAt(i));
-					prereqList.removeElementAt(i);
+
+		// re-populating the list box
+		for (int i = 0; i < prereqList.getSize(); i++) {
+			for (Course c : prereqsTaken) {
+				try {
+					if (c.displayCoursePrereq().equals(
+							prereqList.getElementAt(i).toString())) {
+						prereqsChosen.addElement(prereqList.getElementAt(i));
+						prereqList.removeElementAt(i);
+					}
+				} catch (Exception e) {
 				}
-				}catch(Exception e){}
 			}
 		}
-		
+
 	}
 
-	// The ListModels we will be using in the example.
-	DefaultListModel prereqList, items;
+	/*
+	 *  Using DefaultListModel to keep track of the two lists
+	 *  prereqList is populated with all possible prerequisites
+	 *  prereqList is shown in the box on the left
+	 *  prereqsChosen is populated with the prereqs chosen by the user
+	 *  prereqsChosen is shown in the box on the right
+	 *  
+	 *  When a class is added to prereqsChosen it is removed from prereqsList
+	 */
+	DefaultListModel prereqList, prereqsChosen;
 
 	public JPanel createContentPane() throws IOException {
 
-		// Create the final Panel.
+		// Create the final Panel
 		JPanel totalGUI = new JPanel();
 
-		// Instantiate the List Models.
+		// Instantiate the List Models
 		prereqList = new DefaultListModel();
-		items = new DefaultListModel();
+		prereqsChosen = new DefaultListModel();
 
-		// Things to be in the list.
-
+		// populating the list of all prerequisites
 		allPrereqs = Controller.displayPrereqOptions();
 
-		// Using a for loop, we add every item in the String array
-		// into the ListModel.
-
+		// add every item in the String array into the ListModel
 		for (Course c : allPrereqs) {
 			prereqList.addElement(c.displayCoursePrereq());
 		}
 
-		// Creation of the list.
-		// We set the cells in the list to be 20px x 140px.
-
+		// Creating the list
 		itemList = new JList(prereqList);
 		itemList.setVisibleRowCount(25);
-		// itemList.setFixedCellHeight(20);
-		// itemList.setFixedCellWidth(140);
 		itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-		// We then add them to a JScrollPane.
-		// This means when we remove items from the JList
-		// it will not shrink in size.
+		// Add them to a JScrollPane so when we remove prereqsChosen from the JList
+		// it will not get smaller in size
 		JScrollPane list1 = new JScrollPane(itemList);
 
-		courses = new JList(items);
+		courses = new JList(prereqsChosen);
 		courses.setVisibleRowCount(25);
-		// courses.setFixedCellHeight(20);
-		// courses.setFixedCellWidth(140);
 		courses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-		// We add this list to a JScrollPane too.
-		// This is so the list is displayed even though there are
-		// currently no items in the list.
-		// Without the scrollpane, the list would not show.
 		JScrollPane list2 = new JScrollPane(courses);
 
-		// We create the buttons to be placed between the lists.
+		// Creation of buttons
 		JPanel buttonPanel = new JPanel();
 		JPanel navButtons = new JPanel();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		//vertical spacing between the top two buttons and the bottom two buttons
 		int verticalSpacing = screenSize.height - 500;
 		JPanel buttons = new JPanel(new GridLayout(2, 2, 0, verticalSpacing));
 
@@ -149,9 +147,6 @@ public class choosePrereqs implements ActionListener {
 		buttons.add(buttonPanel);
 		buttons.add(navButtons);
 
-		// This final bit of code uses a BoxLayout to space out the widgets
-		// in the GUI.
-
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
 
@@ -168,9 +163,6 @@ public class choosePrereqs implements ActionListener {
 		return totalGUI;
 	}
 
-	// In this method, we create a square JPanel of a colour and set size
-	// specified by the arguments.
-
 	private JPanel createSquareJPanel(Color color, int size) {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setBackground(color);
@@ -181,15 +173,13 @@ public class choosePrereqs implements ActionListener {
 	}
 
 	// valueChanged is the method that deals with a ListSelectionEvent.
-	// This simply changes the boxes that are selected to true.
-
+	// This changes the boxes that are selected to true.
 	public void actionPerformed(ActionEvent e) {
 		int i = 0;
 
-		// When the 'in' button is pressed,
-		// we take the indices and values of the selected items
-		// and output them to an array.
-
+		/*
+		 * If buttonin is pressed, output the selected prereqsChosen to an array
+		 */
 		if (e.getSource() == buttonin) {
 			int[] fromindex = itemList.getSelectedIndices();
 
@@ -200,12 +190,11 @@ public class choosePrereqs implements ActionListener {
 						prereqsTaken.add(c);
 
 						for (i = 0; i < from.length; i++) {
-							items.addElement(from[i]);
+							prereqsChosen.addElement(from[i]);
 						}
 
-						// Finally, we remove the items from the first list.
-						// We must remove from the bottom, otherwise we try to
-						// remove the wrong objects.
+						// Remove the prereqsChosen from the first list.
+						// Remove from the bottom so we don't remove the wrong objects
 						for (i = (fromindex.length - 1); i >= 0; i--) {
 							prereqList.remove(fromindex[i]);
 						}
@@ -215,11 +204,9 @@ public class choosePrereqs implements ActionListener {
 			}
 		}
 
-		// Then, for each item in the array, we add them to
-		// the other list.
+		// add each element in the array to the second list
 
-		// If the out button is pressed, we take the indices and values of
-		// the selected items and output them to an array.
+		// If buttonout is pressed, output the selected prereqsChosen to an array
 		else if (e.getSource() == buttonout) {
 			Object[] to = courses.getSelectedValues();
 			int[] toindex = courses.getSelectedIndices();
@@ -234,27 +221,25 @@ public class choosePrereqs implements ActionListener {
 					}
 				}
 			}
-			
 
-			// Then, for each item in the array, we add them to
-			// the other list.
+			// add each element in the array to the first list
 			for (i = 0; i < to.length; i++) {
 				prereqList.addElement(to[i]);
 			}
 
-			// Finally, we remove the items from the first list.
-			// We must remove from the bottom, otherwise we try to
-			// remove the wrong objects.
+			// Remove the prereqsChosen from the second list
+			// Remove from the bottom so we don't remove the wrong objects
 			for (i = (toindex.length - 1); i >= 0; i--) {
-				items.remove(toindex[i]);
+				prereqsChosen.remove(toindex[i]);
 			}
 		}
-		// Clicks next button
+		// clicks next button
 		else if (e.getSource() == nextButton) {
 			chooseCourses cc = new chooseCourses(this);
 			frame.dispose();
 
-		} else if (e.getSource() == prevButton) {// clicks prev button
+		// clicks prev button
+		} else if (e.getSource() == prevButton) {
 			cm.displayChooseMajor();
 			frame.dispose();
 		}
