@@ -57,6 +57,20 @@ public class choosePrereqs implements ActionListener {
 		frame.setSize(screenSize.width, screenSize.height - 100);
 
 		frame.setVisible(true);
+		
+		//re-populating the list box
+		//
+		
+		for(int i =0; i<prereqList.getSize(); i++){
+			System.out.println(prereqList.getElementAt(i));
+			for(Course c: prereqsTaken){
+				if(c.displayCoursePrereq().equals(prereqList.getElementAt(i).toString())){
+					items.addElement(prereqList.getElementAt(i));
+					prereqList.removeElementAt(i);
+				}
+			}
+		}
+		
 	}
 
 	// The ListModels we will be using in the example.
